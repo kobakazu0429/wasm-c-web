@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
+  import { Wasface } from "wasm-interface";
   import {
     Header,
-    HeaderNav,
-    HeaderNavItem,
+    ButtonSet,
+    Button,
     SkipToContent,
     Content,
     Grid,
@@ -13,6 +14,47 @@
   } from "carbon-components-svelte";
 
   import Editor from "./components/Editor.svelte";
+
+  import { c2wasm } from "./wasface";
+  import { monacoEditorCode } from "./store";
+
+  let rawCode = "";
+  let compiledCode = "";
+  let compiledData: any = null;
+  monacoEditorCode.subscribe((code) => {
+    rawCode = code;
+  });
+
+  async function compile() {
+    console.log(rawCode);
+    const { binary, info } = await c2wasm(rawCode);
+    // console.log(info);
+    compiledCode = rawCode;
+    compiledData = { binary, info };
+    return { binary, info };
+  }
+
+  async function run() {
+    if (compiledCode !== rawCode) await compile();
+    if (!compiledData) return;
+    console.log(compiledData);
+
+    const app = new Wasface();
+
+    // @ts-ignore
+    Object.keys(compiledData.info).forEach((key) => {
+      // @ts-ignore
+      app.set(key, compiledData.info[key]);
+    });
+
+    // excuteButton.disabled = false;
+    // excuteButton.addEventListener("click", () => {
+    //   console.log("excuting...");
+    //   // @ts-ignore
+    // @ts-ignore
+    app.init(Uint8Array.from(compiledData.binary));
+    // });
+  }
 </script>
 
 <Header company="IBM" platformName="Carbon Svelte">
@@ -20,11 +62,11 @@
     <SkipToContent />
   </div>
 
-  <HeaderNav>
-    <HeaderNavItem href="/" text="Build" />
-    <HeaderNavItem href="/" text="Run" />
-    <HeaderNavItem href="/" text="Test" />
-  </HeaderNav>
+  <ButtonSet>
+    <Button size="small" kind="secondary" on:click={compile}>Compile</Button>
+    <Button size="small" kind="secondary" on:click={run}>Run</Button>
+    <Button size="small" kind="secondary">Test</Button>
+  </ButtonSet>
 </Header>
 
 <Content style="background-color: #393939; height: calc(100% - 3rem);">

@@ -1,11 +1,16 @@
 <script lang="ts">
   import loader from "@monaco-editor/loader";
+  import { monacoEditorCode } from "../store";
 
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
+
+  const initValue =
+    '#include <stdio.h>\n\nint main() {\n  printf("Hello, World !\\n");\n}';
+  monacoEditorCode.update(() => initValue);
+
   loader.init().then((monaco) => {
     const newEditor = monaco.editor.create(document.querySelector("#editor")!, {
-      value:
-        '#include <stdio.h>\n\nint main() {\n  printf("Hello, World !\\n");\n}',
+      value: initValue,
       language: "c",
       theme: "vs-dark",
       scrollbar: {
@@ -22,6 +27,7 @@
     newEditor.onDidChangeModelContent((_event: any) => {
       const value = newEditor.getValue();
       // props.onChangeValue(value);
+      monacoEditorCode.update(() => value);
     });
     // console.log(monaco.languages.getLanguages());
     // @ts-ignore
