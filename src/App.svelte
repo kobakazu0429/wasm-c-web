@@ -60,7 +60,7 @@
   }
 </script>
 
-<Header company="IBM" platformName="Carbon Svelte">
+<Header company="wasm-c-web">
   <div slot="skip-to-content">
     <SkipToContent />
   </div>
