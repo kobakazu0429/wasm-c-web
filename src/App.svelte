@@ -11,6 +11,8 @@
     Accordion,
     AccordionItem,
   } from "carbon-components-svelte";
+
+  import Editor from "./components/Editor.svelte";
 </script>
 
 <Header company="IBM" platformName="Carbon Svelte">
@@ -29,9 +31,9 @@
   <Grid fullWidth style="height: 100%;">
     <Row style="height: 100%; margin-bottom:3rem;">
       <Column
-        style="border: 2px solid #262626; border-right: 1px solid #262626; padding:16px;"
-        >Editor</Column
-      >
+        style="border: 2px solid #262626; border-right: 1px solid #262626; padding:0;"
+        ><Editor />
+      </Column>
       <Column
         style="border: 2px solid #262626; border-left: 1px solid #262626; padding:16px;overflow-y: scroll;max-height: 100%;"
       >
