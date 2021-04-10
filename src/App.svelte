@@ -14,9 +14,10 @@
   } from "carbon-components-svelte";
 
   import Editor from "./components/Editor.svelte";
+  import Console from "./components/Console.svelte";
 
   import { c2wasm } from "./wasface";
-  import { monacoEditorCode } from "./store";
+  import { consoleOut, monacoEditorCode } from "./store";
 
   let rawCode = "";
   let compiledCode = "";
@@ -40,6 +41,8 @@
     console.log(compiledData);
 
     const app = new Wasface();
+    app.set("stdout", consoleOut);
+    app.set("stderr", consoleOut);
 
     // @ts-ignore
     Object.keys(compiledData.info).forEach((key) => {
@@ -80,19 +83,19 @@
         style="border: 2px solid #262626; border-left: 1px solid #262626; padding:16px;overflow-y: scroll;max-height: 100%;"
       >
         <Accordion>
-          <AccordionItem>
+          <AccordionItem class="full-width-accordion-item" open>
             <div slot="title">
               <h5>Console (stdin / stdout / stderr)</h5>
             </div>
-            <div>$ gcc main.c -o main</div>
+            <Console />
           </AccordionItem>
-          <AccordionItem>
+          <AccordionItem class="full-width-accordion-item">
             <div slot="title">
               <h5>Test Content</h5>
             </div>
             <div>sum(1,2) should be 3</div>
           </AccordionItem>
-          <AccordionItem>
+          <AccordionItem class="full-width-accordion-item">
             <div slot="title">
               <h5>Test Result</h5>
             </div>
@@ -211,5 +214,9 @@
 <style>
   :global(body) {
     height: calc(100vh - 3rem);
+  }
+
+  :global(.full-width-accordion-item > div) {
+    padding-right: 1rem;
   }
 </style>
