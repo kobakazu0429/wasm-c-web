@@ -15,6 +15,7 @@
 
   import Editor from "./components/Editor.svelte";
   import Console from "./components/Console.svelte";
+  import TestResult from "./components/TestResult.svelte";
 
   import { c2wasm } from "./wasface";
   import { consoleOut, monacoEditorCode } from "./store";
@@ -93,117 +94,12 @@
             <div slot="title">
               <h5>Test Content</h5>
             </div>
-            <div>sum(1,2) should be 3</div>
           </AccordionItem>
-          <AccordionItem class="full-width-accordion-item">
+          <AccordionItem class="full-width-accordion-item" open>
             <div slot="title">
               <h5>Test Result</h5>
             </div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
-            <div>passed: 10, failed: 20</div>
+            <TestResult />
           </AccordionItem>
         </Accordion>
       </Column>
