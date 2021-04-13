@@ -19,6 +19,10 @@
 
   import { c2wasm } from "./wasface";
   import { consoleOut, monacoEditorCode } from "./store";
+  import { testResultOut } from "./store";
+
+  import { run as runTest, prettify, testBuilder } from "./jest";
+  import type { TestFixture } from "./jest";
 
   let rawCode = "";
   let compiledCode = "";
@@ -27,8 +31,41 @@
     rawCode = code;
   });
 
+  const demoData2: TestFixture = {
+    title: "function",
+    tests: [
+      {
+        title: "sum",
+        tests: [
+          {
+            name: "sum(1, 2) should be 3",
+            functionName: "sum",
+            input: [1, 2],
+            expect: 3,
+          },
+        ],
+      },
+      {
+        title: "div",
+        tests: [
+          {
+            name: "div(8, 2) should be 4",
+            functionName: "div",
+            input: [8, 2],
+            expect: 4,
+          },
+          {
+            name: "div(10, 3) should be 3.3333",
+            functionName: "div",
+            input: [10, 3],
+            expect: 3.3333,
+          },
+        ],
+      },
+    ],
+  };
+
   async function compile() {
-    console.log(rawCode);
     const { binary, info } = await c2wasm(rawCode);
     // console.log(info);
     compiledCode = rawCode;
@@ -36,14 +73,15 @@
     return { binary, info };
   }
 
+  let app: Wasface;
   async function run() {
     if (compiledCode !== rawCode) await compile();
     if (!compiledData) return;
     console.log(compiledData);
 
-    const app = new Wasface();
-    app.set("stdout", consoleOut);
-    app.set("stderr", consoleOut);
+    app = new Wasface();
+    app.set("stdout", console.log);
+    app.set("stderr", console.error);
 
     // @ts-ignore
     Object.keys(compiledData.info).forEach((key) => {
@@ -54,10 +92,46 @@
     // excuteButton.disabled = false;
     // excuteButton.addEventListener("click", () => {
     //   console.log("excuting...");
-    //   // @ts-ignore
     // @ts-ignore
-    app.init(Uint8Array.from(compiledData.binary));
-    // });
+    await app.init(Uint8Array.from(compiledData.binary));
+    await app.run();
+  }
+
+  async function test() {
+    const sum = await app.runFunction("sum", "number", ["number", "number"]);
+    const div = await app.runFunction("div", "number", ["number", "number"]);
+
+    const tests = testBuilder(demoData2, {
+      sum: sum,
+      div: div,
+    });
+    console.log(tests);
+    tests();
+    const result = await runTest();
+
+    const newLineAlternative = "________";
+    const spaceAlternative = "myspace";
+
+    const prettty = result.map((v: any) => ({
+      ...v,
+      errors: v.errors.map((s: string) =>
+        s
+          .split("\n")
+          .map((c) => c.replaceAll(/\s*at .*/g, ""))
+          .filter(Boolean)
+          .join(newLineAlternative)
+          .replaceAll(" ", spaceAlternative)
+      ),
+    }));
+    // console.log(JSON.stringify(a, null, 2));
+    // console.log(prettty);
+    const html = prettify.constructResultsHTML(prettty);
+    // console.log(html);
+    testResultOut(
+      html
+        .replaceAll(newLineAlternative, "<br>")
+        .replaceAll(spaceAlternative, "&nbsp;")
+    );
   }
 </script>
 
@@ -69,7 +143,7 @@
   <ButtonSet>
     <Button size="small" kind="secondary" on:click={compile}>Compile</Button>
     <Button size="small" kind="secondary" on:click={run}>Run</Button>
-    <Button size="small" kind="secondary">Test</Button>
+    <Button size="small" kind="secondary" on:click={test}>Test</Button>
   </ButtonSet>
 </Header>
 
