@@ -1,5 +1,8 @@
+import { compileLogOut } from "./store";
+
 export async function c2wasm(src: string) {
   console.log("sending...");
+  compileLogOut("compile start");
   // excuteButton.disabled = true;
 
   const param = {
@@ -15,6 +18,7 @@ export async function c2wasm(src: string) {
   ).json();
 
   console.log("compiled !");
+  compileLogOut("compiled !");
 
   // console.log(result);
   // console.log(data);

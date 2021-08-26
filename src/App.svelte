@@ -14,6 +14,7 @@
   } from "carbon-components-svelte";
 
   import Editor from "./components/Editor.svelte";
+  import CompileLog from "./components/CompileLog.svelte";
   import Console from "./components/Console.svelte";
   import TestResult from "./components/TestResult.svelte";
 
@@ -174,6 +175,12 @@
               <h5>Test Result</h5>
             </div>
             <TestResult />
+          </AccordionItem>
+          <AccordionItem class="full-width-accordion-item" open>
+            <div slot="title">
+              <h5>Compile Log</h5>
+            </div>
+            <CompileLog />
           </AccordionItem>
         </Accordion>
       </Column>
