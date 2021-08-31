@@ -19,7 +19,7 @@
   import TestResult from "./components/TestResult.svelte";
 
   import { c2wasm } from "./wasface";
-  import { consoleOut, consoleClear, monacoEditorCode } from "./store";
+  import { consolePrintln, monacoEditorCode } from "./store";
   import { testResultOut } from "./store";
 
   import { run as runTest, prettify, testBuilder } from "./jest";
@@ -76,7 +76,6 @@
 
   let app: Wasface;
   async function run() {
-    consoleClear();
     if (compiledCode !== rawCode) await compile();
     if (!compiledData) return;
     console.log(compiledData);
@@ -84,7 +83,7 @@
     app = new Wasface();
     app.set("stdout", (s: string) => {
       console.log(s);
-      consoleOut(s);
+      consolePrintln(s);
     });
     app.set("stderr", console.error);
 

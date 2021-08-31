@@ -2,13 +2,13 @@ import { writable } from "svelte/store";
 
 export const monacoEditorCode = writable("");
 
-export const consoleBody = writable([] as string[]);
-export const consoleClear = () => {
-  consoleBody.set([]);
+export const consoleOut = writable("");
+export const consolePrintln = (s: string) => {
+  consoleOut.set(s);
 };
-export const consoleOut = (s: string) => {
-  consoleBody.update((p) => [...p, s]);
-};
+
+export const isInputMode = writable(false);
+export const setInputMode = (mode: boolean) => isInputMode.set(mode);
 
 export const testResultBody = writable("");
 export const testResultOut = (s: string) => {
@@ -26,6 +26,6 @@ export const compileLogOut = (s: string) => {
   const ss = padding(time.getSeconds(), 2);
   const ms = padding(time.getMilliseconds(), 3);
 
-  const displayTime = `[${hh}:${mm}:${ss}.${ms}}] `;
+  const displayTime = `[${hh}:${mm}:${ss}.${ms}] `;
   compileLogBody.update((p) => [...p, displayTime + s]);
 };

@@ -1117,6 +1117,11 @@
     eslint-plugin-prettier "^3.1.4"
     prettier "^2.0.5"
 
+"@kobakazu0429/xterm-local-echo@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@kobakazu0429/xterm-local-echo/-/xterm-local-echo-0.0.3.tgz#d26ab0b656905fcec2b475f2284d8c9d0870bb92"
+  integrity sha512-4/9R6YmfazzRtq2sU03y2Wtz9wvKx2a6TWM5vWgLifSwb/u0YrS47WMeY9Q12yMZ5Sh0m8ax/wcegWqxthyyzg==
+
 "@mdn/browser-compat-data@^3.2.1":
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/@mdn/browser-compat-data/-/browser-compat-data-3.2.4.tgz#9b015c608eaed5cc47c35bb3d63f6502e5bd88c7"
@@ -5591,6 +5596,16 @@ xmlchars@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
+
+xterm-addon-fit@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/xterm-addon-fit/-/xterm-addon-fit-0.5.0.tgz#2d51b983b786a97dcd6cde805e700c7f913bc596"
+  integrity sha512-DsS9fqhXHacEmsPxBJZvfj2la30Iz9xk+UKjhQgnYNkrUIN5CYLbw7WEfz117c7+S86S/tpHPfvNxJsF5/G8wQ==
+
+xterm@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/xterm/-/xterm-4.13.0.tgz#7998de1e2ad92c4796fe45807be4f31061f3d9d1"
+  integrity sha512-HVW1gdoLOTnkMaqQCr2r3mQy4fX9iSa5gWxKZ2UTYdLa4iqavv7QxJ8n1Ypse32shPVkhTYPLS6vHEFZp5ghzw==
 
 y18n@^4.0.0:
   version "4.0.3"
