@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Wasface } from "wasm-interface";
+  import { stringOut, OpenFiles, Bindings, bufferIn } from "@kobakazu0429/wasi";
   import {
     Header,
     ButtonSet,
@@ -18,16 +18,27 @@
   import Console from "./components/Console.svelte";
   import TestResult from "./components/TestResult.svelte";
 
-  import { c2wasm } from "./wasface";
-  import { consolePrintln, monacoEditorCode } from "./store";
-  import { testResultOut } from "./store";
+  import { compiler } from "./compiler";
+  import {
+    consolePrintln,
+    monacoEditorCode,
+    compileLogOut,
+    testResultOut,
+  } from "./store";
 
   import { run as runTest, prettify, testBuilder } from "./jest";
   import type { TestFixture } from "./jest";
 
+  const StatusCode = {
+    OK: 0,
+    ERROR: 10,
+    UNKNOWN: 90,
+  } as const;
+
   let rawCode = "";
   let compiledCode = "";
-  let compiledData: any = null;
+  let compiledData: BufferSource | null = null;
+  let compiledStatusCode = -1;
   monacoEditorCode.subscribe((code) => {
     rawCode = code;
   });
@@ -67,43 +78,73 @@
   };
 
   async function compile() {
-    const { binary, info } = await c2wasm(rawCode);
-    // console.log(info);
-    compiledCode = rawCode;
-    compiledData = { binary, info };
-    return { binary, info };
+    const res = await compiler(rawCode);
+    if (res.code === 0) {
+      compiledCode = rawCode;
+      compiledData = Uint8Array.from((res.binary as any).data);
+    } else {
+      compileLogOut(res.message);
+    }
+    compiledStatusCode = res.code;
   }
 
-  let app: Wasface;
+  const textEncoder = new TextEncoder();
+
   async function run() {
     if (compiledCode !== rawCode) await compile();
-    if (!compiledData) return;
-    console.log(compiledData);
+    if (!compiledData || compiledStatusCode !== StatusCode.OK) return;
 
-    app = new Wasface();
-    app.set("stdout", (s: string) => {
-      console.log(s);
-      consolePrintln(s);
-    });
-    app.set("stderr", console.error);
+    const module = WebAssembly.compile(compiledData);
+    // @ts-expect-error
+    const rootHandle = await showDirectoryPicker();
+    const [sandbox, tmp] = await Promise.all([
+      rootHandle.getDirectoryHandle("sandbox"),
+      rootHandle.getDirectoryHandle("tmp"),
+    ]);
 
-    // @ts-ignore
-    Object.keys(compiledData.info).forEach((key) => {
+    const exitCode = await new Bindings({
+      openFiles: new OpenFiles({
+        "/sandbox": sandbox,
+        "/tmp": tmp,
+      }),
+      stdin: bufferIn(textEncoder.encode("10\n3\n")),
       // @ts-ignore
-      app.set(key, compiledData.info[key]);
-    });
-
-    // excuteButton.disabled = false;
-    // excuteButton.addEventListener("click", () => {
-    //   console.log("excuting...");
-    // @ts-ignore
-    await app.init(Uint8Array.from(compiledData.binary));
-    await app.run();
+      stdout: stringOut((s) => {
+        console.log(s);
+        consolePrintln(s);
+      }),
+      stderr: stringOut((s) => console.log(s)),
+      args: ["foo", "-bar", "--baz=value"],
+      env: {
+        NODE_PLATFORM: "win32",
+      },
+    }).run(await module);
+    console.log("exitCode", exitCode);
   }
 
   async function test() {
-    const sum = await app.runFunction("sum", "number", ["number", "number"]);
-    const div = await app.runFunction("div", "number", ["number", "number"]);
+    if (compiledCode !== rawCode) await compile();
+    if (!compiledData || compiledStatusCode !== StatusCode.OK) return;
+
+    const module = WebAssembly.compile(compiledData);
+
+    console.log(bufferIn(textEncoder.encode("1\n")));
+
+    type F = (a: number, b: number) => Promise<number>;
+    const { sum, div } = (await new Bindings({
+      openFiles: new OpenFiles({}),
+      stdin: bufferIn(textEncoder.encode("10\n3\n")),
+      // @ts-ignore
+      stdout: stringOut((s) => {
+        console.log(s);
+        consolePrintln(s);
+      }),
+      stderr: stringOut((s) => console.log(s)),
+      args: ["foo", "-bar", "--baz=value"],
+      env: {
+        NODE_PLATFORM: "win32",
+      },
+    }).exportFunction(await module)) as { [k in "sum" | "div"]: F };
 
     const tests = testBuilder(demoData2, {
       sum: sum,
@@ -111,10 +152,8 @@
     });
     tests();
     const result = await runTest();
-
     const newLineAlternative = "________";
     const spaceAlternative = "myspace";
-
     const prettty = result.map((v: any) => ({
       ...v,
       errors: v.errors.map((s: string) =>
