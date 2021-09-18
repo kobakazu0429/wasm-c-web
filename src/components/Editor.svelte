@@ -5,22 +5,24 @@
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
 
   const initValue = `#include <stdio.h>
-#include <emscripten.h>
 
-int EMSCRIPTEN_KEEPALIVE sum(int a, int b) {
+int sum(int a, int b) {
   return a + b;
 }
 
-float EMSCRIPTEN_KEEPALIVE div(int a, int b) {
+float div(int a, int b) {
   return (float)a / (float)b;
 }
 
 int main() {
-  int x = 1;
-  int y = 2;
+  setbuf(stdout, NULL);
+  int x, y;
+  scanf("%d", &x);
+  scanf("%d", &y);
 
   // function
   printf("%d + %d = %d\\n", x, y, sum(x, y));
+  printf("%d / %d = %3.2f\\n", x, y, div(x, y));
 }
 `;
 
@@ -38,7 +40,12 @@ int main() {
   //   return n * m;
   // }
 
+  // void greet(char name[]) {
+  //   printf("Hi, %s\\n", name);
+  // }
+
   // int main() {
+  //   setbuf(stdout, NULL);
   //   // normal
   //   int a = 429;
   //   float b = 3.141592;
@@ -67,6 +74,7 @@ int main() {
 
   //   // function
   //   printf("%d + %d = %d\\n", x, y, sum(x, y));
+  //   greet("kazu");
 
   //   // recursive
   //   for(int i = 0; i < 6; i++) {
