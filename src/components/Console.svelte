@@ -22,7 +22,7 @@
   terminal.loadAddon(fitAddon);
 
   consoleOut.subscribe((s) => {
-    localEchoAddon.println(s);
+    localEchoAddon.print(s);
   });
 
   const prompt = "~$ ";
@@ -37,7 +37,7 @@
     if (!terminalElement) return;
     terminal.open(terminalElement);
     fitAddon.fit();
-    readLine();
+    // readLine();
   });
 </script>
 
