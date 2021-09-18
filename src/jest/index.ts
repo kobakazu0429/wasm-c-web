@@ -35,8 +35,9 @@ export const testBuilder = (
           testBuilder(test, functions)();
         } else {
           // @ts-ignore
-          window.jestLite.core.it(test.name, () => {
+          window.jestLite.core.it(test.name, async () => {
             const myfunction = functions[test.functionName];
+
             if (!myfunction)
               throw new Error(
                 "Unable function name or Not found. Check your code or test cases."
@@ -45,7 +46,7 @@ export const testBuilder = (
             // TODO: add filed `float, double as type` to Test
             // @ts-ignore
             window.jestLite.core
-              .expect(myfunction(...test.input))
+              .expect(await myfunction(...test.input))
               .toBeCloseTo(test.expect, 4);
           });
         }
