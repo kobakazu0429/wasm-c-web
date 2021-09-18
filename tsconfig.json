@@ -3,7 +3,7 @@
   "compilerOptions": {
     "types": ["vite/client", "@types/jest"],
     "noUncheckedIndexedAccess": true,
-    "target": "es2017",
+    "target": "esnext",
     "module": "esnext",
     "strict": true,
     "moduleResolution": "node",
