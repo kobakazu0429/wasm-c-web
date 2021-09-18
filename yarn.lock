@@ -1117,6 +1117,20 @@
     eslint-plugin-prettier "^3.1.4"
     prettier "^2.0.5"
 
+"@kobakazu0429/native-file-system-adapter-lite@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@kobakazu0429/native-file-system-adapter-lite/-/native-file-system-adapter-lite-0.0.3.tgz#80de882537d2b051ff16058adf02653000e819fa"
+  integrity sha512-LLoKOhI0JjpgOEar1qbD/JVTzI+1h2k2205Hbnj9kdLWxFttTSE05fS/k7dYbokkZs1iV2lYNxv+3BDwmcw1zg==
+
+"@kobakazu0429/wasi@link:../wasi-fs-access":
+  version "0.0.0"
+  uid ""
+
+"@kobakazu0429/xterm-local-echo@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@kobakazu0429/xterm-local-echo/-/xterm-local-echo-0.0.3.tgz#d26ab0b656905fcec2b475f2284d8c9d0870bb92"
+  integrity sha512-4/9R6YmfazzRtq2sU03y2Wtz9wvKx2a6TWM5vWgLifSwb/u0YrS47WMeY9Q12yMZ5Sh0m8ax/wcegWqxthyyzg==
+
 "@mdn/browser-compat-data@^3.2.1":
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/@mdn/browser-compat-data/-/browser-compat-data-3.2.4.tgz#9b015c608eaed5cc47c35bb3d63f6502e5bd88c7"
@@ -1302,10 +1316,15 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
   integrity sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
 
-"@types/node@*", "@types/node@^14.14.37":
+"@types/node@*":
   version "14.14.37"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.37.tgz#a3dd8da4eb84a996c36e331df98d82abd76b516e"
   integrity sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==
+
+"@types/node@^16.9.2":
+  version "16.9.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.9.2.tgz#81f5a039d6ed1941f8cc57506c74e7c2b8fc64b9"
+  integrity sha512-ZHty/hKoOLZvSz6BtP1g7tc7nUeJhoCf3flLjh8ZEv1vFKBWHXcnMbJMyN/pftSljNyy0kNW/UqI3DccnBnZ8w==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1355,6 +1374,11 @@
   version "0.7.35"
   resolved "https://registry.yarnpkg.com/@types/ua-parser-js/-/ua-parser-js-0.7.35.tgz#cca67a95deb9165e4b1f449471801e6489d3fe93"
   integrity sha512-PsPx0RLbo2Un8+ff2buzYJnZjzwhD3jQHPOG2PtVIeOhkRDddMcKU8vJtHpzzfLB95dkUi0qAkfLg2l2Fd0yrQ==
+
+"@types/wicg-file-system-access@^2020.9.2":
+  version "2020.9.2"
+  resolved "https://registry.yarnpkg.com/@types/wicg-file-system-access/-/wicg-file-system-access-2020.9.2.tgz#6433e5a1d7cfdc58558e15f69276e4f0034088c6"
+  integrity sha512-8ni2EyWi01DBuVqekudo2I+RTfq4Jq93iHmlzq0+eKPkG1uebQA9OUxIDRzOevvw9wF922XYRo4bqP0a6DBF5g==
 
 "@types/yargs-parser@*":
   version "20.2.0"
@@ -5591,6 +5615,16 @@ xmlchars@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
+
+xterm-addon-fit@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/xterm-addon-fit/-/xterm-addon-fit-0.5.0.tgz#2d51b983b786a97dcd6cde805e700c7f913bc596"
+  integrity sha512-DsS9fqhXHacEmsPxBJZvfj2la30Iz9xk+UKjhQgnYNkrUIN5CYLbw7WEfz117c7+S86S/tpHPfvNxJsF5/G8wQ==
+
+xterm@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/xterm/-/xterm-4.13.0.tgz#7998de1e2ad92c4796fe45807be4f31061f3d9d1"
+  integrity sha512-HVW1gdoLOTnkMaqQCr2r3mQy4fX9iSa5gWxKZ2UTYdLa4iqavv7QxJ8n1Ypse32shPVkhTYPLS6vHEFZp5ghzw==
 
 y18n@^4.0.0:
   version "4.0.3"

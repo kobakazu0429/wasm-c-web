@@ -20,7 +20,7 @@ int main() {
   int y = 2;
 
   // function
-  printf("%d + %d = %d\n", x, y, sum(x, y));
+  printf("%d + %d = %d\\n", x, y, sum(x, y));
 }
 `;
 
