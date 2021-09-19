@@ -1,6 +1,4 @@
-<script lang="ts">
-  import { onMount } from "svelte";
-
+<script lang="ts" context="module">
   import "xterm/css/xterm.css";
   import { Terminal } from "xterm";
   import { FitAddon } from "xterm-addon-fit";
@@ -25,19 +23,20 @@
     localEchoAddon.print(s);
   });
 
-  const prompt = "~$ ";
-  const readLine = async () => {
-    const input = await localEchoAddon.read(prompt);
-    localEchoAddon.println("You typed: '" + input + "'");
-    readLine();
-  };
+  export async function readLine() {
+    const input = (await localEchoAddon.read("")) as string;
+    return input;
+  }
+</script>
+
+<script lang="ts">
+  import { onMount } from "svelte";
 
   onMount(() => {
     const terminalElement = document.getElementById("terminal");
     if (!terminalElement) return;
     terminal.open(terminalElement);
     fitAddon.fit();
-    // readLine();
   });
 </script>
 
