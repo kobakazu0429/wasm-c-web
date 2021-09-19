@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
   import { writable } from "svelte/store";
-  const modalOpenStatus = writable(false);
+  const modalOpenStatus = writable(!false);
   export const openSettingModal = () => {
     console.log("open");
     modalOpenStatus.set(true);
@@ -13,11 +13,17 @@
   import { TextInput } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
   import AddAlt32 from "carbon-icons-svelte/lib/AddAlt32";
+  import Close24 from "carbon-icons-svelte/lib/Close24";
 
   let argvs = ["./main"];
 
   function addArgvs() {
     argvs = [...argvs, ""];
+  }
+
+  function removeArgvs(i: number) {
+    argvs.splice(i, 1);
+    argvs = argvs;
   }
 </script>
 
@@ -40,12 +46,23 @@
       <TabContent>Content 3</TabContent>
       <TabContent>
         {#each argvs as argv, i}
-          <TextInput
-            inline
-            labelText={`argv[${i}]`}
-            bind:value={argv}
-            readonly={i === 0}
-          />
+          <div class="inline">
+            <TextInput
+              inline
+              labelText={`argv[${i}]`}
+              bind:value={argv}
+              readonly={i === 0}
+            />
+            <Button
+              kind="danger-ghost"
+              size="small"
+              hasIconOnly
+              disabled={i === 0}
+              on:click={() => removeArgvs(i)}
+            >
+              <Close24 />
+            </Button>
+          </div>
         {/each}
 
         <Button
@@ -59,3 +76,9 @@
     </div>
   </Tabs>
 </Modal>
+
+<style>
+  .inline {
+    display: flex;
+  }
+</style>
