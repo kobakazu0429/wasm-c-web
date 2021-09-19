@@ -16,7 +16,7 @@
 
   import SetteingModal, {
     openSettingModal,
-  } from "./components/SetteingModal.svelte";
+  } from "./components/SetteingModal/index.svelte";
   import Editor from "./components/Editor.svelte";
   import CompileLog from "./components/CompileLog.svelte";
   import Console, { readLine } from "./components/Console.svelte";

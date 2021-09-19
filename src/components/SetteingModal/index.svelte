@@ -10,10 +10,9 @@
 <script lang="ts">
   import { Modal } from "carbon-components-svelte";
   import { Tabs, Tab, TabContent } from "carbon-components-svelte";
-  import { TextInput } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
   import AddAlt32 from "carbon-icons-svelte/lib/AddAlt32";
-  import Close24 from "carbon-icons-svelte/lib/Close24";
+  import InlineTextInput from "./InlineTextInput.svelte";
 
   let argvs = ["./main"];
 
@@ -46,23 +45,12 @@
       <TabContent>Content 3</TabContent>
       <TabContent>
         {#each argvs as argv, i}
-          <div class="inline">
-            <TextInput
-              inline
-              labelText={`argv[${i}]`}
-              bind:value={argv}
-              readonly={i === 0}
-            />
-            <Button
-              kind="danger-ghost"
-              size="small"
-              hasIconOnly
-              disabled={i === 0}
-              on:click={() => removeArgvs(i)}
-            >
-              <Close24 />
-            </Button>
-          </div>
+          <InlineTextInput
+            labelText={`argv[${i}]`}
+            bind:value={argv}
+            fixed={i === 0}
+            handleRemove={() => removeArgvs(i)}
+          />
         {/each}
 
         <Button
