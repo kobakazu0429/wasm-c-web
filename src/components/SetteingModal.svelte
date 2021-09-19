@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
   import { writable } from "svelte/store";
-  import { Modal } from "carbon-components-svelte";
   const modalOpenStatus = writable(false);
   export const openSettingModal = () => {
     console.log("open");
@@ -8,15 +7,55 @@
   };
 </script>
 
+<script lang="ts">
+  import { Modal } from "carbon-components-svelte";
+  import { Tabs, Tab, TabContent } from "carbon-components-svelte";
+  import { TextInput } from "carbon-components-svelte";
+  import { Button } from "carbon-components-svelte";
+  import AddAlt32 from "carbon-icons-svelte/lib/AddAlt32";
+
+  let argvs = ["./main"];
+
+  function addArgvs() {
+    argvs = [...argvs, ""];
+  }
+</script>
+
 <Modal
   bind:open={$modalOpenStatus}
-  modalHeading="Create database"
+  modalHeading="Setting"
   primaryButtonText="Confirm"
   secondaryButtonText="Cancel"
-  on:click:button--secondary={() => {}}
-  on:open
-  on:close
-  on:submit
+  hasForm
+  on:close={() => modalOpenStatus.set(false)}
 >
-  <p>Create a new Cloudant database in the US South region.</p>
+  <Tabs>
+    <Tab label="Editor" />
+    <Tab label="Config" />
+    <Tab label="Env" />
+    <Tab label="Argv" />
+    <div slot="content">
+      <TabContent>Content 1</TabContent>
+      <TabContent>Content 2</TabContent>
+      <TabContent>Content 3</TabContent>
+      <TabContent>
+        {#each argvs as argv, i}
+          <TextInput
+            inline
+            labelText={`argv[${i}]`}
+            value={argv}
+            readonly={i === 0}
+          />
+        {/each}
+
+        <Button
+          iconDescription="Add"
+          tooltipPosition="right"
+          hasIconOnly
+          icon={AddAlt32}
+          on:click={addArgvs}
+        />
+      </TabContent>
+    </div>
+  </Tabs>
 </Modal>
