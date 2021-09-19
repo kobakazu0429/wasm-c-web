@@ -43,7 +43,7 @@
           <TextInput
             inline
             labelText={`argv[${i}]`}
-            value={argv}
+            bind:value={argv}
             readonly={i === 0}
           />
         {/each}
