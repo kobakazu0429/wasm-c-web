@@ -1,5 +1,6 @@
 <script lang="ts">
   import { stringOut, OpenFiles, Bindings, bufferIn } from "@kobakazu0429/wasi";
+  import type { In } from "@kobakazu0429/wasi";
   import {
     Header,
     ButtonSet,
@@ -15,7 +16,7 @@
 
   import Editor from "./components/Editor.svelte";
   import CompileLog from "./components/CompileLog.svelte";
-  import Console from "./components/Console.svelte";
+  import Console, { readLine } from "./components/Console.svelte";
   import TestResult from "./components/TestResult.svelte";
 
   import { compiler } from "./compiler";
@@ -102,12 +103,20 @@
       rootHandle.getDirectoryHandle("tmp"),
     ]);
 
+    const stdin: In = {
+      read: async () => {
+        let input = await readLine();
+        if (!input.endsWith("\n")) input += "\n";
+        return textEncoder.encode(input);
+      },
+    };
+
     const exitCode = await new Bindings({
       openFiles: new OpenFiles({
         "/sandbox": sandbox,
         "/tmp": tmp,
       }),
-      stdin: bufferIn(textEncoder.encode("10\n3\n")),
+      stdin,
       // @ts-ignore
       stdout: stringOut((s) => {
         console.log(s);
