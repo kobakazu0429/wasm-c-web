@@ -1,11 +1,36 @@
 <script lang="ts">
+  import "xterm/css/xterm.css";
+  import { Terminal } from "xterm";
+  import { FitAddon } from "xterm-addon-fit";
+  import { onMount } from "svelte";
   import { Tile } from "carbon-components-svelte";
-  import { compileLogBody } from "../store";
+  import { compileLog } from "../store";
 
-  let body = "";
-  compileLogBody.subscribe((_body) => {
-    body = _body.join("<br />");
+  const terminal = new Terminal({
+    cursorBlink: false,
+    allowTransparency: true,
+    theme: {
+      background: "rgba(0,0,0,0)",
+      cursor: "rgba(0,0,0,0)",
+    },
+  });
+
+  const fitAddon = new FitAddon();
+  terminal.loadAddon(fitAddon);
+
+  compileLog.subscribe((s) => {
+    s.split("\n").forEach((c, i) => {
+      if (i !== 0) c = " ".repeat(15) + c;
+      terminal.writeln(c);
+    });
+  });
+
+  onMount(() => {
+    const terminalElement = document.getElementById("compile-log");
+    if (!terminalElement) return;
+    terminal.open(terminalElement);
+    fitAddon.fit();
   });
 </script>
 
-<Tile light style="width:100%; line-height: normal;">{@html body}</Tile>
+<Tile light style="width:100%; line-height: normal;" id="compile-log" />

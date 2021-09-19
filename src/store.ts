@@ -18,7 +18,7 @@ export const testResultOut = (s: string) => {
 const padding = (n: number, length: number) => {
   return String(n).padStart(length, "0");
 };
-export const compileLogBody = writable([] as string[]);
+export const compileLog = writable("");
 export const compileLogOut = (s: string) => {
   const time = new Date();
   const hh = padding(time.getHours(), 2);
@@ -27,5 +27,5 @@ export const compileLogOut = (s: string) => {
   const ms = padding(time.getMilliseconds(), 3);
 
   const displayTime = `[${hh}:${mm}:${ss}.${ms}] `;
-  compileLogBody.update((p) => [...p, displayTime + s]);
+  compileLog.set(displayTime + s);
 };
