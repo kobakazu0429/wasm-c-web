@@ -14,6 +14,9 @@
     AccordionItem,
   } from "carbon-components-svelte";
 
+  import SetteingModal, {
+    openSettingModal,
+  } from "./components/SetteingModal.svelte";
   import Editor from "./components/Editor.svelte";
   import CompileLog from "./components/CompileLog.svelte";
   import Console, { readLine } from "./components/Console.svelte";
@@ -186,15 +189,23 @@
   }
 </script>
 
+<SetteingModal />
+
 <Header company="wasm-c-web">
   <div slot="skip-to-content">
     <SkipToContent />
   </div>
 
-  <ButtonSet>
+  <ButtonSet class="header-buttons" style="width:100%;">
     <Button size="small" kind="secondary" on:click={compile}>Compile</Button>
     <Button size="small" kind="secondary" on:click={run}>Run</Button>
     <Button size="small" kind="secondary" on:click={test}>Test</Button>
+    <Button
+      size="small"
+      kind="secondary"
+      on:click={openSettingModal}
+      style="margin-left:auto;margin-right:16px">Setteing</Button
+    >
   </ButtonSet>
 </Header>
 
@@ -245,5 +256,9 @@
 
   :global(.full-width-accordion-item > div) {
     padding-right: 1rem;
+  }
+
+  :global(.bx--header__name) {
+    flex-shrink: 0;
   }
 </style>
