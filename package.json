@@ -44,7 +44,7 @@
     "@kobakazu0429/wasi": "link:../wasi-fs-access",
     "@kobakazu0429/xterm-local-echo": "^0.0.3",
     "@monaco-editor/loader": "^1.0.1",
-    "carbon-components-svelte": "^0.32.1",
+    "carbon-components-svelte": "^0.44.2",
     "monaco-editor": "^0.23.0",
     "wasm-interface": "link:../wasm-interface",
     "xterm": "^4.13.0",

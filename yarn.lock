@@ -1967,19 +1967,18 @@ capture-exit@^2.0.0:
   dependencies:
     rsvp "^4.8.4"
 
-carbon-components-svelte@^0.32.1:
-  version "0.32.1"
-  resolved "https://registry.yarnpkg.com/carbon-components-svelte/-/carbon-components-svelte-0.32.1.tgz#730afd461601f8c8968cf6b13cb5269adb07d786"
-  integrity sha512-48ezWmDQCqdfxQHWV4OaG984v8pLT6qEIHJ6nKbqpUMJ0+FR1Z755HEU1T/AyZebMY4808SF5xH7Ayi8PvAMSA==
+carbon-components-svelte@^0.44.2:
+  version "0.44.2"
+  resolved "https://registry.yarnpkg.com/carbon-components-svelte/-/carbon-components-svelte-0.44.2.tgz#5a681956396f6a7d5b38a37846dbea02299e3e37"
+  integrity sha512-wM0hGJ5fNHWhe0tq+Jgxz4Y+5TMOsIuTFxSEBYaJDGriyYwMm/8Ti6WGwgiRSrECzkN2napmfCTQz6uCBXIAYA==
   dependencies:
-    carbon-icons-svelte "^10.27.0"
-    clipboard-copy "3.2.0"
+    carbon-icons-svelte "^10.36.0"
     flatpickr "4.6.9"
 
-carbon-icons-svelte@^10.27.0:
-  version "10.28.0"
-  resolved "https://registry.yarnpkg.com/carbon-icons-svelte/-/carbon-icons-svelte-10.28.0.tgz#812a6eae858d0c9e043067c714910fcfb6249cd2"
-  integrity sha512-C3K+U2PRy63WHFZme1HQNju89rhVIQmUkfgBrZzcezdutkhXbSPOY+o/MI0B2mDcQ7G9gfhEpqsXET8gBTWfJQ==
+carbon-icons-svelte@^10.36.0:
+  version "10.38.0"
+  resolved "https://registry.yarnpkg.com/carbon-icons-svelte/-/carbon-icons-svelte-10.38.0.tgz#daf74e4a2a826ad994c950a67307b8392d80ca3a"
+  integrity sha512-uEckbbNHFtDzKz+QRx6GxvZcezXXqfDOiaE7mupkiRPkBbALrA9CPJZbI5Q2XW5mpn8lgN3IlTm2u1iJEAlVJw==
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -2042,11 +2041,6 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
-
-clipboard-copy@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/clipboard-copy/-/clipboard-copy-3.2.0.tgz#3c5b8651d3512dcfad295d77a9eb09e7fac8d5fb"
-  integrity sha512-vooFaGFL6ulEP1liiaWFBmmfuPm3cY3y7T9eB83ZTnYc/oFeAKsq3NcDrOkBC8XaauEE8zHQwI7k0+JSYiVQSQ==
 
 cliui@^6.0.0:
   version "6.0.0"
