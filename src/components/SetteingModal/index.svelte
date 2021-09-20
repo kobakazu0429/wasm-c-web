@@ -15,12 +15,13 @@
   import InlineTextInput from "./InlineTextInput.svelte";
   import InlineTextBothInput from "./InlineTextBothInput.svelte";
 
-  let argvs = ["./main"];
+  let config = [{ key: "timeout [ms]", value: 3000 }];
   let env = [
     { key: "LANG", value: "ja_JP.UTF-8" },
     { key: "HOME", value: "/home/user" },
     { key: "USER", value: "user" },
   ];
+  let argvs = ["./main"];
 
   function addArgvs() {
     argvs = [...argvs, ""];
@@ -29,6 +30,16 @@
   function removeArgvs(i: number) {
     argvs.splice(i, 1);
     argvs = argvs;
+  }
+
+  function addConfig() {
+    config.push({ key: "", value: "" });
+    config = config;
+  }
+
+  function removeConfig(i: number) {
+    config.splice(i, 1);
+    config = config;
   }
 
   function addEnv() {
@@ -57,7 +68,16 @@
     <Tab label="Argv" />
     <div slot="content">
       <TabContent>Content 1</TabContent>
-      <TabContent>Content 2</TabContent>
+      <TabContent>
+        {#each config as c, i}
+          <InlineTextInput
+            group={config}
+            labelText={c.key}
+            bind:value={c.value}
+            handleRemove={() => removeConfig(i)}
+          />
+        {/each}
+      </TabContent>
       <TabContent>
         {#each env as e, i}
           <InlineTextBothInput
@@ -83,6 +103,7 @@
             labelText={`argv[${i}]`}
             bind:value={argv}
             fixed={i === 0}
+            deleteIconVisible={true}
             handleRemove={() => removeArgvs(i)}
           />
         {/each}
