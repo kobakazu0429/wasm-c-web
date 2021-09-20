@@ -3,7 +3,7 @@
   import { Button } from "carbon-components-svelte";
   import Close24 from "carbon-icons-svelte/lib/Close24";
 
-  export let fixed: boolean;
+  export let fixed: boolean = false;
   export let labelText: string;
   export let value: string;
   export let handleRemove: (i: number) => void;
