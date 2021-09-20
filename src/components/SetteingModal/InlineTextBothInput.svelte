@@ -22,7 +22,7 @@
     display: flex;
   }
 
-  :global(.inline > div:first-child) {
+  .inline > :global(div:first-child) {
     width: 140px;
     margin-right: 20px;
     flex: initial;
