@@ -13,8 +13,14 @@
   import { Button } from "carbon-components-svelte";
   import AddAlt32 from "carbon-icons-svelte/lib/AddAlt32";
   import InlineTextInput from "./InlineTextInput.svelte";
+  import InlineTextBothInput from "./InlineTextBothInput.svelte";
 
   let argvs = ["./main"];
+  let env = [
+    { key: "LANG", value: "ja_JP.UTF-8" },
+    { key: "HOME", value: "/home/user" },
+    { key: "USER", value: "user" },
+  ];
 
   function addArgvs() {
     argvs = [...argvs, ""];
@@ -23,6 +29,16 @@
   function removeArgvs(i: number) {
     argvs.splice(i, 1);
     argvs = argvs;
+  }
+
+  function addEnv() {
+    env.push({ key: "", value: "" });
+    env = env;
+  }
+
+  function removeEnv(i: number) {
+    env.splice(i, 1);
+    env = env;
   }
 </script>
 
@@ -42,7 +58,25 @@
     <div slot="content">
       <TabContent>Content 1</TabContent>
       <TabContent>Content 2</TabContent>
-      <TabContent>Content 3</TabContent>
+      <TabContent>
+        {#each env as e, i}
+          <InlineTextBothInput
+            group={env}
+            bind:key={e.key}
+            bind:value={e.value}
+            handleRemove={() => removeEnv(i)}
+          />
+        {/each}
+
+        <Button
+          iconDescription="Add"
+          tooltipPosition="right"
+          hasIconOnly
+          icon={AddAlt32}
+          on:click={addEnv}
+        />
+      </TabContent>
+
       <TabContent>
         {#each argvs as argv, i}
           <InlineTextInput
@@ -64,9 +98,3 @@
     </div>
   </Tabs>
 </Modal>
-
-<style>
-  .inline {
-    display: flex;
-  }
-</style>
