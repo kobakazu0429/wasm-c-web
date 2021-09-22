@@ -41,11 +41,15 @@
     "vite": "^2.5.4"
   },
   "dependencies": {
+    "@codingame/monaco-jsonrpc": "^0.3.1",
+    "@codingame/monaco-languageclient": "^0.14.0",
     "@kobakazu0429/wasi": "link:../wasi-fs-access",
     "@kobakazu0429/xterm-local-echo": "^0.0.3",
     "@monaco-editor/loader": "^1.0.1",
     "carbon-components-svelte": "^0.44.2",
-    "monaco-editor": "^0.23.0",
+    "monaco-editor": "^0.27.0",
+    "normalize-url": "^7.0.2",
+    "reconnecting-websocket": "^4.4.0",
     "wasm-interface": "link:../wasm-interface",
     "xterm": "^4.13.0",
     "xterm-addon-fit": "^0.5.0"
