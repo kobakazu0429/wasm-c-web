@@ -14,6 +14,14 @@ export default defineConfig({
     },
   },
 
+  resolve: {
+    alias: {
+      vscode: require.resolve(
+        "@codingame/monaco-languageclient/lib/vscode-compatibility"
+      ),
+    },
+  },
+
   css: {
     postCss: {
       plugins: [autoprefixer()],
