@@ -15,7 +15,7 @@
   import InlineTextInput from "./InlineTextInput.svelte";
   import InlineTextBothInput from "./InlineTextBothInput.svelte";
 
-  let config = [{ key: "timeout [ms]", value: 3000 }];
+  let config = [{ key: "timeout [ms]", value: "3000" }];
   let env = [
     { key: "LANG", value: "ja_JP.UTF-8" },
     { key: "HOME", value: "/home/user" },
@@ -71,7 +71,6 @@
       <TabContent>
         {#each config as c, i}
           <InlineTextInput
-            group={config}
             labelText={c.key}
             bind:value={c.value}
             handleRemove={() => removeConfig(i)}
@@ -81,7 +80,6 @@
       <TabContent>
         {#each env as e, i}
           <InlineTextBothInput
-            group={env}
             bind:key={e.key}
             bind:value={e.value}
             handleRemove={() => removeEnv(i)}

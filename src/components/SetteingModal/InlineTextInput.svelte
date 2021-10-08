@@ -7,7 +7,7 @@
   export let deleteIconVisible: boolean = false;
   export let labelText: string;
   export let value: string;
-  export let handleRemove: (i: number) => void;
+  export let handleRemove: (e: MouseEvent) => void;
 </script>
 
 <div class="inline">
