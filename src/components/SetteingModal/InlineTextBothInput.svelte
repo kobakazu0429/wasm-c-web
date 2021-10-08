@@ -3,15 +3,14 @@
   import { Button } from "carbon-components-svelte";
   import Close24 from "carbon-icons-svelte/lib/Close24";
 
-  export let group: Recode<string, string>;
   export let key: string;
   export let value: string;
-  export let handleRemove: (i: number) => void;
+  export let handleRemove: (e: MouseEvent) => void;
 </script>
 
 <div class="inline">
-  <TextInput bind:group bind:value={key} placeholder="key" />
-  <TextInput bind:group bind:value placeholder="value" />
+  <TextInput bind:value={key} placeholder="key" />
+  <TextInput bind:value placeholder="value" />
   <Button kind="danger-ghost" size="small" hasIconOnly on:click={handleRemove}>
     <Close24 />
   </Button>
