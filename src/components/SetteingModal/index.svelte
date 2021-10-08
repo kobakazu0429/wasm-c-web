@@ -15,12 +15,17 @@
   import InlineTextInput from "./InlineTextInput.svelte";
   import InlineTextBothInput from "./InlineTextBothInput.svelte";
 
-  let config = [{ key: "timeout [ms]", value: "3000" }];
+  let config: Array<{ key: string; value: string | boolean }> = [
+    { key: "timeout [ms]", value: "3000" },
+    { key: "use File System", value: false },
+  ];
+
   let env = [
     { key: "LANG", value: "ja_JP.UTF-8" },
     { key: "HOME", value: "/home/user" },
     { key: "USER", value: "user" },
   ];
+
   let argvs = ["./main"];
 
   function addArgvs() {
