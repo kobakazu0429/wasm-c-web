@@ -1135,11 +1135,6 @@
     eslint-plugin-prettier "^3.1.4"
     prettier "^2.0.5"
 
-"@kobakazu0429/native-file-system-adapter-lite@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@kobakazu0429/native-file-system-adapter-lite/-/native-file-system-adapter-lite-0.0.3.tgz#80de882537d2b051ff16058adf02653000e819fa"
-  integrity sha512-LLoKOhI0JjpgOEar1qbD/JVTzI+1h2k2205Hbnj9kdLWxFttTSE05fS/k7dYbokkZs1iV2lYNxv+3BDwmcw1zg==
-
 "@kobakazu0429/wasi@link:../wasi-fs-access":
   version "0.0.0"
   uid ""
@@ -1985,10 +1980,10 @@ capture-exit@^2.0.0:
   dependencies:
     rsvp "^4.8.4"
 
-carbon-components-svelte@^0.44.2:
-  version "0.44.2"
-  resolved "https://registry.yarnpkg.com/carbon-components-svelte/-/carbon-components-svelte-0.44.2.tgz#5a681956396f6a7d5b38a37846dbea02299e3e37"
-  integrity sha512-wM0hGJ5fNHWhe0tq+Jgxz4Y+5TMOsIuTFxSEBYaJDGriyYwMm/8Ti6WGwgiRSrECzkN2napmfCTQz6uCBXIAYA==
+carbon-components-svelte@^0.44.5:
+  version "0.44.5"
+  resolved "https://registry.yarnpkg.com/carbon-components-svelte/-/carbon-components-svelte-0.44.5.tgz#3db2fb8f75a4aa48a86033e9bd52ea0f07c49fcd"
+  integrity sha512-kuTBjoz1LuaTa+9VYkUORE+fei9VAkzYEQJqaIdlgu9FAk43BjmdK+7swAoOPdDmaM5pcES7UBZUwe+b9AoLMQ==
   dependencies:
     carbon-icons-svelte "^10.36.0"
     flatpickr "4.6.9"
@@ -5310,10 +5305,10 @@ svelte-preprocess@^4.0.0:
     detect-indent "^6.0.0"
     strip-indent "^3.0.0"
 
-svelte-preprocess@^4.7.2:
-  version "4.9.4"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.9.4.tgz#1a81c47994b94a8ee8a8cadf10763053dd486e24"
-  integrity sha512-Z0mUQBGtE+ZZSv/HerRSHe7ukJokxjiPeHe7iPOIXseEoRw51H3K/Vh6OMIMstetzZ11vWO9rCsXSD/uUUArmA==
+svelte-preprocess@^4.9.8:
+  version "4.9.8"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.9.8.tgz#fd40afebfb352f469beab289667485ebf0d811da"
+  integrity sha512-EQS/oRZzMtYdAprppZxY3HcysKh11w54MgA63ybtL+TAZ4hVqYOnhw41JVJjWN9dhPnNjjLzvbZ2tMhTsla1Og==
   dependencies:
     "@types/pug" "^2.0.4"
     "@types/sass" "^1.16.0"
@@ -5322,10 +5317,10 @@ svelte-preprocess@^4.7.2:
     sorcery "^0.10.0"
     strip-indent "^3.0.0"
 
-svelte@^3.37.0:
-  version "3.37.0"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.37.0.tgz#dc7cd24bcc275cdb3f8c684ada89e50489144ccd"
-  integrity sha512-TRF30F4W4+d+Jr2KzUUL1j8Mrpns/WM/WacxYlo5MMb2E5Qy2Pk1Guj6GylxsW9OnKQl1tnF8q3hG/hQ3h6VUA==
+svelte@^3.43.1:
+  version "3.43.1"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.43.1.tgz#8370c08a970bcc1c118baaa86a38fae82e0a8396"
+  integrity sha512-nvPIaKx4HLzYlSdquISZpgG1Kqr2VAWQjZOt3Iwm3UhbqmA0LnSx4k1YpRMEhjQYW3ZCqQoK8Egto9tv4YewMA==
 
 symbol-tree@^3.2.4:
   version "3.2.4"
