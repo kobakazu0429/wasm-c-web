@@ -67,7 +67,10 @@
     <Tab label="Env" />
     <Tab label="Argv" />
     <div slot="content">
+      <!-- Editor -->
       <TabContent>Content 1</TabContent>
+
+      <!-- Config -->
       <TabContent>
         {#each config as c, i}
           <InlineTextInput
@@ -77,6 +80,8 @@
           />
         {/each}
       </TabContent>
+
+      <!-- Env -->
       <TabContent>
         {#each env as e, i}
           <InlineTextBothInput
@@ -95,6 +100,7 @@
         />
       </TabContent>
 
+      <!-- Argv -->
       <TabContent>
         {#each argvs as argv, i}
           <InlineTextInput
