@@ -13,7 +13,7 @@
 <div class="inline">
   {#if typeof value === "string"}
     <TextInput inline {labelText} bind:value readonly={fixed} />
-  <!-- {:else if typeof value === "number"} -->
+    <!-- {:else if typeof value === "number"} -->
   {:else if typeof value === "boolean"}
     <div class="bx--text-input__label-helper-wrapper">
       <label
