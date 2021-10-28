@@ -107,7 +107,11 @@ int main() {
     });
     const newEditor = monaco.editor.create(document.querySelector("#editor")!, {
       language: "c",
-      model: monaco.editor.createModel(initValue, "c", monaco.Uri.parse("file:///main.c")),
+      model: monaco.editor.createModel(
+        initValue,
+        "c",
+        monaco.Uri.parse("file:///main.c")
+      ),
       theme: "vs-dark",
       scrollbar: {
         arrowSize: 11,
