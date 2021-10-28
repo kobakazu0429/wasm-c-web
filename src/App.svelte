@@ -14,9 +14,9 @@
     AccordionItem,
   } from "carbon-components-svelte";
 
-  import SetteingModal, {
+  import SettingModal, {
     openSettingModal,
-  } from "./components/SetteingModal/index.svelte";
+  } from "./components/SettingModal/index.svelte";
   import Editor from "./components/Editor.svelte";
   import CompileLog from "./components/CompileLog.svelte";
   import Console, { readLine } from "./components/Console.svelte";
@@ -189,7 +189,7 @@
   }
 </script>
 
-<SetteingModal />
+<SettingModal />
 
 <Header company="wasm-c-web">
   <div slot="skip-to-content">
@@ -204,7 +204,7 @@
       size="small"
       kind="secondary"
       on:click={openSettingModal}
-      style="margin-left:auto;margin-right:16px">Setteing</Button
+      style="margin-left:auto;margin-right:16px">Setting</Button
     >
   </ButtonSet>
 </Header>

@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { Argvs, Config, Env } from "./components/SetteingModal/type";
+import type { Argvs, Config, Env } from "./components/SettingModal/type";
 
 export const monacoEditorCode = writable("");
 
