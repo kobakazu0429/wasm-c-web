@@ -1,6 +1,48 @@
 import { writable } from "svelte/store";
+import type { Argvs, Config, Env } from "./components/SettingModal/type";
 
 export const monacoEditorCode = writable("");
+
+type Settings = { config: Config; env: Env; argvs: Argvs };
+export const settings = writable<Settings>({
+  config: [
+    { key: "timeout [ms]", value: "3000" },
+    { key: "use File System", value: false },
+  ],
+
+  env: [
+    { key: "LANG", value: "ja_JP.UTF-8" },
+    { key: "HOME", value: "/home/user" },
+    { key: "USER", value: "user" },
+  ],
+
+  argvs: [{ value: "./main", fixed: true }],
+});
+
+export const settingsRemover = (key: keyof Settings, i: number) => {
+  settings.update((self) => {
+    self[key].splice(i, 1);
+    return self;
+  });
+};
+
+export const settingsAdder = (key: keyof Settings) => {
+  settings.update((self) => {
+    switch (key) {
+      case "argvs":
+        self[key].push({ value: "", fixed: false });
+        break;
+      case "env":
+      case "config":
+        self[key].push({ key: "", value: "" });
+        break;
+
+      default:
+        break;
+    }
+    return self;
+  });
+};
 
 export const consoleOut = writable("");
 export const consolePrintln = (s: string) => {

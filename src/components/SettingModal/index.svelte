@@ -1,8 +1,7 @@
 <script lang="ts" context="module">
   import { writable } from "svelte/store";
-  const modalOpenStatus = writable(!false);
+  const modalOpenStatus = writable(false);
   export const openSettingModal = () => {
-    console.log("open");
     modalOpenStatus.set(true);
   };
 </script>
@@ -14,48 +13,7 @@
   import AddAlt32 from "carbon-icons-svelte/lib/AddAlt32";
   import InlineTextInput from "./InlineTextInput.svelte";
   import InlineTextBothInput from "./InlineTextBothInput.svelte";
-
-  let config: Array<{ key: string; value: string | boolean }> = [
-    { key: "timeout [ms]", value: "3000" },
-    { key: "use File System", value: false },
-  ];
-
-  let env = [
-    { key: "LANG", value: "ja_JP.UTF-8" },
-    { key: "HOME", value: "/home/user" },
-    { key: "USER", value: "user" },
-  ];
-
-  let argvs = ["./main"];
-
-  function addArgvs() {
-    argvs = [...argvs, ""];
-  }
-
-  function removeArgvs(i: number) {
-    argvs.splice(i, 1);
-    argvs = argvs;
-  }
-
-  function addConfig() {
-    config.push({ key: "", value: "" });
-    config = config;
-  }
-
-  function removeConfig(i: number) {
-    config.splice(i, 1);
-    config = config;
-  }
-
-  function addEnv() {
-    env.push({ key: "", value: "" });
-    env = env;
-  }
-
-  function removeEnv(i: number) {
-    env.splice(i, 1);
-    env = env;
-  }
+  import { settings, settingsAdder, settingsRemover } from "../../store";
 </script>
 
 <Modal
@@ -64,7 +22,10 @@
   primaryButtonText="Confirm"
   secondaryButtonText="Cancel"
   hasForm
-  on:close={() => modalOpenStatus.set(false)}
+  on:close={() => {
+    modalOpenStatus.set(false);
+  }}
+  on:click:button--secondary={() => modalOpenStatus.set(false)}
 >
   <Tabs>
     <Tab label="Editor" />
@@ -77,22 +38,22 @@
 
       <!-- Config -->
       <TabContent>
-        {#each config as c, i}
+        {#each $settings.config as c, i}
           <InlineTextInput
             labelText={c.key}
             bind:value={c.value}
-            handleRemove={() => removeConfig(i)}
+            handleRemove={() => settingsRemover("config", i)}
           />
         {/each}
       </TabContent>
 
       <!-- Env -->
       <TabContent>
-        {#each env as e, i}
+        {#each $settings.env as e, i}
           <InlineTextBothInput
             bind:key={e.key}
             bind:value={e.value}
-            handleRemove={() => removeEnv(i)}
+            handleRemove={() => settingsRemover("env", i)}
           />
         {/each}
 
@@ -101,19 +62,19 @@
           tooltipPosition="right"
           hasIconOnly
           icon={AddAlt32}
-          on:click={addEnv}
+          on:click={() => settingsAdder("env")}
         />
       </TabContent>
 
       <!-- Argv -->
       <TabContent>
-        {#each argvs as argv, i}
+        {#each $settings.argvs as argv, i}
           <InlineTextInput
             labelText={`argv[${i}]`}
-            bind:value={argv}
-            fixed={i === 0}
+            bind:value={argv.value}
+            fixed={argv.fixed}
             deleteIconVisible={true}
-            handleRemove={() => removeArgvs(i)}
+            handleRemove={() => settingsRemover("argvs", i)}
           />
         {/each}
 
@@ -122,7 +83,7 @@
           tooltipPosition="right"
           hasIconOnly
           icon={AddAlt32}
-          on:click={addArgvs}
+          on:click={() => settingsAdder("argvs")}
         />
       </TabContent>
     </div>
