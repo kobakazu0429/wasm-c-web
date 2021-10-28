@@ -28,6 +28,7 @@
     monacoEditorCode,
     compileLogOut,
     testResultOut,
+    settings,
   } from "./store";
 
   import { run as runTest, prettify, testBuilder } from "./jest";
@@ -99,12 +100,26 @@
     if (!compiledData || compiledStatusCode !== StatusCode.OK) return;
 
     const module = WebAssembly.compile(compiledData);
-    // @ts-expect-error
-    const rootHandle = await showDirectoryPicker();
-    const [sandbox, tmp] = await Promise.all([
-      rootHandle.getDirectoryHandle("sandbox"),
-      rootHandle.getDirectoryHandle("tmp"),
-    ]);
+
+    const useFileSystem = $settings.config.find(
+      (e) => e.key === "use File System"
+    )?.value;
+
+    let openFiles: OpenFiles;
+    if (useFileSystem) {
+      // @ts-expect-error
+      const rootHandle = await showDirectoryPicker();
+      const [sandbox, tmp] = await Promise.all([
+        rootHandle.getDirectoryHandle("sandbox"),
+        rootHandle.getDirectoryHandle("tmp"),
+      ]);
+      openFiles = new OpenFiles({
+        "/sandbox": sandbox,
+        "/tmp": tmp,
+      });
+    } else {
+      openFiles = new OpenFiles({});
+    }
 
     const stdin: In = {
       read: async () => {
@@ -115,10 +130,7 @@
     };
 
     const exitCode = await new Bindings({
-      openFiles: new OpenFiles({
-        "/sandbox": sandbox,
-        "/tmp": tmp,
-      }),
+      openFiles,
       stdin,
       // @ts-ignore
       stdout: stringOut((s) => {
@@ -126,10 +138,8 @@
         consolePrintln(s);
       }),
       stderr: stringOut((s) => console.log(s)),
-      args: ["foo", "-bar", "--baz=value"],
-      env: {
-        NODE_PLATFORM: "win32",
-      },
+      args: $settings.argvs.map((a) => a.value),
+      env: Object.fromEntries($settings.env.map((e) => [e.key, e.value])),
     }).run(await module);
     console.log("exitCode", exitCode);
   }
