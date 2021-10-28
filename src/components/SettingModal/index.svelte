@@ -25,6 +25,7 @@
   on:close={() => {
     modalOpenStatus.set(false);
   }}
+  on:click:button--secondary={() => modalOpenStatus.set(false)}
 >
   <Tabs>
     <Tab label="Editor" />
