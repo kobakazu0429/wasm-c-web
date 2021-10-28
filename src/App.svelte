@@ -101,6 +101,21 @@
 
     const module = WebAssembly.compile(compiledData);
 
+    const timeoutMs =
+      parseInt(
+        $settings.config.find((e) => e.key === "timeout [ms]")?.value as string,
+        10
+      ) || 3000;
+    const controller = new AbortController();
+    const timeouter = (ms: number) => {
+      return new Promise<void>((resolve) =>
+        setTimeout(() => {
+          controller.abort();
+          resolve();
+        }, ms)
+      );
+    };
+
     const useFileSystem = $settings.config.find(
       (e) => e.key === "use File System"
     )?.value;
