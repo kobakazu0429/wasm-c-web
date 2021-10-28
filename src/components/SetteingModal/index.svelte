@@ -1,4 +1,5 @@
 <script lang="ts" context="module">
+  import type { Config, Env, Argvs } from "./type";
   import { writable } from "svelte/store";
   const modalOpenStatus = writable(!false);
   export const openSettingModal = () => {
@@ -15,21 +16,22 @@
   import InlineTextInput from "./InlineTextInput.svelte";
   import InlineTextBothInput from "./InlineTextBothInput.svelte";
 
-  let config: Array<{ key: string; value: string | boolean }> = [
+  let config: Config = [
     { key: "timeout [ms]", value: "3000" },
     { key: "use File System", value: false },
   ];
 
-  let env = [
+  let env: Env = [
     { key: "LANG", value: "ja_JP.UTF-8" },
     { key: "HOME", value: "/home/user" },
     { key: "USER", value: "user" },
   ];
 
-  let argvs = ["./main"];
+  let argvs: Argvs = [{ value: "./main", fixed: true }];
 
   function addArgvs() {
-    argvs = [...argvs, ""];
+    argvs.push({ value: "", fixed: false });
+    argvs = argvs;
   }
 
   function removeArgvs(i: number) {
@@ -110,8 +112,8 @@
         {#each argvs as argv, i}
           <InlineTextInput
             labelText={`argv[${i}]`}
-            bind:value={argv}
-            fixed={i === 0}
+            bind:value={argv.value}
+            fixed={argv.fixed}
             deleteIconVisible={true}
             handleRemove={() => removeArgvs(i)}
           />
