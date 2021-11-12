@@ -13,7 +13,7 @@
   import ReconnectingWebSocket from "reconnecting-websocket";
   import type { Options as ReconnectingWebSocketOptions } from "reconnecting-websocket";
   import screenfull from "screenfull";
-  import { fullScreenEditor, monacoEditorCode } from "../store";
+  import { editorRef, monacoEditorCode } from "../store";
   import { onMount } from "svelte";
 
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
@@ -204,19 +204,9 @@ int main() {
       return new ReconnectingWebSocket(url, [], socketOptions);
     }
   });
-
-  let editorRef: HTMLDivElement | null = null;
-
-  fullScreenEditor.subscribe((state) => {
-    if (state) {
-      if (screenfull.isEnabled && editorRef) {
-        screenfull.request(editorRef);
-      }
-    }
-  });
 </script>
 
-<div id="editor" bind:this={editorRef} />
+<div id="editor" bind:this={$editorRef} />
 
 <style>
   #editor {

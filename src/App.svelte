@@ -29,11 +29,10 @@
     compileLogOut,
     testResultOut,
     settings,
-    enableFullScreenEditor,
   } from "./store";
-
   import { run as runTest, prettify, testBuilder } from "./jest";
   import type { TestFixture } from "./jest";
+  import { enableFullScreenEditor } from "./editor/fullscreen";
 
   const StatusCode = {
     OK: 0,

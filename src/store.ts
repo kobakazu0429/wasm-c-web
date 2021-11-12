@@ -72,8 +72,4 @@ export const compileLogOut = (s: string) => {
   compileLog.set(displayTime + s);
 };
 
-export const fullScreenEditor = writable(false);
-export const disableFullScreenEditor = () => fullScreenEditor.set(false);
-export const enableFullScreenEditor = () => {
-  fullScreenEditor.set(true);
-};
+export const editorRef = writable<HTMLDivElement | null>(null);
