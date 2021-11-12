@@ -1,3 +1,4 @@
+import type { editor as Editor } from "monaco-editor";
 import { writable } from "svelte/store";
 import type { Argvs, Config, Env } from "./components/SettingModal/type";
 
@@ -71,3 +72,10 @@ export const compileLogOut = (s: string) => {
   const displayTime = `[${hh}:${mm}:${ss}.${ms}] `;
   compileLog.set(displayTime + s);
 };
+
+export const editor = writable<Editor.IStandaloneCodeEditor | null>(null);
+export const editorRef = writable<HTMLDivElement | null>(null);
+export const editorPreviousSize = writable<{
+  height: number;
+  width: number;
+} | null>(null);

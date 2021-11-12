@@ -30,9 +30,9 @@
     testResultOut,
     settings,
   } from "./store";
-
   import { run as runTest, prettify, testBuilder } from "./jest";
   import type { TestFixture } from "./jest";
+  import { enableFullScreenEditor } from "./editor/fullscreen";
 
   const StatusCode = {
     OK: 0,
@@ -228,8 +228,14 @@
     <Button
       size="small"
       kind="secondary"
+      on:click={enableFullScreenEditor}
+      style="margin-left:auto;">Full Screen Editor</Button
+    >
+    <Button
+      size="small"
+      kind="secondary"
       on:click={openSettingModal}
-      style="margin-left:auto;margin-right:16px">Setting</Button
+      style="margin-right:16px">Setting</Button
     >
   </ButtonSet>
 </Header>
