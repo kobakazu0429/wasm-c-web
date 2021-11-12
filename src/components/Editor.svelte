@@ -12,9 +12,9 @@
   import normalizeUrl from "normalize-url";
   import ReconnectingWebSocket from "reconnecting-websocket";
   import type { Options as ReconnectingWebSocketOptions } from "reconnecting-websocket";
-  import screenfull from "screenfull";
-  import { editorRef, monacoEditorCode } from "../store";
+  import { editor, editorRef, monacoEditorCode } from "../store";
   import { onMount } from "svelte";
+  import { setupFullscreenEditor } from "../editor/fullscreen";
 
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
 
@@ -132,6 +132,7 @@ int main() {
       // props.onChangeValue(value);
       monacoEditorCode.update(() => value);
     });
+    editor.set(newEditor);
     MonacoServices.install(monaco);
     // console.log(monaco.languages.getLanguages());
     // @ts-ignore
@@ -203,6 +204,10 @@ int main() {
       };
       return new ReconnectingWebSocket(url, [], socketOptions);
     }
+  });
+
+  onMount(() => {
+    setupFullscreenEditor();
   });
 </script>
 
