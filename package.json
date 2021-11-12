@@ -37,7 +37,7 @@
     "svelte-preprocess": "^4.9.8",
     "ts-jest": "^26.5.4",
     "tslib": "^2.2.0",
-    "typescript": "^4.3.2",
+    "typescript": "^4.4.4",
     "vite": "^2.5.4"
   },
   "dependencies": {
@@ -46,7 +46,13 @@
     "@kobakazu0429/wasi": "link:../wasi-fs-access",
     "@kobakazu0429/xterm-local-echo": "^0.0.3",
     "@monaco-editor/loader": "^1.0.1",
+    "@wasmer/io-devices": "^0.12.0",
+    "@wasmer/wasi": "^0.12.0",
+    "@wasmer/wasm-transformer": "^0.12.0",
+    "@wasmer/wasmfs": "^0.12.0",
+    "asyncify-wasm": "^1.2.1",
     "carbon-components-svelte": "^0.44.5",
+    "comlink": "^4.3.1",
     "monaco-editor": "^0.27.0",
     "normalize-url": "^7.0.2",
     "reconnecting-websocket": "^4.4.0",
