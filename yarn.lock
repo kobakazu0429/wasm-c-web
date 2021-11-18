@@ -1135,9 +1135,15 @@
     eslint-plugin-prettier "^3.1.4"
     prettier "^2.0.5"
 
-"@kobakazu0429/wasi@link:../wasi-fs-access":
-  version "0.0.0"
-  uid ""
+"@kobakazu0429/wasmer-wasi@^0.12.0-internal":
+  version "0.12.0-internal"
+  resolved "https://registry.yarnpkg.com/@kobakazu0429/wasmer-wasi/-/wasmer-wasi-0.12.0-internal.tgz#5142cb603519536964c08885d361245f3175ddb6"
+  integrity sha512-eMZW3pB5nNrbNqfDLjQShfFLsPhKPoEXyzBGONyC0eiF0GqGcRb1XvDsKbnc6Ot5w0kPQ72YOub70CXrem8Gsw==
+  dependencies:
+    browser-process-hrtime "^1.0.0"
+    buffer-es6 "^4.9.3"
+    path-browserify "^1.0.0"
+    randomfill "^1.0.4"
 
 "@kobakazu0429/xterm-local-echo@^0.0.3":
   version "0.0.3"
@@ -1499,16 +1505,6 @@
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/@wasmer/io-devices/-/io-devices-0.12.0.tgz#c9e10dba0b3eeff6aab8857d5b84a9bafde82fc8"
   integrity sha512-CiuhJPnNVZp2G1V5UHKSWMb2bIsiGn+78u9h3/3CNUNdzQ9W9ALGSXxzeieaSEUa3QL7HQC1DiE+IN2mXUv6Dw==
-
-"@wasmer/wasi@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@wasmer/wasi/-/wasi-0.12.0.tgz#89c7c5e5ba58f7dfae4e323359346639c4ec382a"
-  integrity sha512-FJhLZKAfLWm/yjQI7eCRHNbA8ezmb7LSpUYFkHruZXs2mXk2+DaQtSElEtOoNrVQ4vApTyVaAd5/b7uEu8w6wQ==
-  dependencies:
-    browser-process-hrtime "^1.0.0"
-    buffer-es6 "^4.9.3"
-    path-browserify "^1.0.0"
-    randomfill "^1.0.4"
 
 "@wasmer/wasm-transformer@^0.12.0":
   version "0.12.0"
@@ -5892,10 +5888,6 @@ wasm-feature-detect@^1.2.2:
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/wasm-feature-detect/-/wasm-feature-detect-1.2.11.tgz#e21992fd1f1d41a47490e392a5893cb39d81e29e"
   integrity sha512-HUqwaodrQGaZgz1lZaNioIkog9tkeEJjrM3eq4aUL04whXOVDRc/o2EGb/8kV0QX411iAYWEqq7fMBmJ6dKS6w==
-
-"wasm-interface@link:../wasm-interface":
-  version "0.0.0"
-  uid ""
 
 webidl-conversions@^5.0.0:
   version "5.0.0"

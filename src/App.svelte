@@ -34,7 +34,7 @@
   import { run as runTest, prettify, testBuilder } from "./jest";
   import type { TestFixture } from "./jest";
   import { enableFullScreenEditor } from "./editor/fullscreen";
-  import { startWasiTask } from "./runtime";
+  import type { StartWasiTask } from "./runtime";
   import RuntimeWorker from "./workers/runtime.worker?worker";
 
   const StatusCode = {
@@ -45,7 +45,7 @@
 
   let rawCode = "";
   let compiledCode = "";
-  let compiledData: BufferSource | null = null;
+  let compiledData: Uint8Array | null = null;
   let compiledStatusCode = -1;
   monacoEditorCode.subscribe((code) => {
     rawCode = code;
@@ -96,13 +96,9 @@
     compiledStatusCode = res.code;
   }
 
-  const textEncoder = new TextEncoder();
-
   async function run() {
     if (compiledCode !== rawCode) await compile();
     if (!compiledData || compiledStatusCode !== StatusCode.OK) return;
-
-    // const module = WebAssembly.compile(compiledData);
 
     const timeoutMs =
       parseInt(
@@ -139,34 +135,15 @@
     //   openFiles = new OpenFiles({});
     // }
 
-    // const stdin: In = {
-    //   read: async () => {
-    //     let input = await readLine();
-    //     if (!input.endsWith("\n")) input += "\n";
-    //     return textEncoder.encode(input);
-    //   },
-    // };
-
-    // const exitCode = await new Bindings({
-    //   openFiles,
-    //   stdin,
-    //   // @ts-ignore
-    //   stdout: stringOut((s) => {
-    //     console.log(s);
-    //     consolePrintln(s);
-    //   }),
-    //   stderr: stringOut((s) => console.log(s)),
-    //   args: $settings.argvs.map((a) => a.value),
-    //   env: Object.fromEntries($settings.env.map((e) => [e.key, e.value])),
-    // }).run(await module);
-    // console.log("exitCode", exitCode);
-
-    // startWasiTask(compiledData);
     const runtimeWorker = new RuntimeWorker();
     const runtimeWorkerComlink = Comlink.wrap<
-      (wasmBinary: any, stdout: any,stdin:any) => Promise<void>
+      (...args: StartWasiTask) => Promise<void>
     >(runtimeWorker);
-    runtimeWorkerComlink(compiledData, Comlink.proxy(consolePrintln),Comlink.proxy(readLine));
+    runtimeWorkerComlink(
+      compiledData,
+      Comlink.proxy(consolePrintln),
+      Comlink.proxy(readLine)
+    );
   }
 
   async function test() {
