@@ -6,85 +6,57 @@
   testResultBody.subscribe((_body) => {
     body = _body;
   });
-
-  // (async () => {
-  //   const result = await run();
-  //   // console.log(result);
-
-  //   const newLineAlternative = "________";
-  //   const spaceAlternative = "myspace";
-
-  //   const prettty = result.map((v: any) => ({
-  //     ...v,
-  //     errors: v.errors.map((s: string) =>
-  //       s
-  //         .split("\n")
-  //         .map((c) => c.replaceAll(/\s*at .*/g, ""))
-  //         .filter(Boolean)
-  //         .join(newLineAlternative)
-  //         .replaceAll(" ", spaceAlternative)
-  //     ),
-  //   }));
-  //   // console.log(JSON.stringify(a, null, 2));
-  //   // console.log(prettty);
-  //   const html = prettify.constructResultsHTML(prettty);
-  //   // console.log(html);
-  //   testResultOut(
-  //     html
-  //       .replaceAll(newLineAlternative, "<br>")
-  //       .replaceAll(spaceAlternative, "&nbsp;")
-  //   );
-  // })();
 </script>
 
 <Tile light style="width:100%; line-height: normal;">
-  <div class="jest-lite-report">
+  <div class="test-report">
     {@html body}
   </div>
 </Tile>
 
 <style>
-  :global(.jest-lite-report) {
+  :global(.test-report) {
     --color-fail: #f7362b;
     --color-pass: #3dbc59;
     --spacing-tight: 0.5em;
 
     font: 100% Consolas, Monaco, monospace;
+    color: white;
     box-sizing: border-box;
     line-height: 1.5em;
   }
 
-  :global(.jest-lite-report__result) {
+  :global(.test-report__result) {
     margin-bottom: var(--spacing-tight);
   }
 
-  :global(.jest-lite-report__status) {
+  :global(.test-report__status) {
     display: inline-block;
     padding: 0.2em 0.4em;
   }
 
-  :global(.jest-lite-report__status-icon) {
+  :global(.test-report__status-icon) {
     display: inline-block;
     width: 1em;
   }
 
-  :global(.jest-lite-report__status--pass) {
+  :global(.test-report__status--pass) {
     background: var(--color-pass);
   }
 
-  :global(.jest-lite-report__status--fail) {
+  :global(.test-report__status--fail) {
     background: var(--color-fail);
   }
 
-  :global(.jest-lite-report__summary-status--fail) {
+  :global(.test-report__summary-status--fail) {
     color: var(--color-fail);
   }
 
-  :global(.jest-lite-report__summary-status--pass) {
+  :global(.test-report__summary-status--pass) {
     color: var(--color-pass);
   }
 
-  :global(.jest-lite-report__errors) {
+  :global(.test-report__errors) {
     margin-top: var(--spacing-tight);
     padding-left: 1.5em;
     white-space: pre;

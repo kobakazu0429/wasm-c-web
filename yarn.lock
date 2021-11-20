@@ -1135,6 +1135,11 @@
     eslint-plugin-prettier "^3.1.4"
     prettier "^2.0.5"
 
+"@kobakazu0429/test@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@kobakazu0429/test/-/test-1.0.4.tgz#e66d4207a701cd64b6d2343108eaa9ef4eed63d6"
+  integrity sha512-ywByP63aIk0dLglFi/1/IzLkO0a3hEiTBAofMOld1zByAMsca2UXPhKl+FVF3dPxMtTGfbWQq1LLtWF6mAd0yw==
+
 "@kobakazu0429/wasmer-wasi@^0.12.0-internal":
   version "0.12.0-internal"
   resolved "https://registry.yarnpkg.com/@kobakazu0429/wasmer-wasi/-/wasmer-wasi-0.12.0-internal.tgz#5142cb603519536964c08885d361245f3175ddb6"

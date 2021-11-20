@@ -1,4 +1,8 @@
 import * as Comlink from "comlink";
-import { startWasiTask } from "../runtime";
+import { startWasiTask, testWasi } from "../runtime";
 
-Comlink.expose(startWasiTask);
+const exposed = { startWasiTask, testWasi };
+
+Comlink.expose(exposed);
+
+export type RuntimeWorkerExposes = typeof exposed;

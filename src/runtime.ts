@@ -1,3 +1,4 @@
+import { run } from "@kobakazu0429/test";
 import { WASI } from "@kobakazu0429/wasmer-wasi";
 import { lowerI64Imports } from "@wasmer/wasm-transformer";
 import { WasmFs } from "@wasmer/wasmfs";
@@ -5,6 +6,8 @@ import * as Asyncify from "asyncify-wasm";
 import type { Node } from "memfs/lib/node";
 
 import { get } from "svelte/store";
+import type { Test } from "./jest";
+import { testBuilder } from "./jest";
 import { settings as _settings } from "./store";
 
 const encoder = new TextEncoder();
@@ -36,7 +39,6 @@ export const startWasiTask = async (
   const settings = get(_settings);
   const args = settings.argvs.map((a) => a.value);
   const env = Object.fromEntries(settings.env.map((e) => [e.key, e.value]));
-  console.log(WASI.defaultBindings);
 
   const wasi = new WASI({
     preopenDirectories: {},
@@ -59,13 +61,9 @@ export const startWasiTask = async (
 
   const lowered_wasm = await lowerI64Imports(wasmBinary);
   const module = await WebAssembly.compile(lowered_wasm);
-  console.log(wasi.getImports(module));
   const instance = await Asyncify.instantiate(module, {
     ...wasi.getImports(module),
   });
-
-  // console.log(wasi);
-  // console.log(instance);
 
   wasi.start(instance);
 
@@ -74,3 +72,22 @@ export const startWasiTask = async (
 };
 
 export type StartWasiTask = Parameters<typeof startWasiTask>;
+
+export const testWasi = async (wasmBinary: Uint8Array, tests: Test[]) => {
+  const wasmFs = new WasmFs();
+  const wasi = new WASI({
+    bindings: {
+      ...WASI.defaultBindings,
+      fs: wasmFs.fs,
+    },
+  });
+
+  const lowered_wasm = await lowerI64Imports(wasmBinary);
+  const module = await WebAssembly.compile(lowered_wasm);
+  const instance = await Asyncify.instantiate(module, {
+    ...wasi.getImports(module),
+  });
+  testBuilder(tests, instance.exports as any)();
+  const result = await run();
+  return result;
+};
