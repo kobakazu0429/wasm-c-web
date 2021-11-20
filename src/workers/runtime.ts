@@ -6,9 +6,9 @@ import * as Asyncify from "asyncify-wasm";
 import type { Node } from "memfs/lib/node";
 
 import { get } from "svelte/store";
-import type { Test } from "./jest";
-import { testBuilder } from "./jest";
-import { settings as _settings } from "./store";
+import type { Test } from "../jest";
+import { testBuilder } from "../jest";
+import { settings as _settings } from "../store";
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();

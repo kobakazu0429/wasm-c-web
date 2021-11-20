@@ -1,5 +1,5 @@
 import * as Comlink from "comlink";
-import { startWasiTask, testWasi } from "../runtime";
+import { startWasiTask, testWasi } from "./runtime";
 
 const exposed = { startWasiTask, testWasi };
 
