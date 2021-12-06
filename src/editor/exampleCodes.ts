@@ -9,7 +9,6 @@ float div(int a, int b) {
 }
 
 int main() {
-  setbuf(stdout, NULL);
   int x, y;
   scanf("%d", &x);
   scanf("%d", &y);
@@ -39,7 +38,6 @@ void greet(char name[]) {
 }
 
 int main() {
-  setbuf(stdout, NULL);
   // normal
   int a = 429;
   float b = 3.141592;
@@ -83,7 +81,6 @@ export const peakLoadTest = `#include <stdio.h>
 #define MAX 100
 
 int main() {
-  setbuf(stdout, NULL);
   int i = 0;
   while (i++ < MAX) {
     printf("%d", i);
