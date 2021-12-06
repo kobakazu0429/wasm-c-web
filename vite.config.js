@@ -1,10 +1,11 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import sveltePreprocess from "svelte-preprocess";
+import { optimizeImports } from "carbon-preprocess-svelte";
 import autoprefixer from "autoprefixer";
 import path from "path";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   build: {
     target: "es2019",
     rollupOptions: {
@@ -31,7 +32,8 @@ export default defineConfig({
   plugins: [
     svelte({
       emitCss: false,
-      preprocess: sveltePreprocess(),
+      preprocess: [sveltePreprocess(), optimizeImports()],
+      build: { minify: mode === "production" }
     }),
   ],
-});
+}));
