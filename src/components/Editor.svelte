@@ -1,5 +1,6 @@
 <script lang="ts">
   import { ulid } from "ulid";
+  import debounce from "just-debounce-it";
   import loader from "@monaco-editor/loader";
   import { listen } from "@codingame/monaco-jsonrpc";
   import {
@@ -16,11 +17,15 @@
   import { editor, editorRef, monacoEditorCode } from "../store";
   import { onMount, onDestroy } from "svelte";
   import { setupFullscreenEditor } from "../editor/fullscreen";
-  import { stdin as initValue } from "../editor/exampleCodes";
+  import { stdin as exampleCode } from "../editor/exampleCodes";
+  import { getPreviousCode, saveCode } from "../localStorage";
 
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
 
-  monacoEditorCode.update(() => initValue);
+  const previousCode = getPreviousCode();
+  const defaultValue = previousCode?.code ?? exampleCode;
+  monacoEditorCode.update(() => defaultValue);
+  const filename = previousCode?.filename ?? ulid();
 
   loader.init().then((monaco) => {
     // register Monaco languages
@@ -31,9 +36,9 @@
     const newEditor = monaco.editor.create(document.querySelector("#editor")!, {
       language: "c",
       model: monaco.editor.createModel(
-        initValue,
+        defaultValue,
         "c",
-        monaco.Uri.parse(`file:///${ulid()}.c`)
+        monaco.Uri.parse(`file:///${filename}.c`)
       ),
       theme: "vs-dark",
       scrollbar: {
@@ -130,6 +135,15 @@
 
     willDestroyCallbacks.push(() => {
       monaco.editor.getModels().forEach((model) => model.dispose());
+    });
+
+    const getValue = debounce(() => {
+      const filename = newEditor.getModel()?.uri.path.split("/")[1] ?? "main.c";
+      const code = newEditor.getValue();
+      saveCode(filename, code);
+    }, 500, true);
+    newEditor.getModel()?.onDidChangeContent(() => {
+      getValue();
     });
   });
 
