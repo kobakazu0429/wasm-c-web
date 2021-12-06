@@ -13,7 +13,7 @@
   import ReconnectingWebSocket from "reconnecting-websocket";
   import type { Options as ReconnectingWebSocketOptions } from "reconnecting-websocket";
   import { editor, editorRef, monacoEditorCode } from "../store";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { setupFullscreenEditor } from "../editor/fullscreen";
   import { stdin as initValue } from "../editor/exampleCodes";
 
@@ -124,6 +124,18 @@
       };
       return new ReconnectingWebSocket(url, [], socketOptions);
     }
+
+    willDestroyCallbacks.push(() => {
+      monaco.editor.getModels().forEach((model) => model.dispose());
+    });
+  });
+
+  let willDestroyCallbacks: any[] = [];
+
+  onDestroy(() => {
+    willDestroyCallbacks.forEach((cb) => {
+      cb();
+    });
   });
 
   onMount(() => {
