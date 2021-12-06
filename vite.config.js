@@ -37,6 +37,6 @@ export default defineConfig(({ mode }) => ({
         minify: mode === "production"
       }
     }),
-    mode === "production" && optimizeCss({ safelist: { greedy: ["xterm"] } })
+    mode === "production" && optimizeCss({ safelist: { greedy: [/xterm/] } })
   ],
 }));
