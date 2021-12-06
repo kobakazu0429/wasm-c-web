@@ -41,7 +41,6 @@ export const startWasiTask = async (
   const env = Object.fromEntries(settings.env.map((e) => [e.key, e.value]));
 
   const wasi = new WASI({
-    preopenDirectories: {},
     args,
     env,
     bindings: {

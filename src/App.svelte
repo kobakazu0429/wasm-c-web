@@ -100,24 +100,14 @@
       );
     };
 
-    const useFileSystem = $settings.config.find(
-      (e) => e.key === "use File System"
-    )?.value;
+    // const useFileSystem = $settings.config.find(
+    //   (e) => e.key === "use File System"
+    // )?.value;
 
-    // let openFiles: OpenFiles;
+    // let rootHandle: any = null;
     // if (useFileSystem) {
     //   // @ts-expect-error
-    //   const rootHandle = await showDirectoryPicker();
-    //   const [sandbox, tmp] = await Promise.all([
-    //     rootHandle.getDirectoryHandle("sandbox"),
-    //     rootHandle.getDirectoryHandle("tmp"),
-    //   ]);
-    //   openFiles = new OpenFiles({
-    //     "/sandbox": sandbox,
-    //     "/tmp": tmp,
-    //   });
-    // } else {
-    //   openFiles = new OpenFiles({});
+    //   rootHandle = await showDirectoryPicker();
     // }
 
     const runtimeWorker = new RuntimeWorker();
