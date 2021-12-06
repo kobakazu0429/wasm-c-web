@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { stringOut, OpenFiles, Bindings, bufferIn } from "@kobakazu0429/wasi";
-  import type { In } from "@kobakazu0429/wasi";
   import {
     Header,
     ButtonSet,
@@ -13,7 +11,7 @@
     Accordion,
     AccordionItem,
   } from "carbon-components-svelte";
-
+  import * as Comlink from "comlink";
   import SettingModal, {
     openSettingModal,
   } from "./components/SettingModal/index.svelte";
@@ -29,10 +27,13 @@
     compileLogOut,
     testResultOut,
     settings,
+    consoleOut,
   } from "./store";
-  import { run as runTest, prettify, testBuilder } from "./jest";
-  import type { TestFixture } from "./jest";
+  import { constructResultsHTML } from "@kobakazu0429/test";
+  import type { Test } from "./jest";
   import { enableFullScreenEditor } from "./editor/fullscreen";
+  import type { RuntimeWorkerExposes } from "./workers/runtime.worker";
+  import RuntimeWorker from "./workers/runtime.worker?worker";
 
   const StatusCode = {
     OK: 0,
@@ -42,45 +43,32 @@
 
   let rawCode = "";
   let compiledCode = "";
-  let compiledData: BufferSource | null = null;
+  let compiledData: Uint8Array | null = null;
   let compiledStatusCode = -1;
   monacoEditorCode.subscribe((code) => {
     rawCode = code;
   });
 
-  const demoData2: TestFixture = {
-    title: "function",
-    tests: [
-      {
-        title: "sum",
-        tests: [
-          {
-            name: "sum(1, 2) should be 3",
-            functionName: "sum",
-            input: [1, 2],
-            expect: 3,
-          },
-        ],
-      },
-      {
-        title: "div",
-        tests: [
-          {
-            name: "div(8, 2) should be 4",
-            functionName: "div",
-            input: [8, 2],
-            expect: 4,
-          },
-          {
-            name: "div(10, 3) should be 3.3333",
-            functionName: "div",
-            input: [10, 3],
-            expect: 3.3333,
-          },
-        ],
-      },
-    ],
-  };
+  const demoData2: Test[] = [
+    {
+      name: "sum(1, 2) should be 3",
+      functionName: "sum",
+      input: [1, 2],
+      expect: 3,
+    },
+    {
+      name: "div(8, 2) should be 4",
+      functionName: "div",
+      input: [8, 2],
+      expect: 4,
+    },
+    {
+      name: "div(10, 3) should be 3.3333",
+      functionName: "div",
+      input: [10, 3],
+      expect: 3.3333,
+    },
+  ];
 
   async function compile() {
     const res = await compiler(rawCode);
@@ -93,13 +81,9 @@
     compiledStatusCode = res.code;
   }
 
-  const textEncoder = new TextEncoder();
-
   async function run() {
     if (compiledCode !== rawCode) await compile();
     if (!compiledData || compiledStatusCode !== StatusCode.OK) return;
-
-    const module = WebAssembly.compile(compiledData);
 
     const timeoutMs =
       parseInt(
@@ -116,101 +100,38 @@
       );
     };
 
-    const useFileSystem = $settings.config.find(
-      (e) => e.key === "use File System"
-    )?.value;
+    // const useFileSystem = $settings.config.find(
+    //   (e) => e.key === "use File System"
+    // )?.value;
 
-    let openFiles: OpenFiles;
-    if (useFileSystem) {
-      // @ts-expect-error
-      const rootHandle = await showDirectoryPicker();
-      const [sandbox, tmp] = await Promise.all([
-        rootHandle.getDirectoryHandle("sandbox"),
-        rootHandle.getDirectoryHandle("tmp"),
-      ]);
-      openFiles = new OpenFiles({
-        "/sandbox": sandbox,
-        "/tmp": tmp,
-      });
-    } else {
-      openFiles = new OpenFiles({});
-    }
+    // let rootHandle: any = null;
+    // if (useFileSystem) {
+    //   // @ts-expect-error
+    //   rootHandle = await showDirectoryPicker();
+    // }
 
-    const stdin: In = {
-      read: async () => {
-        let input = await readLine();
-        if (!input.endsWith("\n")) input += "\n";
-        return textEncoder.encode(input);
-      },
-    };
-
-    const exitCode = await new Bindings({
-      openFiles,
-      stdin,
-      // @ts-ignore
-      stdout: stringOut((s) => {
-        console.log(s);
-        consolePrintln(s);
-      }),
-      stderr: stringOut((s) => console.log(s)),
-      args: $settings.argvs.map((a) => a.value),
-      env: Object.fromEntries($settings.env.map((e) => [e.key, e.value])),
-    }).run(await module);
-    console.log("exitCode", exitCode);
+    const runtimeWorker = new RuntimeWorker();
+    const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(
+      runtimeWorker
+    );
+    runtimeWorkerComlink.startWasiTask(
+      compiledData,
+      Comlink.proxy(consolePrintln),
+      Comlink.proxy(readLine)
+    );
   }
 
   async function test() {
     if (compiledCode !== rawCode) await compile();
     if (!compiledData || compiledStatusCode !== StatusCode.OK) return;
 
-    const module = WebAssembly.compile(compiledData);
-
-    console.log(bufferIn(textEncoder.encode("1\n")));
-
-    type F = (a: number, b: number) => Promise<number>;
-    const { sum, div } = (await new Bindings({
-      openFiles: new OpenFiles({}),
-      stdin: bufferIn(textEncoder.encode("10\n3\n")),
-      // @ts-ignore
-      stdout: stringOut((s) => {
-        console.log(s);
-        consolePrintln(s);
-      }),
-      stderr: stringOut((s) => console.log(s)),
-      args: ["foo", "-bar", "--baz=value"],
-      env: {
-        NODE_PLATFORM: "win32",
-      },
-    }).exportFunction(await module)) as { [k in "sum" | "div"]: F };
-
-    const tests = testBuilder(demoData2, {
-      sum: sum,
-      div: div,
-    });
-    tests();
-    const result = await runTest();
-    const newLineAlternative = "________";
-    const spaceAlternative = "myspace";
-    const prettty = result.map((v: any) => ({
-      ...v,
-      errors: v.errors.map((s: string) =>
-        s
-          .split("\n")
-          .map((c) => c.replaceAll(/\s*at .*/g, ""))
-          .filter(Boolean)
-          .join(newLineAlternative)
-          .replaceAll(" ", spaceAlternative)
-      ),
-    }));
-    // console.log(JSON.stringify(a, null, 2));
-    // console.log(prettty);
-    const html = prettify.constructResultsHTML(prettty);
-    // console.log(html);
-    testResultOut(
-      html
-        .replaceAll(newLineAlternative, "<br>")
-        .replaceAll(spaceAlternative, "&nbsp;")
+    const runtimeWorker = new RuntimeWorker();
+    const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(
+      runtimeWorker
     );
+    const result = await runtimeWorkerComlink.testWasi(compiledData, demoData2);
+    const html = constructResultsHTML(result);
+    testResultOut(html);
   }
 </script>
 

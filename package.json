@@ -37,21 +37,25 @@
     "svelte-preprocess": "^4.9.8",
     "ts-jest": "^26.5.4",
     "tslib": "^2.2.0",
-    "typescript": "^4.3.2",
+    "typescript": "^4.4.4",
     "vite": "^2.5.4"
   },
   "dependencies": {
     "@codingame/monaco-jsonrpc": "^0.3.1",
     "@codingame/monaco-languageclient": "^0.14.0",
-    "@kobakazu0429/wasi": "link:../wasi-fs-access",
+    "@kobakazu0429/test": "^1.0.6",
+    "@kobakazu0429/wasmer-wasi": "^0.12.0-internal",
     "@kobakazu0429/xterm-local-echo": "^0.0.3",
     "@monaco-editor/loader": "^1.0.1",
+    "@wasmer/wasm-transformer": "^0.12.0",
+    "@wasmer/wasmfs": "^0.12.0",
+    "asyncify-wasm": "^1.2.1",
     "carbon-components-svelte": "^0.44.5",
+    "comlink": "^4.3.1",
     "monaco-editor": "^0.27.0",
     "normalize-url": "^7.0.2",
     "reconnecting-websocket": "^4.4.0",
     "screenfull": "^6.0.0",
-    "wasm-interface": "link:../wasm-interface",
     "xterm": "^4.13.0",
     "xterm-addon-fit": "^0.5.0"
   }
