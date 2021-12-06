@@ -29,12 +29,15 @@
     testResultOut,
     settings,
     consoleOut,
+    editor,
   } from "./store";
   import { constructResultsHTML } from "@kobakazu0429/test";
   import type { Test } from "./jest";
   import { enableFullScreenEditor } from "./editor/fullscreen";
   import type { RuntimeWorkerExposes } from "./workers/runtime.worker";
   import RuntimeWorker from "./workers/runtime.worker?worker";
+  import { clearCode } from "./localStorage";
+  import { get } from "svelte/store";
 
   const StatusCode = {
     OK: 0,
@@ -70,6 +73,12 @@
       expect: 3.3333,
     },
   ];
+
+  function newFile() {
+    clearCode();
+    monacoEditorCode.set("");
+    get(editor)?.getModel()?.setValue("");
+  }
 
   async function compile() {
     const res = await compiler(rawCode);
@@ -158,6 +167,7 @@
   </div>
 
   <ButtonSet class="header-buttons" style="width:100%;">
+    <Button size="small" kind="secondary" on:click={newFile}>New File</Button>
     <Button size="small" kind="secondary" on:click={compile}>Compile</Button>
     <Button size="small" kind="secondary" on:click={run}>Run</Button>
     <Button size="small" kind="secondary" on:click={test}>Test</Button>

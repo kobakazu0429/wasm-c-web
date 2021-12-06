@@ -19,3 +19,7 @@ export const saveCode = (filename: string, data: string) => {
 export const getPreviousCode = (): SavedCode | null => {
   return store.local.get(KEY);
 };
+
+export const clearCode = () => {
+  store.local.remove(KEY);
+};

@@ -25,7 +25,7 @@
   const previousCode = getPreviousCode();
   const defaultValue = previousCode?.code ?? exampleCode;
   monacoEditorCode.update(() => defaultValue);
-  const filename = previousCode?.filename ?? ulid();
+  const filename = previousCode?.filename ?? `${ulid()}.c`;
 
   loader.init().then((monaco) => {
     // register Monaco languages
@@ -38,7 +38,7 @@
       model: monaco.editor.createModel(
         defaultValue,
         "c",
-        monaco.Uri.parse(`file:///${filename}.c`)
+        monaco.Uri.parse(`file:///${filename}`)
       ),
       theme: "vs-dark",
       scrollbar: {
@@ -137,11 +137,16 @@
       monaco.editor.getModels().forEach((model) => model.dispose());
     });
 
-    const getValue = debounce(() => {
-      const filename = newEditor.getModel()?.uri.path.split("/")[1] ?? "main.c";
-      const code = newEditor.getValue();
-      saveCode(filename, code);
-    }, 500, true);
+    const getValue = debounce(
+      () => {
+        const filename =
+          newEditor.getModel()?.uri.path.split("/")[1] ?? "main.c";
+        const code = newEditor.getValue();
+        saveCode(filename, code);
+      },
+      500,
+      true
+    );
     newEditor.getModel()?.onDidChangeContent(() => {
       getValue();
     });
