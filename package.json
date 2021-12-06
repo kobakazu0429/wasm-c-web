@@ -59,6 +59,7 @@
     "normalize-url": "^7.0.2",
     "reconnecting-websocket": "^4.4.0",
     "screenfull": "^6.0.0",
+    "ulid": "^2.3.0",
     "xterm": "^4.13.0",
     "xterm-addon-fit": "^0.5.0"
   }

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { ulid } from "ulid";
   import loader from "@monaco-editor/loader";
   import { listen } from "@codingame/monaco-jsonrpc";
   import {
@@ -32,7 +33,7 @@
       model: monaco.editor.createModel(
         initValue,
         "c",
-        monaco.Uri.parse("file:///main.c")
+        monaco.Uri.parse(`file:///${ulid()}.c`)
       ),
       theme: "vs-dark",
       scrollbar: {
