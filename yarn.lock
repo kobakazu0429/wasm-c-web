@@ -1573,6 +1573,11 @@
   resolved "https://registry.yarnpkg.com/@wessberg/ts-clone-node/-/ts-clone-node-0.3.19.tgz#823ed1fa74e4daa310226332322bfca97e264fe3"
   integrity sha512-BnJcU0ZwHxa5runiEkHzMZ6/ydxz+YYqBHOGQtf3eoxSZu2iWMPPaUfCum0O1/Ey5dqrrptUh+HmyMTzHPfdPA==
 
+"@zerodevx/svelte-toast@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@zerodevx/svelte-toast/-/svelte-toast-0.6.2.tgz#68de262a739d24be5a41d53b005b82b050365610"
+  integrity sha512-FrhG9BQgLMRSoZ/ttXQeHHdSP4jylzG8AGhLFhS3gg0mLvV+27QvunOW+NR2WtwUBH4MEg8JLST6z4ZGjTqkkQ==
+
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.5.tgz#c0b678fb32d60fc1219c784d6a826fe385aeb79a"
