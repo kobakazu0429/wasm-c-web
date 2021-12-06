@@ -23,7 +23,7 @@ export async function compiler(src: string) {
   };
 
   const res = await (
-    await fetch("http://localhost:3001/compile", param)
+    await fetch(`${import.meta.env.VITE_API_SERVER_URL}/compile`, param)
   ).json();
 
   console.log("compiled");

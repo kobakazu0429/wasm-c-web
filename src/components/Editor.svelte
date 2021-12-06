@@ -109,7 +109,7 @@
     function createUrl(path: string): string {
       const protocol = location.protocol === "https:" ? "wss" : "ws";
       return normalizeUrl(
-        `${protocol}://localhost:3001/${location.pathname}${path}`
+        `${protocol}://${import.meta.env.VITE_API_SERVER_DOMAIN}/${location.pathname}${path}`
       );
     }
 
