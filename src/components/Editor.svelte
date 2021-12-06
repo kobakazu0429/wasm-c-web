@@ -108,8 +108,7 @@
     }
 
     function createUrl(path: string): string {
-      // const protocol = location.protocol === "https:" ? "wss" : "ws";
-      const protocol = "ws";
+      const protocol = location.protocol === "https:" ? "wss" : "ws";
       return normalizeUrl(
         `${protocol}://${import.meta.env.VITE_API_SERVER_DOMAIN}/${
           location.pathname
