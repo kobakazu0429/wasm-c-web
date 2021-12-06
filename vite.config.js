@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import sveltePreprocess from "svelte-preprocess";
-import { optimizeImports } from "carbon-preprocess-svelte";
+import { optimizeImports, optimizeCss, icons } from "carbon-preprocess-svelte";
 import autoprefixer from "autoprefixer";
 import path from "path";
 
@@ -35,5 +35,6 @@ export default defineConfig(({ mode }) => ({
       preprocess: [sveltePreprocess(), optimizeImports()],
       build: { minify: mode === "production" }
     }),
+    mode === "production" && optimizeCss()
   ],
 }));
