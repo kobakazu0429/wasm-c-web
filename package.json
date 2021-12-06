@@ -49,6 +49,7 @@
     "@monaco-editor/loader": "^1.0.1",
     "@wasmer/wasm-transformer": "^0.12.0",
     "@wasmer/wasmfs": "^0.12.0",
+    "@zerodevx/svelte-toast": "^0.6.2",
     "asyncify-wasm": "^1.2.1",
     "carbon-components-svelte": "^0.44.5",
     "comlink": "^4.3.1",

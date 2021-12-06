@@ -11,6 +11,7 @@
     Accordion,
     AccordionItem,
   } from "carbon-components-svelte";
+  import { SvelteToast, toast } from "@zerodevx/svelte-toast";
   import * as Comlink from "comlink";
   import SettingModal, {
     openSettingModal,
@@ -91,12 +92,17 @@
         10
       ) || 3000;
     const controller = new AbortController();
+    let timeouterId: NodeJS.Timeout;
     const timeouter = (ms: number) => {
-      return new Promise<void>((resolve) =>
-        setTimeout(() => {
-          controller.abort();
-          resolve();
-        }, ms)
+      return new Promise<void>(
+        (resolve) =>
+          (timeouterId = setTimeout(() => {
+            controller.abort();
+            toast.push(
+              `タイムアウトしたため現在の処理を中断します。(${ms} [ms])`
+            );
+            resolve();
+          }, ms))
       );
     };
 
@@ -114,11 +120,19 @@
     const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(
       runtimeWorker
     );
-    runtimeWorkerComlink.startWasiTask(
+    const task = runtimeWorkerComlink.startWasiTask(
       compiledData,
       Comlink.proxy(consolePrintln),
       Comlink.proxy(readLine)
     );
+
+    controller.signal.addEventListener("abort", () => {
+      runtimeWorker.terminate();
+    });
+
+    await Promise.race([task, timeouter(timeoutMs)]);
+    // @ts-expect-error
+    if (timeouterId) clearTimeout(timeouterId);
   }
 
   async function test() {
@@ -135,6 +149,7 @@
   }
 </script>
 
+<SvelteToast />
 <SettingModal />
 
 <Header company="wasm-c-web">
