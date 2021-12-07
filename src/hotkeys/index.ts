@@ -1,7 +1,8 @@
 import tinykeys from "tinykeys";
+import debounce from "just-debounce-it";
 import { toast } from "@zerodevx/svelte-toast";
 import { saveCode as saveCodeStorage } from "./../localStorage/index";
-import { getCode } from "../editor/utils";
+import { getCode, newFile } from "../editor/utils";
 
 // from https://github.com/jamiebuilds/tinykeys/blob/main/README.md
 // There is also a special $mod modifier that makes it easy to support cross platform keybindings:
@@ -14,13 +15,21 @@ const joinKeyBinding = (keys: string[]) => keys.join("+");
 
 type KeyBinding = [keybinding: string, fn: (event: KeyboardEvent) => void];
 
-const saveCode: KeyBinding = [
-  joinKeyBinding([MOD, "s"]),
-  (e) => {
-    e.preventDefault();
+const saveCode = debounce(
+  () => {
     const { filename, value } = getCode();
     saveCodeStorage(filename ?? "main.c", value ?? "");
     toast.push("Saved code !");
+  },
+  500,
+  true
+);
+
+const saveCodeHotkey: KeyBinding = [
+  joinKeyBinding([MOD, "s"]),
+  (e) => {
+    e.preventDefault();
+    saveCode();
   },
 ];
 
