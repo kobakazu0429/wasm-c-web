@@ -38,6 +38,12 @@
   import RuntimeWorker from "./workers/runtime.worker?worker";
   import { clearCode } from "./localStorage";
   import { get } from "svelte/store";
+  import { registerHotkeys } from "./hotkeys";
+  import { onMount } from "svelte";
+
+  onMount(() => {
+    registerHotkeys();
+  });
 
   const StatusCode = {
     OK: 0,

@@ -19,6 +19,7 @@
   import { setupFullscreenEditor } from "../editor/fullscreen";
   import { stdin as exampleCode } from "../editor/exampleCodes";
   import { getPreviousCode, saveCode } from "../localStorage";
+  import { getCode } from "../editor/utils";
 
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
 
@@ -139,10 +140,8 @@
 
     const getValue = debounce(
       () => {
-        const filename =
-          newEditor.getModel()?.uri.path.split("/")[1] ?? "main.c";
-        const code = newEditor.getValue();
-        saveCode(filename, code);
+        const { filename, value } = getCode();
+        saveCode(filename ?? "main.c", value ?? "");
       },
       500,
       true
