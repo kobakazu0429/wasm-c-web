@@ -33,13 +33,14 @@ const saveCodeHotkey: KeyBinding = [
   },
 ];
 
-const newFile: KeyBinding = [
+const newFileHotkey: KeyBinding = [
   joinKeyBinding([MOD, "n"]),
   (e) => {
     e.preventDefault();
+    newFile();
   },
 ];
 
 export const registerHotkeys = () => {
-  tinykeys(window, Object.fromEntries([saveCode, newFile]));
+  return tinykeys(window, Object.fromEntries([saveCodeHotkey, newFileHotkey]));
 };

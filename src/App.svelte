@@ -39,10 +39,16 @@
   import { clearCode } from "./localStorage";
   import { get } from "svelte/store";
   import { registerHotkeys } from "./hotkeys";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
+  import { newFile } from "./editor/utils";
 
+  let unregisterHotkeys: any;
   onMount(() => {
-    registerHotkeys();
+    unregisterHotkeys = registerHotkeys();
+  });
+
+  onDestroy(() => {
+    unregisterHotkeys();
   });
 
   const StatusCode = {
