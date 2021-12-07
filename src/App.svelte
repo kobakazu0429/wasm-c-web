@@ -80,12 +80,6 @@
     },
   ];
 
-  function newFile() {
-    clearCode();
-    monacoEditorCode.set("");
-    get(editor)?.getModel()?.setValue("");
-  }
-
   async function compile() {
     const res = await compiler(rawCode);
     if (res.code === 0) {
