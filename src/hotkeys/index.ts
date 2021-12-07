@@ -33,11 +33,20 @@ const saveCodeHotkey: KeyBinding = [
   },
 ];
 
+const newFileFn = debounce(
+  () => {
+    newFile();
+    toast.push("New File !");
+  },
+  500,
+  true
+);
+
 const newFileHotkey: KeyBinding = [
   joinKeyBinding([MOD, "k"]),
   (e) => {
     e.preventDefault();
-    newFile();
+    newFileFn();
   },
 ];
 
