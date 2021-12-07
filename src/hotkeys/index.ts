@@ -34,7 +34,7 @@ const saveCodeHotkey: KeyBinding = [
 ];
 
 const newFileHotkey: KeyBinding = [
-  joinKeyBinding([MOD, "n"]),
+  joinKeyBinding([MOD, "k"]),
   (e) => {
     e.preventDefault();
     newFile();
