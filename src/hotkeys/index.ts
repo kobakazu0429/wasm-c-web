@@ -2,7 +2,7 @@ import tinykeys from "tinykeys";
 import debounce from "just-debounce-it";
 import { toast } from "@zerodevx/svelte-toast";
 import { saveCode as saveCodeStorage } from "./../localStorage/index";
-import { getCode, newFile } from "../editor/utils";
+import { getCode, newFile as newFileFn } from "../editor/utils";
 
 // from https://github.com/jamiebuilds/tinykeys/blob/main/README.md
 // There is also a special $mod modifier that makes it easy to support cross platform keybindings:
@@ -13,43 +13,35 @@ const MOD = "$mod";
 
 const joinKeyBinding = (keys: string[]) => keys.join("+");
 
-type KeyBinding = [keybinding: string, fn: (event: KeyboardEvent) => void];
+const debouncer = (fn: Function) => {
+  return debounce(fn, 500, true);
+};
 
-const saveCode = debounce(
-  () => {
-    const { filename, value } = getCode();
-    saveCodeStorage(filename ?? "main.c", value ?? "");
-    toast.push("Saved code !");
-  },
-  500,
-  true
-);
+const saveCode = debouncer(() => {
+  const { filename, value } = getCode();
+  saveCodeStorage(filename ?? "main.c", value ?? "");
+  toast.push("Saved code !");
+});
 
-const saveCodeHotkey: KeyBinding = [
-  joinKeyBinding([MOD, "s"]),
-  (e) => {
-    e.preventDefault();
-    saveCode();
-  },
-];
-
-const newFileFn = debounce(
-  () => {
-    newFile();
-    toast.push("New File !");
-  },
-  500,
-  true
-);
-
-const newFileHotkey: KeyBinding = [
-  joinKeyBinding([MOD, "k"]),
-  (e) => {
-    e.preventDefault();
-    newFileFn();
-  },
-];
+const newFile = debouncer(() => {
+  newFileFn();
+  toast.push("New File !");
+});
 
 export const registerHotkeys = () => {
-  return tinykeys(window, Object.fromEntries([saveCodeHotkey, newFileHotkey]));
+  return tinykeys(window, {
+    // save code
+    [joinKeyBinding([MOD, "s"])]: (e) => {
+      e.preventDefault();
+      saveCode();
+    },
+
+    // new file
+    [joinKeyBinding([MOD, "b"])]: (e) => {
+      e.preventDefault();
+      console.log("called");
+
+      newFile();
+    },
+  });
 };
