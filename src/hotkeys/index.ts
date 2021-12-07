@@ -39,8 +39,6 @@ export const registerHotkeys = () => {
     // new file
     [joinKeyBinding([MOD, "b"])]: (e) => {
       e.preventDefault();
-      console.log("called");
-
       newFile();
     },
   });
