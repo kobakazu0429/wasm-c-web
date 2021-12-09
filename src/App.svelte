@@ -19,6 +19,7 @@
   import CompileLog from "./components/CompileLog.svelte";
   import Console from "./components/Console/Console.svelte";
   import TestResult from "./components/TestResult.svelte";
+  import OverflowMenu from "./components/OverflowMenu.svelte";
   import { enableFullScreenEditor } from "./editor/fullscreen";
   import { registerHotkeys } from "./hotkeys";
   import { onDestroy, onMount } from "svelte";
@@ -51,6 +52,7 @@
     <Button size="small" kind="secondary" on:click={run}>Run</Button>
     <Button size="small" kind="secondary" on:click={test}>Test</Button>
     <Button size="small" kind="secondary" on:click={formatCode}>Format</Button>
+    <OverflowMenu />
     <Button
       size="small"
       kind="secondary"
