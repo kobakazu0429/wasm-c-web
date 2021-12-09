@@ -1,3 +1,4 @@
+import { _ } from "../i18n";
 import type { STATUS_CODE } from "../runners/status";
 import { compileLogOut } from "../store";
 
@@ -12,7 +13,7 @@ type Response =
     };
 
 export async function compiler(src: string) {
-  compileLogOut("compile start");
+  compileLogOut(_("compiler.start"));
 
   const param = {
     method: "POST",
@@ -26,7 +27,7 @@ export async function compiler(src: string) {
     await fetch(`${import.meta.env.VITE_API_SERVER_URL}/compile`, param)
   ).json();
 
-  compileLogOut("compiled");
+  compileLogOut(_("compiler.finished"));
 
   return res as Response;
 }

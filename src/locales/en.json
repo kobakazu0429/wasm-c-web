@@ -48,5 +48,9 @@
       "start": "[test] start",
       "finished": "[test] finished"
     }
+  },
+  "compiler": {
+    "start": "[compile] start",
+    "finished": "[compile] finished"
   }
 }
