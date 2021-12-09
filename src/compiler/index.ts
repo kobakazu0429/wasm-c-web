@@ -1,12 +1,13 @@
+import type { STATUS_CODE } from "../runners/status";
 import { compileLogOut } from "../store";
 
 type Response =
   | {
-      code: 0;
+      code: typeof STATUS_CODE.OK;
       binary: BufferSource;
     }
   | {
-      code: 10 | 90;
+      code: typeof STATUS_CODE.ERROR | typeof STATUS_CODE.UNKNOWN;
       message: string;
     };
 
