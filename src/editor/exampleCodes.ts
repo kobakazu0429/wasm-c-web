@@ -1,3 +1,12 @@
+export const boilerplate = `#include <stdio.h>
+
+int main() {
+
+
+  return 0;
+}
+`;
+
 export const stdin = `#include <stdio.h>
 
 int sum(int a, int b) {
@@ -19,7 +28,7 @@ int main() {
 }
 `;
 
-export const something = `#include <stdio.h>
+export const basic = `#include <stdio.h>
 #define foo 123
 #define bar 456
 
