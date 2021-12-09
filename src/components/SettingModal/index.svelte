@@ -7,6 +7,8 @@
 </script>
 
 <script lang="ts">
+  import { _, locale } from "svelte-i18n";
+  import { Dropdown } from "carbon-components-svelte";
   import { Modal } from "carbon-components-svelte";
   import { Tabs, Tab, TabContent } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
@@ -14,13 +16,32 @@
   import InlineTextInput from "./InlineTextInput.svelte";
   import InlineTextBothInput from "./InlineTextBothInput.svelte";
   import { settings, settingsAdder, settingsRemover } from "../../store";
+
+  const languages = [
+    { id: "0", text: "日本語(Japanese)" },
+    { id: "1", text: "英語(English)" },
+  ];
+
+  const languagesIdLocalMap = new Map([
+    ["0", "ja"],
+    ["1", "en"],
+  ]);
+
+  type DropdownEvent = Parameters<
+    Parameters<typeof Dropdown["prototype"]["$on"]>[1]
+  >[0];
+
+  const onSelectLanguage = (e: DropdownEvent) => {
+    const local = languagesIdLocalMap.get(e.detail.selectedId);
+    locale.set(local);
+  };
 </script>
 
 <Modal
   bind:open={$modalOpenStatus}
-  modalHeading="Setting"
-  primaryButtonText="Confirm"
-  secondaryButtonText="Cancel"
+  modalHeading={$_("setteing_modal.modal_heading")}
+  primaryButtonText={$_("setteing_modal.primary_button_text")}
+  secondaryButtonText={$_("setteing_modal.secondary_button_text")}
   hasForm
   on:close={() => {
     modalOpenStatus.set(false);
@@ -28,13 +49,21 @@
   on:click:button--secondary={() => modalOpenStatus.set(false)}
 >
   <Tabs>
-    <Tab label="Editor" />
-    <Tab label="Config" />
-    <Tab label="Env" />
-    <Tab label="Argv" />
+    <Tab label={$_("setteing_modal.label.editor")} />
+    <Tab label={$_("setteing_modal.label.config")} />
+    <Tab label={$_("setteing_modal.label.env")} />
+    <Tab label={$_("setteing_modal.label.argv")} />
     <div slot="content">
       <!-- Editor -->
-      <TabContent>Content 1</TabContent>
+      <TabContent>
+        <Dropdown
+          type="inline"
+          titleText={$_("setteing_modal.language.title")}
+          selectedIndex={0}
+          items={languages}
+          on:select={onSelectLanguage}
+        />
+      </TabContent>
 
       <!-- Config -->
       <TabContent>
@@ -58,7 +87,7 @@
         {/each}
 
         <Button
-          iconDescription="Add"
+          iconDescription={$_("setteing_modal.add")}
           tooltipPosition="right"
           hasIconOnly
           icon={AddAlt32}
@@ -79,7 +108,7 @@
         {/each}
 
         <Button
-          iconDescription="Add"
+          iconDescription={$_("setteing_modal.add")}
           tooltipPosition="right"
           hasIconOnly
           icon={AddAlt32}
@@ -89,3 +118,9 @@
     </div>
   </Tabs>
 </Modal>
+
+<style>
+  :global(.bx--modal-container) {
+    min-height: 450px !important;
+  }
+</style>

@@ -1,0 +1,59 @@
+{
+  "main_page_title": "wasm-c-web",
+  "header": {
+    "new_file": "New File",
+    "compile": "Compile",
+    "run": "Run",
+    "test": "Test",
+    "format": "Format",
+    "fullscreen_editor": "Full Screen Editor",
+    "setting": "Setting"
+  },
+  "right_accordion": {
+    "console": "Console (stdin / stdout / stderr)",
+    "compile_log": "Compile Log",
+    "test_result": "Test Result",
+    "test_content": "Test Content"
+  },
+  "overflow_menu": {
+    "load_boilerplate": "load \"boilerplate\"",
+    "load_simple": "load \"simple\"",
+    "load_basic": "load \"basic\"",
+    "load_peakLoadTest": "load \"peakLoadTestt\""
+  },
+  "setteing_modal": {
+    "modal_heading": "Setting",
+    "primary_button_text": "Confirm",
+    "secondary_button_text": "Cancel",
+    "label": {
+      "editor": "Editor",
+      "config": "Config",
+      "env": "Env",
+      "argv": "Argv"
+    },
+    "add": "Add",
+    "language": {
+      "title": "Language"
+    }
+  },
+  "runner": {
+    "compile": {
+      "start": "[compile] start",
+      "succeeded": "[compile] succeeded",
+      "failed": "[compile] failed"
+    },
+    "exec": {
+      "timeout": "[exec] timeout, terminating the process ({ms} ms)",
+      "running": "[exec] start",
+      "done": "[exec] finished"
+    },
+    "test": {
+      "start": "[test] start",
+      "finished": "[test] finished"
+    }
+  },
+  "compiler": {
+    "start": "[compile] start",
+    "finished": "[compile] finished"
+  }
+}

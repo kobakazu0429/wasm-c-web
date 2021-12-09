@@ -1,0 +1,59 @@
+{
+  "main_page_title": "wasm-c-web",
+  "header": {
+    "new_file": "新規作成",
+    "compile": "コンパイル",
+    "run": "実行",
+    "test": "テスト",
+    "format": "整形",
+    "fullscreen_editor": "全画面",
+    "setting": "設定"
+  },
+  "right_accordion": {
+    "console": "コンソール (標準入力 / 標準出力 / 標準エラー出力)",
+    "compile_log": "コンパイルログ",
+    "test_result": "テスト結果",
+    "test_content": "テスト内容"
+  },
+  "overflow_menu": {
+    "load_boilerplate": "テンプレートの読み込み",
+    "load_simple": "例1の読み込み",
+    "load_basic": "例2の読み込み",
+    "load_peakLoadTest": "負荷テストの読み込み"
+  },
+  "setteing_modal": {
+    "modal_heading": "設定",
+    "primary_button_text": "適用",
+    "secondary_button_text": "キャンセル",
+    "label": {
+      "editor": "エディター",
+      "config": "詳細設定",
+      "env": "環境変数",
+      "argv": "コマンドライン引数"
+    },
+    "add": "追加",
+    "language": {
+      "title": "言語"
+    }
+  },
+  "runner": {
+    "compile": {
+      "start": "[コンパイル] 開始",
+      "succeeded": "[コンパイル] 成功",
+      "failed": "[コンパイル] 失敗"
+    },
+    "exec": {
+      "timeout": "[実行] タイムアウトしました。現在の処理を中断します。({ms} ms)",
+      "running": "[実行] 開始",
+      "done": "[実行] 終了"
+    },
+    "test": {
+      "start": "[テスト] 開始",
+      "finished": "[テスト] 終了"
+    }
+  },
+  "compiler": {
+    "start": "[コンパイル] 開始",
+    "finished": "[コンパイル] 終了"
+  }
+}
