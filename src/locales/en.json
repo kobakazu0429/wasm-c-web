@@ -14,5 +14,11 @@
     "compile_log": "Compile Log",
     "test_result": "Test Result",
     "test_content": "Test Content"
+  },
+  "overflow_menu": {
+    "load_boilerplate": "load \"boilerplate\"",
+    "load_simple": "load \"simple\"",
+    "load_basic": "load \"basic\"",
+    "load_peakLoadTest": "load \"peakLoadTestt\""
   }
 }

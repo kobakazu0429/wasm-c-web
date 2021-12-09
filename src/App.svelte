@@ -56,11 +56,21 @@
   </div>
 
   <ButtonSet class="header-buttons" style="width:100%;">
-    <Button size="small" kind="secondary" on:click={newFile}>{$_("header.new_file")}</Button>
-    <Button size="small" kind="secondary" on:click={compile}>{$_("header.compile")}</Button>
-    <Button size="small" kind="secondary" on:click={run}>{$_("header.run")}</Button>
-    <Button size="small" kind="secondary" on:click={test}>{$_("header.test")}</Button>
-    <Button size="small" kind="secondary" on:click={formatCode}>{$_("header.format")}</Button>
+    <Button size="small" kind="secondary" on:click={newFile}
+      >{$_("header.new_file")}</Button
+    >
+    <Button size="small" kind="secondary" on:click={compile}
+      >{$_("header.compile")}</Button
+    >
+    <Button size="small" kind="secondary" on:click={run}
+      >{$_("header.run")}</Button
+    >
+    <Button size="small" kind="secondary" on:click={test}
+      >{$_("header.test")}</Button
+    >
+    <Button size="small" kind="secondary" on:click={formatCode}
+      >{$_("header.format")}</Button
+    >
     <OverflowMenu />
     <Button
       size="small"
