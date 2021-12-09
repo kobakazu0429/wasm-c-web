@@ -2,7 +2,7 @@ import tinykeys from "tinykeys";
 import debounce from "just-debounce-it";
 import { toast } from "@zerodevx/svelte-toast";
 import { saveCode as saveCodeStorage } from "./../localStorage/index";
-import { getCode, newFile as newFileFn } from "../editor/utils";
+import { formatCode, getCode, newFile as newFileFn } from "../editor/utils";
 import { compile } from "../runners/compile";
 import { run } from "../runners/exec";
 import { test } from "../runners/test";
@@ -40,8 +40,9 @@ const newFile = debouncer(() => {
 export const registerHotkeys = () => {
   return tinykeys(window, {
     // save code
-    [joinKeyBinding([KEYS.MOD, "s"])]: (e) => {
+    [joinKeyBinding([KEYS.MOD, "s"])]: async (e) => {
       e.preventDefault();
+      await formatCode();
       saveCode();
     },
 
