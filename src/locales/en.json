@@ -20,5 +20,17 @@
     "load_simple": "load \"simple\"",
     "load_basic": "load \"basic\"",
     "load_peakLoadTest": "load \"peakLoadTestt\""
+  },
+  "setteing_modal": {
+    "modal_heading": "Setting",
+    "primary_button_text": "Confirm",
+    "secondary_button_text": "Cancel",
+    "label": {
+      "editor": "Editor",
+      "config": "Config",
+      "env": "Env",
+      "argv": "Argv"
+    },
+    "add": "Add"
   }
 }

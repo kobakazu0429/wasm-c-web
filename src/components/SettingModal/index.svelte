@@ -7,6 +7,7 @@
 </script>
 
 <script lang="ts">
+  import { _ } from "svelte-i18n";
   import { Modal } from "carbon-components-svelte";
   import { Tabs, Tab, TabContent } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
@@ -18,9 +19,9 @@
 
 <Modal
   bind:open={$modalOpenStatus}
-  modalHeading="Setting"
-  primaryButtonText="Confirm"
-  secondaryButtonText="Cancel"
+  modalHeading={$_("setteing_modal.modal_heading")}
+  primaryButtonText={$_("setteing_modal.primary_button_text")}
+  secondaryButtonText={$_("setteing_modal.secondary_button_text")}
   hasForm
   on:close={() => {
     modalOpenStatus.set(false);
@@ -28,10 +29,10 @@
   on:click:button--secondary={() => modalOpenStatus.set(false)}
 >
   <Tabs>
-    <Tab label="Editor" />
-    <Tab label="Config" />
-    <Tab label="Env" />
-    <Tab label="Argv" />
+    <Tab label={$_("setteing_modal.label.editor")} />
+    <Tab label={$_("setteing_modal.label.config")} />
+    <Tab label={$_("setteing_modal.label.env")} />
+    <Tab label={$_("setteing_modal.label.argv")} />
     <div slot="content">
       <!-- Editor -->
       <TabContent>Content 1</TabContent>
@@ -58,7 +59,7 @@
         {/each}
 
         <Button
-          iconDescription="Add"
+          iconDescription={$_("setteing_modal.add")}
           tooltipPosition="right"
           hasIconOnly
           icon={AddAlt32}
@@ -79,7 +80,7 @@
         {/each}
 
         <Button
-          iconDescription="Add"
+          iconDescription={$_("setteing_modal.add")}
           tooltipPosition="right"
           hasIconOnly
           icon={AddAlt32}

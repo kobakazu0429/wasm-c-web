@@ -20,5 +20,17 @@
     "load_simple": "例1の読み込み",
     "load_basic": "例2の読み込み",
     "load_peakLoadTest": "負荷テストの読み込み"
+  },
+  "setteing_modal": {
+    "modal_heading": "設定",
+    "primary_button_text": "適用",
+    "secondary_button_text": "キャンセル",
+    "label": {
+      "editor": "エディター",
+      "config": "詳細設定",
+      "env": "環境変数",
+      "argv": "コマンドライン引数"
+    },
+    "add": "追加"
   }
 }
