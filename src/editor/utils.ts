@@ -9,10 +9,14 @@ export const getCode = () => {
   return { filename, value };
 };
 
+export const setCode = (code: string) => {
+  monacoEditorCode.set(code);
+  get(editor)?.getModel()?.setValue(code);
+};
+
 export const newFile = () => {
   clearCode();
-  monacoEditorCode.set("");
-  get(editor)?.getModel()?.setValue("");
+  setCode("");
 };
 
 export const formatCode = async () => {
