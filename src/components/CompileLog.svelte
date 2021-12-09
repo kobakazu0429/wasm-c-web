@@ -33,4 +33,8 @@
   });
 </script>
 
-<Tile light style="width:100%; line-height: normal; max-height: 150px" id="compile-log" />
+<Tile
+  light
+  style="width:100%; line-height: normal; max-height: 150px"
+  id="compile-log"
+/>

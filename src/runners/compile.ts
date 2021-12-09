@@ -1,6 +1,7 @@
 import { get } from "svelte/store";
 import { compiler } from "../compiler";
 import {
+  accordionOpen,
   compiledCode,
   compiledData,
   compileLogOut,
@@ -9,6 +10,8 @@ import {
 
 export const compile = async () => {
   const rawCode = get(monacoEditorCode);
+
+  accordionOpen.update((p) => ({ ...p, compileLog: true }));
 
   const res = await compiler(rawCode);
   if (res.code === 0) {
