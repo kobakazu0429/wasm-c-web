@@ -83,22 +83,22 @@
             </div>
             <Console />
           </AccordionItem>
-          <AccordionItem class="full-width-accordion-item">
-            <div slot="title">
-              <h5>Test Content</h5>
-            </div>
-          </AccordionItem>
-          <AccordionItem class="full-width-accordion-item" open>
-            <div slot="title">
-              <h5>Test Result</h5>
-            </div>
-            <TestResult />
-          </AccordionItem>
           <AccordionItem class="full-width-accordion-item" open>
             <div slot="title">
               <h5>Compile Log</h5>
             </div>
             <CompileLog />
+          </AccordionItem>
+          <AccordionItem class="full-width-accordion-item">
+            <div slot="title">
+              <h5>Test Result</h5>
+            </div>
+            <TestResult />
+          </AccordionItem>
+          <AccordionItem class="full-width-accordion-item">
+            <div slot="title">
+              <h5>Test Content</h5>
+            </div>
           </AccordionItem>
         </Accordion>
       </Column>
