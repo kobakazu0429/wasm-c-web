@@ -1,11 +1,11 @@
 import tinykeys from "tinykeys";
 import debounce from "just-debounce-it";
-import { toast } from "@zerodevx/svelte-toast";
 import { saveCode as saveCodeStorage } from "./../localStorage/index";
 import { formatCode, getCode, newFile as newFileFn } from "../editor/utils";
 import { compile } from "../runners/compile";
 import { run } from "../runners/exec";
 import { test } from "../runners/test";
+import { normalToast } from "./../toast/index";
 
 // from https://github.com/jamiebuilds/tinykeys/blob/main/README.md
 // There is also a special $mod modifier that makes it easy to support cross platform keybindings:
@@ -29,12 +29,12 @@ const debouncer = (fn: Function) => {
 const saveCode = debouncer(() => {
   const { filename, value } = getCode();
   saveCodeStorage(filename ?? "main.c", value ?? "");
-  toast.push("Saved code !");
+  normalToast("Saved code !");
 });
 
 const newFile = debouncer(() => {
   newFileFn();
-  toast.push("New File !");
+  normalToast("New File !");
 });
 
 export const registerHotkeys = () => {

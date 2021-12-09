@@ -13,6 +13,7 @@ import type { RuntimeWorkerExposes } from "../workers/runtime.worker";
 import RuntimeWorker from "../workers/runtime.worker?worker";
 import type { Test } from "../jest";
 import { constructResultsHTML } from "@kobakazu0429/test";
+import { normalToast } from "./../toast/index";
 
 const demoData2: Test[] = [
   {
@@ -51,6 +52,8 @@ export const test = async () => {
     testContent: true,
   }));
 
+  normalToast("[test] start");
+
   const runtimeWorker = new RuntimeWorker();
   const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(
     runtimeWorker
@@ -58,4 +61,6 @@ export const test = async () => {
   const result = await runtimeWorkerComlink.testWasi(module, demoData2);
   const html = constructResultsHTML(result);
   testResultOut(html);
+
+  normalToast("[test] finished");
 };
