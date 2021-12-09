@@ -81,3 +81,10 @@ export const editorPreviousSize = writable<{
   height: number;
   width: number;
 } | null>(null);
+
+export const accordionOpen = writable({
+  console: true,
+  compileLog: true,
+  testResult: false,
+  testContent: false,
+});

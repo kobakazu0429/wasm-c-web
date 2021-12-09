@@ -1,6 +1,7 @@
 import { get } from "svelte/store";
 import * as Comlink from "comlink";
 import {
+  accordionOpen,
   compiledCode,
   compiledData,
   monacoEditorCode,
@@ -42,6 +43,13 @@ export const test = async () => {
 
   const module = get(compiledData);
   if (!module) return;
+
+  accordionOpen.update((p) => ({
+    ...p,
+    console: false,
+    testResult: true,
+    testContent: true,
+  }));
 
   const runtimeWorker = new RuntimeWorker();
   const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(

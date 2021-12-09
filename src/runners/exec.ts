@@ -2,6 +2,7 @@ import { get } from "svelte/store";
 import { toast } from "@zerodevx/svelte-toast";
 import * as Comlink from "comlink";
 import {
+  accordionOpen,
   compiledCode,
   compiledData,
   consolePrintln,
@@ -53,6 +54,8 @@ export const run = async () => {
   //   // @ts-expect-error
   //   rootHandle = await showDirectoryPicker();
   // }
+
+  accordionOpen.update((p) => ({ ...p, console: true }));
 
   const runtimeWorker = new RuntimeWorker();
   const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(

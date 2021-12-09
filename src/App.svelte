@@ -27,6 +27,7 @@
   import { compile } from "./runners/compile";
   import { run } from "./runners/exec";
   import { test } from "./runners/test";
+  import { accordionOpen } from "./store";
 
   let unregisterHotkeys: any;
   onMount(() => {
@@ -79,25 +80,37 @@
         style="border: 2px solid #262626; border-left: 1px solid #262626; padding:16px;overflow-y: scroll;max-height: 100%;"
       >
         <Accordion>
-          <AccordionItem class="full-width-accordion-item" open>
+          <AccordionItem
+            class="full-width-accordion-item"
+            open={$accordionOpen.console}
+          >
             <div slot="title">
               <h5>Console (stdin / stdout / stderr)</h5>
             </div>
             <Console />
           </AccordionItem>
-          <AccordionItem class="full-width-accordion-item" open>
+          <AccordionItem
+            class="full-width-accordion-item"
+            open={$accordionOpen.compileLog}
+          >
             <div slot="title">
               <h5>Compile Log</h5>
             </div>
             <CompileLog />
           </AccordionItem>
-          <AccordionItem class="full-width-accordion-item">
+          <AccordionItem
+            class="full-width-accordion-item"
+            open={$accordionOpen.testResult}
+          >
             <div slot="title">
               <h5>Test Result</h5>
             </div>
             <TestResult />
           </AccordionItem>
-          <AccordionItem class="full-width-accordion-item">
+          <AccordionItem
+            class="full-width-accordion-item"
+            open={$accordionOpen.testContent}
+          >
             <div slot="title">
               <h5>Test Content</h5>
             </div>
