@@ -32,4 +32,4 @@
   });
 </script>
 
-<Tile light style="width:100%; line-height: normal;" id="terminal" />
+<Tile light style="width:100%; line-height: normal; max-height: 300px;" id="terminal" />
