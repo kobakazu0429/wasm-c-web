@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { _ } from "svelte-i18n";
   import {
     Header,
     ButtonSet,
@@ -28,6 +29,9 @@
   import { run } from "./runners/exec";
   import { test } from "./runners/test";
   import { accordionOpen } from "./store";
+  import { initI18n } from "./i18n";
+
+  initI18n();
 
   let unregisterHotkeys: any;
   onMount(() => {
@@ -38,6 +42,10 @@
     unregisterHotkeys();
   });
 </script>
+
+<svelte:head>
+  <title>{$_("main_page_title")}</title>
+</svelte:head>
 
 <SvelteToast />
 <SettingModal />
