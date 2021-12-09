@@ -32,5 +32,14 @@
       "argv": "Argv"
     },
     "add": "Add"
+  },
+  "runner": {
+    "compile": {
+      "start": "[compile] start",
+      "succeeded": "[compile] succeeded",
+      "failed": "[compile] failed"
+    },
+    "exec": {},
+    "test": {}
   }
 }

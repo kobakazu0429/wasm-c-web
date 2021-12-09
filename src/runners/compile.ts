@@ -1,5 +1,6 @@
 import { get } from "svelte/store";
 import { compiler } from "../compiler";
+import { _ } from "../i18n";
 import {
   accordionOpen,
   compiledCode,
@@ -10,7 +11,7 @@ import {
 import { normalToast, greenToast, redToast } from "./../toast/index";
 
 export const compile = async () => {
-  normalToast("[compile] start");
+  normalToast(_("runner.compile.start"));
   const rawCode = get(monacoEditorCode);
 
   accordionOpen.update((p) => ({ ...p, compileLog: true }));
@@ -19,10 +20,10 @@ export const compile = async () => {
   if (res.code === 0) {
     compiledCode.set(rawCode);
     compiledData.set(Uint8Array.from((res.binary as any).data));
-    greenToast("[compile] succeeded");
+    greenToast(_("runner.compile.succeeded"));
   } else {
     compileLogOut(res.message);
-    redToast("[compile] failed");
+    redToast(_("runner.compile.failed"));
   }
   return res.code;
 };

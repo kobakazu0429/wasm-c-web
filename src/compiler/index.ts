@@ -12,7 +12,6 @@ type Response =
     };
 
 export async function compiler(src: string) {
-  console.log("compile start");
   compileLogOut("compile start");
 
   const param = {
@@ -27,7 +26,6 @@ export async function compiler(src: string) {
     await fetch(`${import.meta.env.VITE_API_SERVER_URL}/compile`, param)
   ).json();
 
-  console.log("compiled");
   compileLogOut("compiled");
 
   return res as Response;
