@@ -3,6 +3,8 @@ import { writable } from "svelte/store";
 import type { Argvs, Config, Env } from "./components/SettingModal/type";
 
 export const monacoEditorCode = writable("");
+export const compiledCode = writable("");
+export const compiledData = writable<Uint8Array | null>(null);
 
 type Settings = { config: Config; env: Env; argvs: Argvs };
 export const settings = writable<Settings>({
