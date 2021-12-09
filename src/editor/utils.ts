@@ -14,3 +14,8 @@ export const newFile = () => {
   monacoEditorCode.set("");
   get(editor)?.getModel()?.setValue("");
 };
+
+export const formatCode = async () => {
+  const e = get(editor);
+  await e?.getAction("editor.action.formatDocument").run();
+};
