@@ -56,23 +56,23 @@
   </div>
 
   <ButtonSet class="header-buttons" style="width:100%;">
-    <Button size="small" kind="secondary" on:click={newFile}>New File</Button>
-    <Button size="small" kind="secondary" on:click={compile}>Compile</Button>
-    <Button size="small" kind="secondary" on:click={run}>Run</Button>
-    <Button size="small" kind="secondary" on:click={test}>Test</Button>
-    <Button size="small" kind="secondary" on:click={formatCode}>Format</Button>
+    <Button size="small" kind="secondary" on:click={newFile}>{$_("header.new_file")}</Button>
+    <Button size="small" kind="secondary" on:click={compile}>{$_("header.compile")}</Button>
+    <Button size="small" kind="secondary" on:click={run}>{$_("header.run")}</Button>
+    <Button size="small" kind="secondary" on:click={test}>{$_("header.test")}</Button>
+    <Button size="small" kind="secondary" on:click={formatCode}>{$_("header.format")}</Button>
     <OverflowMenu />
     <Button
       size="small"
       kind="secondary"
       on:click={enableFullScreenEditor}
-      style="margin-left:auto;">Full Screen Editor</Button
+      style="margin-left:auto;">{$_("header.fullscreen_editor")}</Button
     >
     <Button
       size="small"
       kind="secondary"
       on:click={openSettingModal}
-      style="margin-right:16px">Setting</Button
+      style="margin-right:16px">{$_("header.setting")}</Button
     >
   </ButtonSet>
 </Header>
@@ -93,7 +93,7 @@
             open={$accordionOpen.console}
           >
             <div slot="title">
-              <h5>Console (stdin / stdout / stderr)</h5>
+              <h5>{$_("right_accordion.console")}</h5>
             </div>
             <Console />
           </AccordionItem>
@@ -102,7 +102,7 @@
             open={$accordionOpen.compileLog}
           >
             <div slot="title">
-              <h5>Compile Log</h5>
+              <h5>{$_("right_accordion.compile_log")}</h5>
             </div>
             <CompileLog />
           </AccordionItem>
@@ -111,7 +111,7 @@
             open={$accordionOpen.testResult}
           >
             <div slot="title">
-              <h5>Test Result</h5>
+              <h5>{$_("right_accordion.test_result")}</h5>
             </div>
             <TestResult />
           </AccordionItem>
@@ -120,7 +120,7 @@
             open={$accordionOpen.testContent}
           >
             <div slot="title">
-              <h5>Test Content</h5>
+              <h5>{$_("right_accordion.test_content")}</h5>
             </div>
           </AccordionItem>
         </Accordion>

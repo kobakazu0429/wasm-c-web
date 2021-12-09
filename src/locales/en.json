@@ -1,1 +1,18 @@
-{ "main_page_title": "wasm-c-web" }
+{
+  "main_page_title": "wasm-c-web",
+  "header": {
+    "new_file": "New File",
+    "compile": "Compile",
+    "run": "Run",
+    "test": "Test",
+    "format": "Format",
+    "fullscreen_editor": "Full Screen Editor",
+    "setting": "Setting"
+  },
+  "right_accordion": {
+    "console": "Console (stdin / stdout / stderr)",
+    "compile_log": "Compile Log",
+    "test_result": "Test Result",
+    "test_content": "Test Content"
+  }
+}
