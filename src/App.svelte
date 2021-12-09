@@ -22,7 +22,7 @@
   import { enableFullScreenEditor } from "./editor/fullscreen";
   import { registerHotkeys } from "./hotkeys";
   import { onDestroy, onMount } from "svelte";
-  import { newFile } from "./editor/utils";
+  import { formatCode, newFile } from "./editor/utils";
   import { compile } from "./runners/compile";
   import { run } from "./runners/exec";
   import { test } from "./runners/test";
@@ -50,6 +50,7 @@
     <Button size="small" kind="secondary" on:click={compile}>Compile</Button>
     <Button size="small" kind="secondary" on:click={run}>Run</Button>
     <Button size="small" kind="secondary" on:click={test}>Test</Button>
+    <Button size="small" kind="secondary" on:click={formatCode}>Format</Button>
     <Button
       size="small"
       kind="secondary"
