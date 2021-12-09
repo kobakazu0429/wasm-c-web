@@ -31,7 +31,10 @@
       "env": "Env",
       "argv": "Argv"
     },
-    "add": "Add"
+    "add": "Add",
+    "language": {
+      "title": "Language"
+    }
   },
   "runner": {
     "compile": {

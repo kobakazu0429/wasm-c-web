@@ -7,7 +7,8 @@
 </script>
 
 <script lang="ts">
-  import { _ } from "svelte-i18n";
+  import { _, locale } from "svelte-i18n";
+  import { Dropdown } from "carbon-components-svelte";
   import { Modal } from "carbon-components-svelte";
   import { Tabs, Tab, TabContent } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
@@ -15,6 +16,25 @@
   import InlineTextInput from "./InlineTextInput.svelte";
   import InlineTextBothInput from "./InlineTextBothInput.svelte";
   import { settings, settingsAdder, settingsRemover } from "../../store";
+
+  const languages = [
+    { id: "0", text: "日本語(Japanese)" },
+    { id: "1", text: "英語(English)" },
+  ];
+
+  const languagesIdLocalMap = new Map([
+    ["0", "ja"],
+    ["1", "en"],
+  ]);
+
+  type DropdownEvent = Parameters<
+    Parameters<typeof Dropdown["prototype"]["$on"]>[1]
+  >[0];
+
+  const onSelectLanguage = (e: DropdownEvent) => {
+    const local = languagesIdLocalMap.get(e.detail.selectedId);
+    locale.set(local);
+  };
 </script>
 
 <Modal
@@ -35,7 +55,15 @@
     <Tab label={$_("setteing_modal.label.argv")} />
     <div slot="content">
       <!-- Editor -->
-      <TabContent>Content 1</TabContent>
+      <TabContent>
+        <Dropdown
+          type="inline"
+          titleText={$_("setteing_modal.language.title")}
+          selectedIndex={0}
+          items={languages}
+          on:select={onSelectLanguage}
+        />
+      </TabContent>
 
       <!-- Config -->
       <TabContent>
@@ -90,3 +118,9 @@
     </div>
   </Tabs>
 </Modal>
+
+<style>
+  :global(.bx--modal-container) {
+    min-height: 450px !important;
+  }
+</style>

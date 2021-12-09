@@ -31,7 +31,10 @@
       "env": "環境変数",
       "argv": "コマンドライン引数"
     },
-    "add": "追加"
+    "add": "追加",
+    "language": {
+      "title": "言語"
+    }
   },
   "runner": {
     "compile": {
