@@ -39,7 +39,11 @@
       "succeeded": "[compile] succeeded",
       "failed": "[compile] failed"
     },
-    "exec": {},
+    "exec": {
+      "timeout": "[exec] timeout, terminating the process ({ms} ms)",
+      "running": "[exec] start",
+      "done": "[exec] finished"
+    },
     "test": {}
   }
 }
