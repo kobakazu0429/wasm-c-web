@@ -1,5 +1,4 @@
 import { get } from "svelte/store";
-import { toast } from "@zerodevx/svelte-toast";
 import * as Comlink from "comlink";
 import {
   accordionOpen,
@@ -14,6 +13,7 @@ import { STATUS_CODE } from "./status";
 import type { RuntimeWorkerExposes } from "../workers/runtime.worker";
 import RuntimeWorker from "../workers/runtime.worker?worker";
 import { readLine } from "../components/Console/terminal";
+import { greenToast, normalToast, redToast } from "./../toast/index";
 
 export const run = async () => {
   if (get(compiledCode) !== get(monacoEditorCode)) {
@@ -37,9 +37,7 @@ export const run = async () => {
       (resolve) =>
         (timeouterId = setTimeout(() => {
           controller.abort();
-          toast.push(
-            `タイムアウトしたため現在の処理を中断します。(${ms} [ms])`
-          );
+          redToast(`タイムアウトしたため現在の処理を中断します。(${ms} [ms])`);
           resolve();
         }, ms))
     );
@@ -57,21 +55,29 @@ export const run = async () => {
 
   accordionOpen.update((p) => ({ ...p, console: true }));
 
+  normalToast("[exec] running");
+
   const runtimeWorker = new RuntimeWorker();
   const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(
     runtimeWorker
   );
-  const task = runtimeWorkerComlink.startWasiTask(
-    module,
-    Comlink.proxy(consolePrintln),
-    Comlink.proxy(readLine)
-  );
+  const task = runtimeWorkerComlink
+    .startWasiTask(
+      module,
+      Comlink.proxy(consolePrintln),
+      Comlink.proxy(readLine)
+    )
+    .then(() => "done");
 
   controller.signal.addEventListener("abort", () => {
     runtimeWorker.terminate();
   });
 
-  await Promise.race([task, timeouter(timeoutMs)]);
+  const result = await Promise.race([task, timeouter(timeoutMs)]);
+  if (result === "done") {
+    greenToast("[exec] done");
+  }
+
   // @ts-expect-error
   if (timeouterId) clearTimeout(timeouterId);
 };
