@@ -24,8 +24,6 @@
   },
   "setting_modal": {
     "modal_heading": "Settings",
-    "primary_button_text": "Confirm",
-    "secondary_button_text": "Cancel",
     "label": {
       "editor": "Editor",
       "config": "Config",
