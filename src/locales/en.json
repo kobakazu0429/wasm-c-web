@@ -19,7 +19,8 @@
     "load_boilerplate": "load \"boilerplate\"",
     "load_simple": "load \"simple\"",
     "load_basic": "load \"basic\"",
-    "load_peakLoadTest": "load \"peakLoadTestt\""
+    "load_peakLoadTest": "load \"peakLoadTestt\"",
+    "open_introduction_modal": "open Introduction Modal"
   },
   "setteing_modal": {
     "modal_heading": "Settings",

@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
   import { writable } from "svelte/store";
   const modalOpenStatus = writable(true);
-  export const openSettingModal = () => {
+  export const openIntroductionModal = () => {
     modalOpenStatus.set(true);
   };
 </script>

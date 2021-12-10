@@ -19,7 +19,8 @@
     "load_boilerplate": "テンプレートの読み込み",
     "load_simple": "例1の読み込み",
     "load_basic": "例2の読み込み",
-    "load_peakLoadTest": "負荷テストの読み込み"
+    "load_peakLoadTest": "負荷テストの読み込み",
+    "open_introduction_modal": "使い方を開く"
   },
   "setteing_modal": {
     "modal_heading": "設定",
