@@ -39,9 +39,9 @@
 
 <Modal
   bind:open={$modalOpenStatus}
-  modalHeading={$_("setteing_modal.modal_heading")}
-  primaryButtonText={$_("setteing_modal.primary_button_text")}
-  secondaryButtonText={$_("setteing_modal.secondary_button_text")}
+  modalHeading={$_("setting_modal.modal_heading")}
+  primaryButtonText={$_("setting_modal.primary_button_text")}
+  secondaryButtonText={$_("setting_modal.secondary_button_text")}
   hasForm
   on:close={() => {
     modalOpenStatus.set(false);
@@ -49,16 +49,16 @@
   on:click:button--secondary={() => modalOpenStatus.set(false)}
 >
   <Tabs>
-    <Tab label={$_("setteing_modal.label.editor")} />
-    <Tab label={$_("setteing_modal.label.config")} />
-    <Tab label={$_("setteing_modal.label.env")} />
-    <Tab label={$_("setteing_modal.label.argv")} />
+    <Tab label={$_("setting_modal.label.editor")} />
+    <Tab label={$_("setting_modal.label.config")} />
+    <Tab label={$_("setting_modal.label.env")} />
+    <Tab label={$_("setting_modal.label.argv")} />
     <div slot="content">
       <!-- Editor -->
       <TabContent>
         <Dropdown
           type="inline"
-          titleText={$_("setteing_modal.language.title")}
+          titleText={$_("setting_modal.language.title")}
           selectedIndex={0}
           items={languages}
           on:select={onSelectLanguage}
@@ -87,7 +87,7 @@
         {/each}
 
         <Button
-          iconDescription={$_("setteing_modal.add")}
+          iconDescription={$_("setting_modal.add")}
           tooltipPosition="right"
           hasIconOnly
           icon={AddAlt32}
@@ -108,7 +108,7 @@
         {/each}
 
         <Button
-          iconDescription={$_("setteing_modal.add")}
+          iconDescription={$_("setting_modal.add")}
           tooltipPosition="right"
           hasIconOnly
           icon={AddAlt32}

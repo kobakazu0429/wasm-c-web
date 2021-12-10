@@ -22,7 +22,7 @@
     "load_peakLoadTest": "負荷テストの読み込み",
     "open_introduction_modal": "使い方を開く"
   },
-  "setteing_modal": {
+  "setting_modal": {
     "modal_heading": "設定",
     "primary_button_text": "適用",
     "secondary_button_text": "キャンセル",

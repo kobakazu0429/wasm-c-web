@@ -22,7 +22,7 @@
     "load_peakLoadTest": "load \"peakLoadTestt\"",
     "open_introduction_modal": "open Introduction Modal"
   },
-  "setteing_modal": {
+  "setting_modal": {
     "modal_heading": "Settings",
     "primary_button_text": "Confirm",
     "secondary_button_text": "Cancel",
