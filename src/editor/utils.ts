@@ -1,5 +1,6 @@
 import { get } from "svelte/store";
 import { editor, monacoEditorCode } from "../store";
+import { redToast } from "../toast";
 import { clearCode } from "./../localStorage/index";
 
 export const getCode = () => {
@@ -22,4 +23,23 @@ export const newFile = () => {
 export const formatCode = async () => {
   const e = get(editor);
   await e?.getAction("editor.action.formatDocument").run();
+};
+
+export const downloadCode = () => {
+  const { value } = getCode();
+  if (!value) redToast("value is nothing ?");
+
+  const blob = new Blob([value!], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  const filename = new Date()
+    .toLocaleString()
+    .replaceAll(/\/|:/g, "")
+    .replaceAll(" ", "_");
+  a.download = filename + ".c";
+  a.href = url;
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
 };

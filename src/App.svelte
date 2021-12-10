@@ -25,7 +25,7 @@
   import { enableFullScreenEditor } from "./editor/fullscreen";
   import { registerShortcuts } from "./shortcuts";
   import { onDestroy, onMount } from "svelte";
-  import { formatCode, newFile } from "./editor/utils";
+  import { downloadCode, formatCode, newFile } from "./editor/utils";
   import { compile } from "./runners/compile";
   import { run } from "./runners/exec";
   import { test } from "./runners/test";
@@ -74,6 +74,9 @@
     >
     <Button size="small" kind="secondary" on:click={formatCode}
       >{$_("header.format")}</Button
+    >
+    <Button size="small" kind="secondary" on:click={downloadCode}
+      >{$_("header.download")}</Button
     >
     <OverflowMenu />
     <Button
@@ -154,5 +157,9 @@
 
   :global(.bx--header__name) {
     flex-shrink: 0;
+  }
+
+  :global(.bx--btn-set .bx--btn) {
+    max-width: 10rem;
   }
 </style>

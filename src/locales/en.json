@@ -6,6 +6,7 @@
     "run": "Run",
     "test": "Test",
     "format": "Format",
+    "download": "Download",
     "fullscreen_editor": "Full Screen Editor",
     "setting": "Settings"
   },

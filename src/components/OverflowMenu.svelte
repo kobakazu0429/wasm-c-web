@@ -35,3 +35,13 @@
     on:click={openIntroductionModal}
   />
 </OverflowMenu>
+
+<style>
+  :global(.bx--overflow-menu-options) {
+    width: 13rem;
+  }
+
+  :global(.bx--overflow-menu-options__btn) {
+    max-width: none;
+  }
+</style>
