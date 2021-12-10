@@ -41,7 +41,7 @@
     "modal_heading": "Hello World !",
     "label": {
       "how_to_use": "How to use",
-      "hotkeys": "Hotkeys",
+      "shortcuts": "Shortcuts",
       "tips": "Tips"
     },
     "body": {
@@ -80,7 +80,7 @@
         ["br"],
         ["list-right", "2021, senior thesis"]
       ],
-      "hotkeys": [
+      "shortcuts": [
         ["list", "For Mac users, should replace Control with Command"],
         ["br"],
         ["list", "Save Code", "Control + s"],

@@ -41,7 +41,7 @@
     "modal_heading": "初めまして！",
     "label": {
       "how_to_use": "使い方",
-      "hotkeys": "ショートカット",
+      "shortcuts": "ショートカット",
       "tips": "アドバイス"
     },
     "body": {
@@ -74,7 +74,7 @@
         ["br"],
         ["list-right", "2021年度　卒業研究"]
       ],
-      "hotkeys": [
+      "shortcuts": [
         ["list", "Macの人は Control を Command に読み換えてください"],
         ["br"],
         ["list", "コードの保存", "Control + s"],

@@ -16,8 +16,8 @@
   const howToUseBody = ($_(
     "introduction_modal.body.how_to_use"
   ) as any) as Array<RawBody>;
-  const hotkeysBody = ($_(
-    "introduction_modal.body.hotkeys"
+  const shortcutsBody = ($_(
+    "introduction_modal.body.shortcuts"
   ) as any) as Array<RawBody>;
   const tipsBody = ($_(
     "introduction_modal.body.tips"
@@ -34,14 +34,14 @@
 >
   <Tabs>
     <Tab label={$_("introduction_modal.label.how_to_use")} />
-    <Tab label={$_("introduction_modal.label.hotkeys")} />
+    <Tab label={$_("introduction_modal.label.shortcuts")} />
     <Tab label={$_("introduction_modal.label.tips")} />
     <div slot="content">
       <!-- how_to_use -->
       <TabContent><Renderer body={howToUseBody} /></TabContent>
 
-      <!-- hotkeys -->
-      <TabContent><Renderer body={hotkeysBody} /></TabContent>
+      <!-- shortcuts -->
+      <TabContent><Renderer body={shortcutsBody} /></TabContent>
 
       <!-- tips -->
       <TabContent><Renderer body={tipsBody} /></TabContent>
