@@ -31,12 +31,14 @@
   import { test } from "./runners/test";
   import { accordionOpen } from "./store";
   import { initI18n } from "./i18n";
+  import { visited } from "./localStorage";
 
   initI18n();
 
   let unregisterShortcuts: any;
   onMount(() => {
     unregisterShortcuts = registerShortcuts();
+    visited();
   });
 
   onDestroy(() => {
