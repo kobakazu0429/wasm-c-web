@@ -6,6 +6,7 @@
     "run": "実行",
     "test": "テスト",
     "format": "整形",
+    "download": "ダウンロード",
     "fullscreen_editor": "全画面",
     "setting": "設定"
   },
