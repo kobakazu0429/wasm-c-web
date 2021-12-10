@@ -29,7 +29,7 @@
     {:else if type === "list-right"}
       <Row>
         {#each props as prop}
-          <Column sm={{ span: 1, offset: 3 }}>{prop}</Column>
+          <Column style="text-align:right;">{prop}</Column>
         {/each}
       </Row>
     {:else if type === "br"}
