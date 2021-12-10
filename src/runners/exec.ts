@@ -13,7 +13,7 @@ import { STATUS_CODE } from "./status";
 import type { RuntimeWorkerExposes } from "../workers/runtime.worker";
 import RuntimeWorker from "../workers/runtime.worker?worker";
 import { readLine } from "../components/Console/terminal";
-import { greenToast, normalToast, redToast } from "./../toast/index";
+import { normalToast, redToast } from "./../toast/index";
 import { _ } from "../i18n";
 
 export const run = async () => {
@@ -74,10 +74,10 @@ export const run = async () => {
     runtimeWorker.terminate();
   });
 
-  const result = await Promise.race([task, timeouter(timeoutMs)]);
-  if (result === "done") {
-    greenToast(_("runner.exec.done"));
-  }
+  /* const result = */ await Promise.race([task, timeouter(timeoutMs)]);
+  // if (result === "done") {
+  //   greenToast(_("runner.exec.done"));
+  // }
 
   // @ts-expect-error
   if (timeouterId) clearTimeout(timeouterId);
