@@ -1,6 +1,8 @@
 import store from "store2";
 
+const PREFIX = "wasm_c_web";
 const KEY = "auto_saved";
+const VISITED = `${PREFIX}-visited`;
 
 interface SavedCode {
   timestamp: number;
@@ -22,4 +24,12 @@ export const getPreviousCode = (): SavedCode | null => {
 
 export const clearCode = () => {
   store.local.remove(KEY);
+};
+
+export const visited = () => {
+  store.local.set(VISITED, true);
+};
+
+export const isVisited = () => {
+  return (store.local.get(VISITED) as boolean | null) ?? false;
 };

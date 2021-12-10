@@ -1,6 +1,8 @@
 <script lang="ts" context="module">
   import { writable } from "svelte/store";
-  const modalOpenStatus = writable(true);
+  import { isVisited } from "../../localStorage";
+
+  const modalOpenStatus = writable(!isVisited());
   export const openIntroductionModal = () => {
     modalOpenStatus.set(true);
   };
