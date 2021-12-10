@@ -16,6 +16,7 @@
   import SettingModal, {
     openSettingModal,
   } from "./components/SettingModal/index.svelte";
+  import IntroductionModal from "./components/IntroductionModal/index.svelte";
   import Editor from "./components/Editor.svelte";
   import CompileLog from "./components/CompileLog.svelte";
   import Console from "./components/Console/Console.svelte";
@@ -49,6 +50,7 @@
 
 <SvelteToast />
 <SettingModal />
+<IntroductionModal />
 
 <Header company="wasm-c-web">
   <div slot="skip-to-content">

@@ -19,7 +19,8 @@
     "load_boilerplate": "テンプレートの読み込み",
     "load_simple": "例1の読み込み",
     "load_basic": "例2の読み込み",
-    "load_peakLoadTest": "負荷テストの読み込み"
+    "load_peakLoadTest": "負荷テストの読み込み",
+    "open_introduction_modal": "使い方を開く"
   },
   "setteing_modal": {
     "modal_heading": "設定",
@@ -34,6 +35,70 @@
     "add": "追加",
     "language": {
       "title": "言語"
+    }
+  },
+  "introduction_modal": {
+    "modal_heading": "初めまして！",
+    "label": {
+      "how_to_use": "使い方",
+      "hotkeys": "ショートカット",
+      "tips": "アドバイス"
+    },
+    "body": {
+      "how_to_use": [
+        ["list", "使い方はとても簡単！"],
+        ["br"],
+        ["list", "左側のエディタでプログラミングするだけです。"],
+        ["br"],
+        [
+          "list",
+          "コードを書き終えたら上の「実行」を押してみてください。右側の「コンソール」というところに出力されたり、入力できるようになったりします。"
+        ],
+        ["br"],
+        [
+          "list",
+          "また「テスト」を押すと正しいコードか自動で確認してくれます。"
+        ],
+        ["br"],
+        [
+          "list",
+          "自分好みの設定にすることもできるので、上の「ショートカット」タブや「アドバイス」タブを確認したり、右上の「設定」をクリックしてみてください。"
+        ],
+        ["br"],
+        ["list", "このページは右上の「︙」からいつでも閲覧可能です。"],
+        ["br"],
+        ["br"],
+        ["list", "作成者：呉工業高等専門学校　電気情報工学科　5年　小畠 一泰"],
+        ["list", "連絡先：E17-sspt@kure.kosen-ac.jp"],
+        ["link", "https://twitter.com/kobakazu0429", "Twitter：@kobakazu0429"],
+        ["br"],
+        ["list-right", "2021年度　卒業研究"]
+      ],
+      "hotkeys": [
+        ["list", "Macの人は Control を Command に読み換えてください"],
+        ["br"],
+        ["list", "コードの保存", "Control + s"],
+        ["list", "新規作成", "Control + b"],
+        ["list", "コンパイル", "Control + Shift + c"],
+        ["list", "コンパイルして実行", "Control + Enter"],
+        ["list", "テストの実行", "Control + Shift + l"],
+        ["br"],
+        ["list", "エディターショートカットについては下記を参照してください。"],
+        ["list", "基本はVS Codeと同じショートカットです。"],
+        [
+          "link",
+          "https://ja.docs.monaca.io/products_guide/monaca_ide/editor",
+          "エディターショートカットの詳細"
+        ]
+      ],
+      "tips": [
+        [
+          "list",
+          "新規作成にはテンプレートの使用がおすすめ。右上の「︙」から「テンプレートの読み込み」を押してみよう！"
+        ],
+        ["br"],
+        ["list", "補完機能や整形機能があるのでどんどん活用しよう！"]
+      ]
     }
   },
   "runner": {

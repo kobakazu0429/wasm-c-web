@@ -19,10 +19,11 @@
     "load_boilerplate": "load \"boilerplate\"",
     "load_simple": "load \"simple\"",
     "load_basic": "load \"basic\"",
-    "load_peakLoadTest": "load \"peakLoadTestt\""
+    "load_peakLoadTest": "load \"peakLoadTestt\"",
+    "open_introduction_modal": "open Introduction Modal"
   },
   "setteing_modal": {
-    "modal_heading": "Setting",
+    "modal_heading": "Settings",
     "primary_button_text": "Confirm",
     "secondary_button_text": "Cancel",
     "label": {
@@ -34,6 +35,79 @@
     "add": "Add",
     "language": {
       "title": "Language"
+    }
+  },
+  "introduction_modal": {
+    "modal_heading": "Hello World !",
+    "label": {
+      "how_to_use": "How to use",
+      "hotkeys": "Hotkeys",
+      "tips": "Tips"
+    },
+    "body": {
+      "how_to_use": [
+        ["list", "Very easy to use!"],
+        ["br"],
+        ["list", "Just programming in the editor on the left."],
+        ["br"],
+        [
+          "list",
+          "When you have finished writing the code, press \"Run\" above. You'll see the output in the \"console\" on the right, or you can type it in."
+        ],
+        ["br"],
+        [
+          "list",
+          "You can also press 'Test' to automatically check for correct code."
+        ],
+        ["br"],
+        [
+          "list",
+          "You can also set it up to your liking, so check out the \"Shortcuts\" and \"Tips\" tabs above, or click \"Settings\" in the upper right corner."
+        ],
+        ["br"],
+        [
+          "list",
+          "This page can be viewed at any time by clicking \"︙\" in the upper right corner."
+        ],
+        ["br"],
+        ["br"],
+        [
+          "list",
+          "Author: National Institute of Technology (KOSEN), Kure College, Electrical Engineering and Information Science, 5th Kazuhiro Kobatake"
+        ],
+        ["list", "Contact: E17-sspt@kure.kosen-ac.jp"],
+        ["link", "https://twitter.com/kobakazu0429", "Twitter: @kobakazu0429"],
+        ["br"],
+        ["list-right", "2021, senior thesis"]
+      ],
+      "hotkeys": [
+        ["list", "For Mac users, should replace Control with Command"],
+        ["br"],
+        ["list", "Save Code", "Control + s"],
+        ["list", "Create New File", "Control + b"],
+        ["list", "Compile", "Control + Shift + c"],
+        ["list", "Compile and Run", "Control + Enter"],
+        ["list", "Run Test", "Control + Shift + l"],
+        ["br"],
+        ["list", "See below for editor shortcuts."],
+        ["list", "The basic shortcuts are the same as in VS Code."],
+        [
+          "link",
+          "https://en.docs.monaca.io/products_guide/monaca_ide/editor",
+          "Editor shortcut details."
+        ]
+      ],
+      "tips": [
+        [
+          "list",
+          "Use of templates is recommended for creating new ones. Let's go to the top-right corner, click \"︙\" and press \"load boilerplate\""
+        ],
+        ["br"],
+        [
+          "list",
+          "There are completion and formatting functions, so let's use them!"
+        ]
+      ]
     }
   },
   "runner": {

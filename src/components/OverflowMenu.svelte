@@ -8,6 +8,7 @@
     peakLoadTest,
   } from "../editor/exampleCodes";
   import { setCode } from "../editor/utils";
+  import { openIntroductionModal } from "./IntroductionModal/index.svelte";
 </script>
 
 <OverflowMenu
@@ -28,5 +29,9 @@
   <OverflowMenuItem
     text={$_("overflow_menu.load_peakLoadTest")}
     on:click={() => setCode(peakLoadTest)}
+  />
+  <OverflowMenuItem
+    text={$_("overflow_menu.open_introduction_modal")}
+    on:click={openIntroductionModal}
   />
 </OverflowMenu>
