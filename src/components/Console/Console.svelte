@@ -34,6 +34,13 @@
 
 <Tile
   light
-  style="width:100%; line-height: normal; max-height: 300px;"
+  style="width:100%; line-height: normal; height: 300px;"
   id="terminal"
 />
+
+<style>
+  :global(#terminal > div, #terminal > div > div, #terminal canvas) {
+    height: 100% !important;
+    width: 100% !important;
+  }
+</style>

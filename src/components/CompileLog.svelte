@@ -35,6 +35,13 @@
 
 <Tile
   light
-  style="width:100%; line-height: normal; max-height: 150px"
+  style="width:100%; line-height: normal; height: 150px"
   id="compile-log"
 />
+
+<style>
+  :global(#compile-log > div, #compile-log > div > div, #compile-log canvas) {
+    height: 100% !important;
+    width: 100% !important;
+  }
+</style>
