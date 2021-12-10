@@ -66,6 +66,11 @@
         ["br"],
         [
           "list",
+          "And with the auto-save feature, the code will be saved in the browser every 500ms."
+        ],
+        ["br"],
+        [
+          "list",
           "This page can be viewed at any time by clicking \"︙\" in the upper right corner."
         ],
         ["br"],
