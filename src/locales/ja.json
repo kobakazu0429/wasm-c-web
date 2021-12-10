@@ -22,7 +22,7 @@
     "load_peakLoadTest": "負荷テストの読み込み",
     "open_introduction_modal": "使い方を開く"
   },
-  "setteing_modal": {
+  "setting_modal": {
     "modal_heading": "設定",
     "primary_button_text": "適用",
     "secondary_button_text": "キャンセル",
@@ -41,7 +41,7 @@
     "modal_heading": "初めまして！",
     "label": {
       "how_to_use": "使い方",
-      "hotkeys": "ショートカット",
+      "shortcuts": "ショートカット",
       "tips": "アドバイス"
     },
     "body": {
@@ -74,7 +74,7 @@
         ["br"],
         ["list-right", "2021年度　卒業研究"]
       ],
-      "hotkeys": [
+      "shortcuts": [
         ["list", "Macの人は Control を Command に読み換えてください"],
         ["br"],
         ["list", "コードの保存", "Control + s"],

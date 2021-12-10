@@ -23,7 +23,7 @@
   import TestResult from "./components/TestResult.svelte";
   import OverflowMenu from "./components/OverflowMenu.svelte";
   import { enableFullScreenEditor } from "./editor/fullscreen";
-  import { registerHotkeys } from "./hotkeys";
+  import { registerShortcuts } from "./shortcuts";
   import { onDestroy, onMount } from "svelte";
   import { formatCode, newFile } from "./editor/utils";
   import { compile } from "./runners/compile";
@@ -34,13 +34,13 @@
 
   initI18n();
 
-  let unregisterHotkeys: any;
+  let unregisterShortcuts: any;
   onMount(() => {
-    unregisterHotkeys = registerHotkeys();
+    unregisterShortcuts = registerShortcuts();
   });
 
   onDestroy(() => {
-    unregisterHotkeys();
+    unregisterShortcuts();
   });
 </script>
 

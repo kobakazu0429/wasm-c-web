@@ -7,7 +7,7 @@
     "test": "Test",
     "format": "Format",
     "fullscreen_editor": "Full Screen Editor",
-    "setting": "Setting"
+    "setting": "Settings"
   },
   "right_accordion": {
     "console": "Console (stdin / stdout / stderr)",
@@ -22,7 +22,7 @@
     "load_peakLoadTest": "load \"peakLoadTestt\"",
     "open_introduction_modal": "open Introduction Modal"
   },
-  "setteing_modal": {
+  "setting_modal": {
     "modal_heading": "Settings",
     "primary_button_text": "Confirm",
     "secondary_button_text": "Cancel",
@@ -41,7 +41,7 @@
     "modal_heading": "Hello World !",
     "label": {
       "how_to_use": "How to use",
-      "hotkeys": "Hotkeys",
+      "shortcuts": "Shortcuts",
       "tips": "Tips"
     },
     "body": {
@@ -80,7 +80,7 @@
         ["br"],
         ["list-right", "2021, senior thesis"]
       ],
-      "hotkeys": [
+      "shortcuts": [
         ["list", "For Mac users, should replace Control with Command"],
         ["br"],
         ["list", "Save Code", "Control + s"],
