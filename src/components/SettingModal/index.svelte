@@ -40,13 +40,11 @@
 <Modal
   bind:open={$modalOpenStatus}
   modalHeading={$_("setting_modal.modal_heading")}
-  primaryButtonText={$_("setting_modal.primary_button_text")}
-  secondaryButtonText={$_("setting_modal.secondary_button_text")}
+  passiveModal
   hasForm
   on:close={() => {
     modalOpenStatus.set(false);
   }}
-  on:click:button--secondary={() => modalOpenStatus.set(false)}
 >
   <Tabs>
     <Tab label={$_("setting_modal.label.editor")} />

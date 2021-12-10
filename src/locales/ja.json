@@ -24,8 +24,6 @@
   },
   "setting_modal": {
     "modal_heading": "設定",
-    "primary_button_text": "適用",
-    "secondary_button_text": "キャンセル",
     "label": {
       "editor": "エディター",
       "config": "詳細設定",
