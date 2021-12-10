@@ -43,4 +43,8 @@
     height: 100% !important;
     width: 100% !important;
   }
+
+  :global(#terminal .xterm-viewport) {
+    z-index: 10;
+  }
 </style>
