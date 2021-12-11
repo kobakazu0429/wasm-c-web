@@ -5,6 +5,7 @@ import { editor, monacoEditorCode } from "../store";
 import { redToast } from "../toast";
 import { clearCode, getPreviousCode } from "./../localStorage/index";
 import { stdin as exampleCode } from "../editor/exampleCodes";
+import { resetUrl } from "../url";
 
 export const getCode = () => {
   const e = get(editor);
@@ -21,6 +22,7 @@ export const setCode = (code: string) => {
 export const newFile = () => {
   clearCode();
   setCode("");
+  resetUrl();
 };
 
 export const formatCode = async () => {
@@ -47,7 +49,7 @@ export const downloadCode = () => {
   URL.revokeObjectURL(url);
 };
 
-interface RecoveryCode {
+export interface RecoveryCode {
   code: string;
   filename: string;
   tests?: any;
@@ -63,4 +65,8 @@ export const recoveryCode = (lz: string | null): RecoveryCode => {
   const code = previousCode?.code ?? exampleCode;
   const filename = previousCode?.filename ?? `${ulid()}.c`;
   return { code, filename };
+};
+
+export const escapeCode = (rawCode: string) => {
+  return rawCode.replaceAll("\n", "\r\n");
 };
