@@ -136,16 +136,16 @@
       monaco.editor.getModels().forEach((model) => model.dispose());
     });
 
-    const getValue = debounce(
+    const debouncedGetCode = debounce(
       () => {
-        const { filename, value } = getCode();
-        saveCode(filename ?? "main.c", value ?? "");
+        const { filename, code } = getCode();
+        saveCode(filename ?? "main.c", code ?? "");
       },
       500,
       true
     );
     newEditor.getModel()?.onDidChangeContent(() => {
-      getValue();
+      debouncedGetCode();
     });
   });
 

@@ -10,7 +10,7 @@ export const getCode = () => {
   const e = get(editor);
   const filename = e?.getModel()?.uri.path.split("/")[1];
   const value = e?.getValue();
-  return { filename, value };
+  return { filename, code: value };
 };
 
 export const setCode = (code: string) => {
