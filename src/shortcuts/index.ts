@@ -34,10 +34,12 @@ const saveCode = debouncer(() => {
   filename ??= "main.c";
   code ??= "";
   saveCodeStorage(filename, code);
-  const params = compressLzString(
-    JSON.stringify({ filename, code: escapeCode(code) })
-  );
-  rewriteUrlParams([["data", params]]);
+  if (code.trim() !== "") {
+    const params = compressLzString(
+      JSON.stringify({ filename, code: escapeCode(code) })
+    );
+    rewriteUrlParams([["data", params]]);
+  }
   normalToast("Saved code !");
 });
 
