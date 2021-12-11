@@ -9,21 +9,15 @@
 </script>
 
 <script lang="ts">
-  import { _ } from "svelte-i18n";
+  import { _, json } from "svelte-i18n";
   import { Modal } from "carbon-components-svelte";
   import { Tabs, Tab, TabContent } from "carbon-components-svelte";
   import Renderer from "./ContentRenderer.svelte";
   import type { RawBody } from "./ContentRenderer.svelte";
 
-  const howToUseBody = ($_(
-    "introduction_modal.body.how_to_use"
-  ) as any) as Array<RawBody>;
-  const shortcutsBody = ($_(
-    "introduction_modal.body.shortcuts"
-  ) as any) as Array<RawBody>;
-  const tipsBody = ($_(
-    "introduction_modal.body.tips"
-  ) as any) as Array<RawBody>;
+  const howToUseBody = $json<RawBody[]>("introduction_modal.body.how_to_use");
+  const shortcutsBody = $json<RawBody[]>("introduction_modal.body.shortcuts");
+  const tipsBody = $json<RawBody[]>("introduction_modal.body.tips");
 </script>
 
 <Modal
