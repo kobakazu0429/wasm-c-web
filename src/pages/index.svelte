@@ -44,6 +44,10 @@
   onDestroy(() => {
     unregisterShortcuts();
   });
+
+  export let location: Location;
+  const params = new URLSearchParams(location.search);
+  const lz = params.get("data");
 </script>
 
 <svelte:head>

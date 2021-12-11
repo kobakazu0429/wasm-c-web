@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { ulid } from "ulid";
   import debounce from "just-debounce-it";
   import loader from "@monaco-editor/loader";
   import { listen } from "@codingame/monaco-jsonrpc";
@@ -17,16 +16,15 @@
   import { editor, editorRef, monacoEditorCode } from "../store";
   import { onMount, onDestroy } from "svelte";
   import { setupFullscreenEditor } from "../editor/fullscreen";
-  import { stdin as exampleCode } from "../editor/exampleCodes";
-  import { getPreviousCode, saveCode } from "../localStorage";
-  import { getCode } from "../editor/utils";
+  import { saveCode } from "../localStorage";
+  import { getCode, recoveryCode } from "../editor/utils";
 
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
 
-  const previousCode = getPreviousCode();
-  const defaultValue = previousCode?.code ?? exampleCode;
-  monacoEditorCode.update(() => defaultValue);
-  const filename = previousCode?.filename ?? `${ulid()}.c`;
+  export let lz: string | null;
+  const { code, filename, tests } = recoveryCode(lz);
+
+  monacoEditorCode.update(() => code);
 
   loader.init().then((monaco) => {
     // register Monaco languages
@@ -37,7 +35,7 @@
     const newEditor = monaco.editor.create(document.querySelector("#editor")!, {
       language: "c",
       model: monaco.editor.createModel(
-        defaultValue,
+        code,
         "c",
         monaco.Uri.parse(`file:///${filename}`)
       ),
