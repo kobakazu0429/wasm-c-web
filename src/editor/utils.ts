@@ -29,10 +29,10 @@ export const formatCode = async () => {
 };
 
 export const downloadCode = () => {
-  const { value } = getCode();
-  if (!value) redToast("value is nothing ?");
+  const { code } = getCode();
+  if (!code) redToast("code is nothing ?");
 
-  const blob = new Blob([value!], { type: "text/plain" });
+  const blob = new Blob([code!], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   document.body.appendChild(a);
