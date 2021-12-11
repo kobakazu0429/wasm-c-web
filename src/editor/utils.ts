@@ -1,13 +1,17 @@
 import { get } from "svelte/store";
+import { ulid } from "ulid";
+import { decompressLzString } from "../compression";
 import { editor, monacoEditorCode } from "../store";
 import { redToast } from "../toast";
-import { clearCode } from "./../localStorage/index";
+import { clearCode, getPreviousCode } from "./../localStorage/index";
+import { stdin as exampleCode } from "../editor/exampleCodes";
+import { resetUrl } from "../url";
 
 export const getCode = () => {
   const e = get(editor);
   const filename = e?.getModel()?.uri.path.split("/")[1];
   const value = e?.getValue();
-  return { filename, value };
+  return { filename, code: value };
 };
 
 export const setCode = (code: string) => {
@@ -18,6 +22,7 @@ export const setCode = (code: string) => {
 export const newFile = () => {
   clearCode();
   setCode("");
+  resetUrl();
 };
 
 export const formatCode = async () => {
@@ -26,10 +31,10 @@ export const formatCode = async () => {
 };
 
 export const downloadCode = () => {
-  const { value } = getCode();
-  if (!value) redToast("value is nothing ?");
+  const { code } = getCode();
+  if (!code) redToast("code is nothing ?");
 
-  const blob = new Blob([value!], { type: "text/plain" });
+  const blob = new Blob([code!], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   document.body.appendChild(a);
@@ -42,4 +47,26 @@ export const downloadCode = () => {
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
+};
+
+export interface RecoveryCode {
+  code: string;
+  filename: string;
+  tests?: any;
+}
+export const recoveryCode = (lz: string | null): RecoveryCode => {
+  if (lz) {
+    const decompressedLz = decompressLzString(lz);
+    if (decompressedLz !== "") {
+      return JSON.parse(decompressedLz) as RecoveryCode;
+    }
+  }
+  const previousCode = getPreviousCode();
+  const code = previousCode?.code ?? exampleCode;
+  const filename = previousCode?.filename ?? `${ulid()}.c`;
+  return { code, filename };
+};
+
+export const escapeCode = (rawCode: string) => {
+  return rawCode.replaceAll("\n", "\r\n");
 };

@@ -1,3 +1,4 @@
+import { escapeCode } from "./../editor/utils";
 import tinykeys from "tinykeys";
 import debounce from "just-debounce-it";
 import { saveCode as saveCodeStorage } from "../localStorage/index";
@@ -6,6 +7,8 @@ import { compile } from "../runners/compile";
 import { run } from "../runners/exec";
 import { test } from "../runners/test";
 import { normalToast } from "../toast/index";
+import { rewriteUrlParams } from "../url";
+import { compressLzString } from "../compression";
 
 // from https://github.com/jamiebuilds/tinykeys/blob/main/README.md
 // There is also a special $mod modifier that makes it easy to support cross platform keybindings:
@@ -27,8 +30,16 @@ const debouncer = (fn: Function) => {
 };
 
 const saveCode = debouncer(() => {
-  const { filename, value } = getCode();
-  saveCodeStorage(filename ?? "main.c", value ?? "");
+  let { filename, code } = getCode();
+  filename ??= "main.c";
+  code ??= "";
+  saveCodeStorage(filename, code);
+  if (code.trim() !== "") {
+    const params = compressLzString(
+      JSON.stringify({ filename, code: escapeCode(code) })
+    );
+    rewriteUrlParams([["data", params]]);
+  }
   normalToast("Saved code !");
 });
 
@@ -50,6 +61,7 @@ export const registerShortcuts = () => {
     [joinKeyBinding([KEYS.MOD, "b"])]: (e) => {
       e.preventDefault();
       newFile();
+      saveCode();
     },
 
     // compile
