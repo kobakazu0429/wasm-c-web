@@ -4,6 +4,7 @@ import {
   accordionOpen,
   compiledCode,
   compiledData,
+  lz,
   monacoEditorCode,
   testResultOut,
 } from "../store";
@@ -11,33 +12,18 @@ import { compile } from "./compile";
 import { STATUS_CODE } from "./status";
 import type { RuntimeWorkerExposes } from "../workers/runtime.worker";
 import RuntimeWorker from "../workers/runtime.worker?worker";
-import type { Test } from "../jest";
 import { constructResultsHTML } from "@kobakazu0429/test";
 import { normalToast } from "./../toast/index";
 import { _ } from "../i18n";
-
-const demoData2: Test[] = [
-  {
-    name: "sum(1, 2) should be 3",
-    functionName: "sum",
-    input: [1, 2],
-    expect: 3,
-  },
-  {
-    name: "div(8, 2) should be 4",
-    functionName: "div",
-    input: [8, 2],
-    expect: 4,
-  },
-  {
-    name: "div(10, 3) should be 3.3333",
-    functionName: "div",
-    input: [10, 3],
-    expect: 3.3333,
-  },
-];
+import { recoveryCode } from "../editor/utils";
 
 export const test = async () => {
+  const { tests } = recoveryCode(get(lz));
+  if (!tests) {
+    normalToast(_("runner.test.not_found"));
+    return;
+  }
+
   if (get(compiledCode) !== get(monacoEditorCode)) {
     const status = await compile();
     if (status !== STATUS_CODE.OK) return;
@@ -59,7 +45,7 @@ export const test = async () => {
   const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(
     runtimeWorker
   );
-  const result = await runtimeWorkerComlink.testWasi(module, demoData2);
+  const result = await runtimeWorkerComlink.testWasi(module, tests);
   const html = constructResultsHTML(result);
   testResultOut(html);
 

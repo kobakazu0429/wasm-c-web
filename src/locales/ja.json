@@ -118,7 +118,8 @@
     },
     "test": {
       "start": "[テスト] 開始",
-      "finished": "[テスト] 終了"
+      "finished": "[テスト] 終了",
+      "not_found": "[テスト] テストがありません"
     }
   },
   "compiler": {
