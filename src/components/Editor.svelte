@@ -13,16 +13,14 @@
   import normalizeUrl from "normalize-url";
   import ReconnectingWebSocket from "reconnecting-websocket";
   import type { Options as ReconnectingWebSocketOptions } from "reconnecting-websocket";
-  import { editor, editorRef, monacoEditorCode } from "../store";
+  import { editor, editorRef, lz, monacoEditorCode } from "../store";
   import { onMount, onDestroy } from "svelte";
   import { setupFullscreenEditor } from "../editor/fullscreen";
   import { saveCode } from "../localStorage";
   import { getCode, recoveryCode } from "../editor/utils";
-
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
 
-  export let lz: string | null;
-  const { code, filename, tests } = recoveryCode(lz);
+  const { code, filename } = recoveryCode($lz);
 
   monacoEditorCode.update(() => code);
 
