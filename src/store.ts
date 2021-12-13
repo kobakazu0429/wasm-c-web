@@ -88,3 +88,5 @@ export const accordionOpen = writable({
   testResult: false,
   testContent: false,
 });
+
+export const lz = writable<string | null>(null);
