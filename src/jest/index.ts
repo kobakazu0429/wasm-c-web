@@ -1,14 +1,21 @@
+import { z } from "zod";
 import { test, expect } from "@kobakazu0429/test";
 
-export interface Test {
-  name: string;
-  functionName: string;
-  input: any[];
-  expect: any;
-}
+const testsSchema = z.array(
+  z
+    .object({
+      name: z.string().nonempty(),
+      functionName: z.string().nonempty(),
+      input: z.union([z.number().array().nonempty(), z.null().array()]),
+      expect: z.union([z.number(), z.null()]),
+    })
+    .strict()
+);
+
+export type Tests = z.infer<typeof testsSchema>;
 
 export const testBuilder = (
-  tests: Test[],
+  tests: Tests,
   functions: Record<string, CallableFunction>
 ) => {
   return () => {

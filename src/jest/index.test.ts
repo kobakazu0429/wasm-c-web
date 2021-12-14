@@ -1,8 +1,8 @@
 import { run, constructResultsHTML } from "@kobakazu0429/test";
 import { testBuilder } from "./index";
-import type { Test } from "./index";
+import type { Tests } from "./index";
 
-const tests: Test[] = [
+const tests: Tests = [
   {
     name: "sum(1, 2) should be 3",
     functionName: "sum",
@@ -24,9 +24,6 @@ function sum(a: number, b: number) {
 function div(a: number, b: number) {
   return a / b;
 }
-
-// inject jest
-// @ts-ignore
 
 describe("jest", () => {
   test.skip("testBuilder", async () => {
