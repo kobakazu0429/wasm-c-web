@@ -128,7 +128,8 @@
     "test": {
       "start": "[test] start",
       "finished": "[test] finished",
-      "not_found": "[test] not_found"
+      "not_found": "[test] not_found",
+      "invalid": "[test] invalid"
     }
   },
   "compiler": {

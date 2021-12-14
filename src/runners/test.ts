@@ -13,14 +13,22 @@ import { STATUS_CODE } from "./status";
 import type { RuntimeWorkerExposes } from "../workers/runtime.worker";
 import RuntimeWorker from "../workers/runtime.worker?worker";
 import { constructResultsHTML } from "@kobakazu0429/test";
-import { normalToast } from "./../toast/index";
+import { normalToast, redToast } from "./../toast/index";
 import { _ } from "../i18n";
 import { recoveryCode } from "../editor/utils";
+import { testsSchema } from "../jest";
 
 export const test = async () => {
   const { tests } = recoveryCode(get(lz));
   if (!tests) {
     normalToast(_("runner.test.not_found"));
+    return;
+  }
+
+  try {
+    testsSchema.parse(tests);
+  } catch (error) {
+    redToast(_("runner.test.invalid"));
     return;
   }
 
