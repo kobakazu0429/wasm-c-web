@@ -1,16 +1,15 @@
 import { z } from "zod";
 import { test, expect } from "@kobakazu0429/test";
 
-const testsSchema = z.array(
-  z
-    .object({
-      name: z.string().nonempty(),
-      functionName: z.string().nonempty(),
-      input: z.union([z.number().array().nonempty(), z.null().array()]),
-      expect: z.union([z.number(), z.null()]),
-    })
-    .strict()
-);
+export const testsSchema = z
+  .object({
+    name: z.string().nonempty(),
+    functionName: z.string().nonempty(),
+    input: z.union([z.number().array().nonempty(), z.null().array()]),
+    expect: z.union([z.number(), z.null()]),
+  })
+  .strict()
+  .array();
 
 export type Tests = z.infer<typeof testsSchema>;
 
