@@ -1,4 +1,3 @@
-import { tests as testsStore } from "./../store";
 import { escapeCode } from "./../editor/utils";
 import tinykeys from "tinykeys";
 import debounce from "just-debounce-it";
@@ -10,7 +9,6 @@ import { test } from "../runners/test";
 import { normalToast } from "../toast/index";
 import { rewriteUrlParams } from "../url";
 import { compressLzString } from "../compression";
-import { get } from "svelte/store";
 
 // from https://github.com/jamiebuilds/tinykeys/blob/main/README.md
 // There is also a special $mod modifier that makes it easy to support cross platform keybindings:
@@ -36,13 +34,13 @@ const saveCode = debouncer(() => {
   filename ??= "main.c";
   code ??= "";
   saveCodeStorage(filename, code);
-  const tests = get(testsStore);
+  // const tests = get(testsStore);
   if (code.trim() !== "") {
     const params = compressLzString(
       JSON.stringify({
         filename,
         code: escapeCode(code),
-        tests,
+        tests: null,
       })
     );
     rewriteUrlParams([["data", params]]);

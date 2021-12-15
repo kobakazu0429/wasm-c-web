@@ -1,7 +1,7 @@
 import { get } from "svelte/store";
 import { ulid } from "ulid";
 import { decompressLzString } from "../compression";
-import { editor, lz as lzStore, monacoEditorCode, tests } from "../store";
+import { editor, lz as lzStore, monacoEditorCode } from "../store";
 import { redToast } from "../toast";
 import { clearCode, getPreviousCode } from "./../localStorage/index";
 import { stdin as exampleCode } from "../editor/exampleCodes";
@@ -24,7 +24,6 @@ export const newFile = () => {
   clearCode();
   setCode("");
   resetUrl();
-  tests.set(null);
 };
 
 export const formatCode = async () => {
