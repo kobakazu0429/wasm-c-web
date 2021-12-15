@@ -3,7 +3,7 @@ import { navigate } from "svelte-routing";
 import { compressLzString } from "./compression";
 
 export const resetUrl = () => {
-  navigate("");
+  navigate("/");
 };
 
 export const rewriteUrlParams = (params: Array<["data", string]>) => {
