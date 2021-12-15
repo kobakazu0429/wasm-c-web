@@ -32,10 +32,11 @@ const debouncer = (fn: Function) => {
 
 const saveCode = debouncer(() => {
   const { tests } = recoveryCode();
-  let { filename, code } = getCode();
-  filename ??= `${ulid()}.c`;
-  code ??= "";
-  saveCodeStorage(filename, code);
+  const data = getCode();
+  const filename = data.filename ?? `${ulid()}.c`;
+  const code = data.code ?? "";
+
+  saveCodeStorage(filename, code, tests);
 
   if (code.trim() !== "") {
     const params = compressLzString(
