@@ -1,13 +1,13 @@
+import type { RecoveryCode } from "./editor/utils";
+import { navigate } from "svelte-routing";
+import { compressLzString } from "./compression";
+
 export const resetUrl = () => {
-  window.history.pushState("", document.title, "/");
+  navigate("");
 };
 
-export const rewriteUrlParams = (
-  params: Array<[key: string, value: string]>
-) => {
-  window.history.pushState(
-    "",
-    document.title,
-    `/?${params.map((p) => p.join("=")).join("&")}`
-  );
+export const rewriteUrlParams = (params: Array<["data", string]>) => {
+  navigate(`/?${params.map((p) => p.join("=")).join("&")}`);
+};
+
 };
