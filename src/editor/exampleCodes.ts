@@ -1,3 +1,5 @@
+import type { Tests } from "../jest";
+
 export const boilerplate = `#include <stdio.h>
 
 int main() {
@@ -27,6 +29,27 @@ int main() {
   printf("%d / %d = %3.2f\\n", x, y, div(x, y));
 }
 `;
+
+export const stdinTests: Tests = [
+  {
+    name: "sum(1, 2) should be 3",
+    functionName: "sum",
+    input: [1, 2],
+    expect: 3,
+  },
+  {
+    name: "div(8, 2) should be 4",
+    functionName: "div",
+    input: [8, 2],
+    expect: 4,
+  },
+  {
+    name: "div(10, 3) should be 3.3333",
+    functionName: "div",
+    input: [10, 3],
+    expect: 3.3333,
+  },
+];
 
 export const basic = `#include <stdio.h>
 #define foo 123
