@@ -46,9 +46,12 @@
   });
 
   export let location: Location;
-  const params = new URLSearchParams(location.search);
-  const lz = params.get("data");
-  lzStore.set(lz);
+
+  $: {
+    const params = new URLSearchParams(location.search);
+    const lz = params.get("data");
+    lzStore.set(lz);
+  }
 </script>
 
 <svelte:head>
