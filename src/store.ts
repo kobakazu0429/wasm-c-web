@@ -1,6 +1,7 @@
 import type { editor as Editor } from "monaco-editor";
 import { writable } from "svelte/store";
 import type { Argvs, Config, Env } from "./components/SettingModal/type";
+import type { Tests } from "./jest";
 
 export const monacoEditorCode = writable("");
 export const compiledCode = writable("");
@@ -90,3 +91,4 @@ export const accordionOpen = writable({
 });
 
 export const lz = writable<string | null>(null);
+export const tests = writable<Tests | null>(null);

@@ -6,9 +6,11 @@
     stdin,
     basic,
     peakLoadTest,
+    stdinTests,
   } from "../editor/exampleCodes";
   import { setCode } from "../editor/utils";
   import { openIntroductionModal } from "./IntroductionModal/index.svelte";
+  import { tests } from "../store";
 </script>
 
 <OverflowMenu
@@ -20,7 +22,10 @@
   />
   <OverflowMenuItem
     text={$_("overflow_menu.load_simple")}
-    on:click={() => setCode(stdin)}
+    on:click={() => {
+      setCode(stdin);
+      tests.set(stdinTests);
+    }}
   />
   <OverflowMenuItem
     text={$_("overflow_menu.load_basic")}
