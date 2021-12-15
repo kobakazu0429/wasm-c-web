@@ -1,7 +1,7 @@
 import { get } from "svelte/store";
 import { ulid } from "ulid";
 import { decompressLzString } from "../compression";
-import { editor, monacoEditorCode, tests } from "../store";
+import { editor, lz as lzStore, monacoEditorCode, tests } from "../store";
 import { redToast } from "../toast";
 import { clearCode, getPreviousCode } from "./../localStorage/index";
 import { stdin as exampleCode } from "../editor/exampleCodes";
@@ -56,7 +56,8 @@ export interface RecoveryCode {
   filename: string;
   tests?: Tests;
 }
-export const recoveryCode = (lz: string | null): RecoveryCode => {
+export const recoveryCode = (): RecoveryCode => {
+  const lz = get(lzStore);
   if (lz) {
     const decompressedLz = decompressLzString(lz);
     if (decompressedLz !== "") {

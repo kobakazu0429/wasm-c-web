@@ -4,7 +4,6 @@ import {
   accordionOpen,
   compiledCode,
   compiledData,
-  lz,
   monacoEditorCode,
   testResultOut,
 } from "../store";
@@ -19,7 +18,7 @@ import { recoveryCode } from "../editor/utils";
 import { testsSchema } from "../jest";
 
 export const test = async () => {
-  const { tests } = recoveryCode(get(lz));
+  const { tests } = recoveryCode();
   if (!tests) {
     normalToast(_("runner.test.not_found"));
     return;
