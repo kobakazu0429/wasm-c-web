@@ -10,7 +10,7 @@
   } from "../editor/exampleCodes";
   import { setCode } from "../editor/utils";
   import { openIntroductionModal } from "./IntroductionModal/index.svelte";
-  import { tests } from "../store";
+  import { updateUrlParams } from "../url";
 </script>
 
 <OverflowMenu
@@ -24,7 +24,7 @@
     text={$_("overflow_menu.load_simple")}
     on:click={() => {
       setCode(stdin);
-      tests.set(stdinTests);
+      updateUrlParams({ tests: stdinTests });
     }}
   />
   <OverflowMenuItem
