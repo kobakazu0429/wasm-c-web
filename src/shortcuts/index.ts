@@ -1,4 +1,4 @@
-import { escapeCode } from "./../editor/utils";
+import { escapeCode, recoveryCode } from "./../editor/utils";
 import tinykeys from "tinykeys";
 import debounce from "just-debounce-it";
 import { saveCode as saveCodeStorage } from "../localStorage/index";
@@ -30,17 +30,18 @@ const debouncer = (fn: Function) => {
 };
 
 const saveCode = debouncer(() => {
+  const { tests } = recoveryCode();
   let { filename, code } = getCode();
   filename ??= "main.c";
   code ??= "";
   saveCodeStorage(filename, code);
-  // const tests = get(testsStore);
+
   if (code.trim() !== "") {
     const params = compressLzString(
       JSON.stringify({
         filename,
         code: escapeCode(code),
-        tests: null,
+        tests,
       })
     );
     rewriteUrlParams([["data", params]]);
