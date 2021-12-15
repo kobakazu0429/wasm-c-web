@@ -9,6 +9,7 @@ import { test } from "../runners/test";
 import { normalToast } from "../toast/index";
 import { rewriteUrlParams } from "../url";
 import { compressLzString } from "../compression";
+import { ulid } from "ulid";
 
 // from https://github.com/jamiebuilds/tinykeys/blob/main/README.md
 // There is also a special $mod modifier that makes it easy to support cross platform keybindings:
@@ -32,7 +33,7 @@ const debouncer = (fn: Function) => {
 const saveCode = debouncer(() => {
   const { tests } = recoveryCode();
   let { filename, code } = getCode();
-  filename ??= "main.c";
+  filename ??= `${ulid()}.c`;
   code ??= "";
   saveCodeStorage(filename, code);
 
