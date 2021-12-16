@@ -29,7 +29,7 @@
   import { compile } from "../runners/compile";
   import { run } from "../runners/exec";
   import { test } from "../runners/test";
-  import { accordionOpen } from "../store";
+  import { accordionOpen, lz as lzStore } from "../store";
   import { initI18n } from "../i18n";
   import { visited } from "../localStorage";
 
@@ -46,8 +46,12 @@
   });
 
   export let location: Location;
-  const params = new URLSearchParams(location.search);
-  const lz = params.get("data");
+
+  $: {
+    const params = new URLSearchParams(location.search);
+    const lz = params.get("data");
+    lzStore.set(lz);
+  }
 </script>
 
 <svelte:head>
@@ -103,7 +107,7 @@
     <Row style="height: 100%; margin-bottom:3rem;">
       <Column
         style="border: 2px solid #262626; border-right: 1px solid #262626; padding:0;"
-        ><Editor {lz} />
+        ><Editor />
       </Column>
       <Column
         style="border: 2px solid #262626; border-left: 1px solid #262626; padding:16px;overflow-y: scroll;max-height: 100%;"

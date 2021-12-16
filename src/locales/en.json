@@ -127,7 +127,9 @@
     },
     "test": {
       "start": "[test] start",
-      "finished": "[test] finished"
+      "finished": "[test] finished",
+      "not_found": "[test] not_found",
+      "invalid": "[test] invalid"
     }
   },
   "compiler": {

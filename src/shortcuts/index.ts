@@ -1,7 +1,7 @@
-import { escapeCode } from "./../editor/utils";
+import { escapeCode, recoveryCode } from "./../editor/utils";
 import tinykeys from "tinykeys";
 import debounce from "just-debounce-it";
-import { saveCode as saveCodeStorage } from "../localStorage/index";
+import { saveCodeStorage } from "../localStorage/index";
 import { formatCode, getCode, newFile as newFileFn } from "../editor/utils";
 import { compile } from "../runners/compile";
 import { run } from "../runners/exec";
@@ -9,6 +9,7 @@ import { test } from "../runners/test";
 import { normalToast } from "../toast/index";
 import { rewriteUrlParams } from "../url";
 import { compressLzString } from "../compression";
+import { ulid } from "ulid";
 
 // from https://github.com/jamiebuilds/tinykeys/blob/main/README.md
 // There is also a special $mod modifier that makes it easy to support cross platform keybindings:
@@ -30,13 +31,20 @@ const debouncer = (fn: Function) => {
 };
 
 const saveCode = debouncer(() => {
-  let { filename, code } = getCode();
-  filename ??= "main.c";
-  code ??= "";
-  saveCodeStorage(filename, code);
+  const { tests } = recoveryCode();
+  const data = getCode();
+  const filename = data.filename ?? `${ulid()}.c`;
+  const code = data.code ?? "";
+
+  saveCodeStorage(filename, code, tests);
+
   if (code.trim() !== "") {
     const params = compressLzString(
-      JSON.stringify({ filename, code: escapeCode(code) })
+      JSON.stringify({
+        filename,
+        code: escapeCode(code),
+        tests,
+      })
     );
     rewriteUrlParams([["data", params]]);
   }

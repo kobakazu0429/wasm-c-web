@@ -1,11 +1,12 @@
 import { get } from "svelte/store";
 import { ulid } from "ulid";
 import { decompressLzString } from "../compression";
-import { editor, monacoEditorCode } from "../store";
+import { editor, lz as lzStore, monacoEditorCode } from "../store";
 import { redToast } from "../toast";
 import { clearCode, getPreviousCode } from "./../localStorage/index";
 import { stdin as exampleCode } from "../editor/exampleCodes";
 import { resetUrl } from "../url";
+import type { Tests } from "../jest";
 
 export const getCode = () => {
   const e = get(editor);
@@ -23,6 +24,7 @@ export const newFile = () => {
   clearCode();
   setCode("");
   resetUrl();
+  lzStore.set("");
 };
 
 export const formatCode = async () => {
@@ -52,13 +54,17 @@ export const downloadCode = () => {
 export interface RecoveryCode {
   code: string;
   filename: string;
-  tests?: any;
+  tests?: Tests;
 }
-export const recoveryCode = (lz: string | null): RecoveryCode => {
+export const recoveryCode = (): RecoveryCode => {
+  const lz = get(lzStore);
   if (lz) {
     const decompressedLz = decompressLzString(lz);
     if (decompressedLz !== "") {
-      return JSON.parse(decompressedLz) as RecoveryCode;
+      const recovered = JSON.parse(decompressedLz) as Partial<RecoveryCode>;
+      recovered.code ??= "";
+      recovered.filename ??= `${ulid()}.c`;
+      return recovered as RecoveryCode;
     }
   }
   const previousCode = getPreviousCode();

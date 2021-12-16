@@ -16,13 +16,11 @@
   import { editor, editorRef, monacoEditorCode } from "../store";
   import { onMount, onDestroy } from "svelte";
   import { setupFullscreenEditor } from "../editor/fullscreen";
-  import { saveCode } from "../localStorage";
+  import { saveCodeStorage } from "../localStorage";
   import { getCode, recoveryCode } from "../editor/utils";
-
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
 
-  export let lz: string | null;
-  const { code, filename, tests } = recoveryCode(lz);
+  const { code, filename } = recoveryCode();
 
   monacoEditorCode.update(() => code);
 
@@ -139,7 +137,8 @@
     const debouncedGetCode = debounce(
       () => {
         const { filename, code } = getCode();
-        saveCode(filename ?? "main.c", code ?? "");
+        const { tests } = recoveryCode();
+        saveCodeStorage(filename ?? "main.c", code ?? "", tests);
       },
       500,
       true
