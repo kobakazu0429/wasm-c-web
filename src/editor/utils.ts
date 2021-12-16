@@ -24,6 +24,7 @@ export const newFile = () => {
   clearCode();
   setCode("");
   resetUrl();
+  lzStore.set("");
 };
 
 export const formatCode = async () => {
