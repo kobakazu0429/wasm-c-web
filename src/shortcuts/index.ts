@@ -1,7 +1,7 @@
 import { escapeCode, recoveryCode } from "./../editor/utils";
 import tinykeys from "tinykeys";
 import debounce from "just-debounce-it";
-import { saveCode as saveCodeStorage } from "../localStorage/index";
+import { saveCodeStorage } from "../localStorage/index";
 import { formatCode, getCode, newFile as newFileFn } from "../editor/utils";
 import { compile } from "../runners/compile";
 import { run } from "../runners/exec";

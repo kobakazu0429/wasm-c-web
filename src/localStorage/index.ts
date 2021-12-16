@@ -16,7 +16,11 @@ interface SavedCode {
   tests?: Tests;
 }
 
-export const saveCode = (filename: string, data: string, tests?: Tests) => {
+export const saveCodeStorage = (
+  filename: string,
+  data: string,
+  tests?: Tests
+) => {
   store.local.set(CODE_KEY, {
     timestamp: Date.now(),
     filename,

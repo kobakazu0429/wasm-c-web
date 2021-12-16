@@ -16,7 +16,7 @@
   import { editor, editorRef, monacoEditorCode } from "../store";
   import { onMount, onDestroy } from "svelte";
   import { setupFullscreenEditor } from "../editor/fullscreen";
-  import { saveCode } from "../localStorage";
+  import { saveCodeStorage } from "../localStorage";
   import { getCode, recoveryCode } from "../editor/utils";
   loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
 
@@ -137,7 +137,7 @@
     const debouncedGetCode = debounce(
       () => {
         const { filename, code } = getCode();
-        saveCode(filename ?? "main.c", code ?? "");
+        saveCodeStorage(filename ?? "main.c", code ?? "");
       },
       500,
       true
