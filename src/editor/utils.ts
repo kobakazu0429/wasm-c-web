@@ -61,7 +61,10 @@ export const recoveryCode = (): RecoveryCode => {
   if (lz) {
     const decompressedLz = decompressLzString(lz);
     if (decompressedLz !== "") {
-      return JSON.parse(decompressedLz) as RecoveryCode;
+      const recovered = JSON.parse(decompressedLz) as Partial<RecoveryCode>;
+      recovered.code ??= "";
+      recovered.filename ??= `${ulid()}.c`;
+      return recovered as RecoveryCode;
     }
   }
   const previousCode = getPreviousCode();
