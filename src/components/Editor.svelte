@@ -137,7 +137,8 @@
     const debouncedGetCode = debounce(
       () => {
         const { filename, code } = getCode();
-        saveCodeStorage(filename ?? "main.c", code ?? "");
+        const { tests } = recoveryCode();
+        saveCodeStorage(filename ?? "main.c", code ?? "", tests);
       },
       500,
       true
