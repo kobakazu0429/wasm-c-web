@@ -13,6 +13,7 @@
   import Editor from "../components/Editor.svelte";
   import TestBuildTable from "../components/Admin/TestsBuildTable/index.svelte";
   import TestBuilderModal from "../components/Admin/TestBuilderModal/index.svelte";
+  import CreatedUrl from "../components/Admin/CreatedUrl.svelte";
   import { initI18n } from "../i18n";
 
   initI18n();
@@ -50,7 +51,7 @@
     <Row style="height:100%;">
       <Column
         noGutter
-        style="border: 2px solid #262626; border-right: 1px solid #262626; padding:16px; height:100%;"
+        style="border: 2px solid #262626; border-right: 1px solid #262626; padding:16px; height:100%;width:100%;max-width:100%;"
       >
         <!-- <FormGroup style="margin-bottom: 30px;">
           <TextInput
@@ -60,7 +61,7 @@
           />
         </FormGroup> -->
 
-        <div style="height:500px">
+        <div style="height:500px;width:100%;max-width:100%;">
           <span class="bx--label">{$_("admin.form.editor.label_text")}</span>
           <Editor />
         </div>
@@ -69,7 +70,10 @@
       <Column
         style="border: 2px solid #262626; border-left: 1px solid #262626; padding:16px;"
       >
-        <TestBuildTable />
+        <div style="height:450px;overflow-y:scroll;">
+          <TestBuildTable />
+        </div>
+        <CreatedUrl />
       </Column>
     </Row>
   </Grid>
