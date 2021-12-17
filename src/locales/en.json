@@ -1,5 +1,6 @@
 {
   "main_page_title": "wasm-c-web",
+  "admin_page_title": "wasm-c-web admin",
   "header": {
     "new_file": "New File",
     "compile": "Compile",
@@ -135,5 +136,52 @@
   "compiler": {
     "start": "[compile] start",
     "finished": "[compile] finished"
+  },
+  "admin": {
+    "form": {
+      "recovery_from_url": {
+        "label_text": "Recovery from URL",
+        "helper_text": "Pasete here",
+        "placeholder": "https://wasm-c-web.pages.dev/?data=xxxx"
+      },
+      "filename": {
+        "label_text": "Filename",
+        "helper_text": "Use letters, numbers, underscores, and end with .c. (/^[0-9a-zA-Z_]\\.c$/)",
+        "placeholder": "Leave blank when distributing. e.g.) example.c"
+      },
+      "editor": {
+        "label_text": "Initial Code"
+      },
+      "tests": {
+        "name": {
+          "label_text": "Test Name"
+        },
+        "function_name": {
+          "label_text": "Function Name for Unit Testing"
+        },
+        "arguments": {
+          "label_text": "Arguments",
+          "placeholder": "[1, 2]",
+          "helper_text": "[ ] in the array. (optional)"
+        },
+        "return": {
+          "label_text": "Returned Value",
+          "placeholder": "0",
+          "helper_text": "(optional)"
+        },
+        "return_precision": {
+          "label_text": "Precision of the Returned Value",
+          "placeholder": "4",
+          "helper_text": "The number of digits after the decimal point. (optional, default is 4)"
+        },
+        "builder": {
+          "title": "Create Tests",
+          "description": "description",
+          "create_test": "Create Test",
+          "delete_all": "Delete All",
+          "delete": "Delete"
+        }
+      }
+    }
   }
 }
