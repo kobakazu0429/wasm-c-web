@@ -8,6 +8,36 @@
   const closeTestBuilderModal = () => {
     modalOpenStatus.set(false);
   };
+
+  const modalValues: Omit<Row, "id"> = {
+    testName: "",
+    functionName: "",
+    argumentsValue: "",
+    returnValue: "",
+    returnPrecision: 0,
+  };
+
+  export const setValues = (data: {
+    testName: string;
+    functionName: string;
+    argumentsValue: string;
+    returnValue: string;
+    returnPrecision: number;
+  }) => {
+    modalValues.testName = data.testName;
+    modalValues.functionName = data.functionName;
+    modalValues.argumentsValue = data.argumentsValue;
+    modalValues.returnValue = data.returnValue;
+    modalValues.returnPrecision = data.returnPrecision;
+  };
+
+  export const resetValues = () => {
+    modalValues.testName = "";
+    modalValues.functionName = "";
+    modalValues.argumentsValue = "";
+    modalValues.returnValue = "";
+    modalValues.returnPrecision = 0;
+  };
 </script>
 
 <script lang="ts">
@@ -16,29 +46,16 @@
   import { TextInput } from "carbon-components-svelte";
   import { buildingTestsAdder } from "../../../stores/admin";
   import { ulid } from "ulid";
-
-  let testName = "";
-  let functionName = "";
-  let argumentsValue = "";
-  let returnValue = "";
-  let returnPrecision = 0;
-
-  const resetValues = () => {
-    testName = "";
-    functionName = "";
-    argumentsValue = "";
-    returnValue = "";
-    returnPrecision = 0;
-  };
+  import type { Row } from "../TestsBuildTable/table";
 
   const buildingTestsAdd = () => {
     buildingTestsAdder({
       id: ulid(),
-      name: testName,
-      functionName,
-      arguments: argumentsValue,
-      returnValue,
-      returnPrecision,
+      testName: modalValues.testName,
+      functionName: modalValues.functionName,
+      argumentsValue: modalValues.argumentsValue,
+      returnValue: modalValues.returnValue,
+      returnPrecision: modalValues.returnPrecision,
     });
   };
 
@@ -66,35 +83,35 @@
 >
   <div style="margin-bottom:30px;">
     <TextInput
-      labelText={$_("admin.form.tests.name.label_text")}
-      bind:value={testName}
+      labelText={$_("admin.form.tests.test_name.label_text")}
+      bind:value={modalValues.testName}
     />
   </div>
   <div style="margin-bottom:30px;">
     <TextInput
       labelText={$_("admin.form.tests.function_name.label_text")}
-      bind:value={functionName}
+      bind:value={modalValues.functionName}
     />
   </div>
   <div style="margin-bottom:30px;">
     <TextInput
-      labelText={$_("admin.form.tests.arguments.label_text")}
-      placeholder={$_("admin.form.tests.arguments.placeholder")}
-      helperText={$_("admin.form.tests.arguments.helper_text")}
-      bind:value={argumentsValue}
+      labelText={$_("admin.form.tests.arguments_value.label_text")}
+      placeholder={$_("admin.form.tests.arguments_value.placeholder")}
+      helperText={$_("admin.form.tests.arguments_value.helper_text")}
+      bind:value={modalValues.argumentsValue}
     />
   </div>
   <div style="margin-bottom:30px;">
     <TextInput
       labelText={$_("admin.form.tests.return_value.label_text")}
-      bind:value={returnValue}
+      bind:value={modalValues.returnValue}
       helperText={$_("admin.form.tests.return_value.helper_text")}
     />
   </div>
   <div style="margin-bottom:30px;">
     <TextInput
       labelText={$_("admin.form.tests.return_precision.label_text")}
-      bind:value={returnPrecision}
+      bind:value={modalValues.returnPrecision}
       placeholder={$_("admin.form.tests.return_precision.placeholder")}
       helperText={$_("admin.form.tests.return_precision.helper_text")}
     />

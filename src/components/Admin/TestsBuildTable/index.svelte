@@ -9,25 +9,32 @@
     Toolbar,
     ToolbarContent,
   } from "carbon-components-svelte";
-  import type { HeaderKey, Row } from "./table";
+  import type { HeaderKey } from "./table";
   import {
-    buildingTestsAdder,
+    buildingTests,
     buildingTestsAllDelete,
     buildingTestsDeleter,
     buildingTestsToArray,
   } from "../../../stores/admin";
-  import { openTestBuilderModal } from "../TestBuilderModal/index.svelte";
-  import { ulid } from "ulid";
+  import {
+    openTestBuilderModal,
+    setValues,
+    resetValues,
+  } from "../TestBuilderModal/index.svelte";
+  import { get } from "svelte/store";
 
   const headers: Array<
     { key: HeaderKey; value: any } | { key: "overflow"; empty: boolean }
   > = [
-    { key: "name", value: $_("admin.form.tests.name.label_text") },
+    { key: "testName", value: $_("admin.form.tests.test_name.label_text") },
     {
       key: "functionName",
       value: $_("admin.form.tests.function_name.label_text"),
     },
-    { key: "arguments", value: $_("admin.form.tests.arguments.label_text") },
+    {
+      key: "argumentsValue",
+      value: $_("admin.form.tests.arguments_value.label_text"),
+    },
     {
       key: "returnValue",
       value: $_("admin.form.tests.return_value.label_text"),
@@ -39,82 +46,13 @@
     { key: "overflow", empty: true },
   ];
 
-  const rows: Row[] = [
-    {
-      id: ulid(),
-      name: "sum(1, 2) should be 3",
-      functionName: "sum",
-      arguments: `[${[1, 2].toString()}]`,
-      returnValue: 3,
-      returnPrecision: 0,
-    },
-    {
-      id: ulid(),
-      name: "div(8, 2) should be 4",
-      functionName: "div",
-      arguments: `[${[8, 2].toString()}]`,
-      returnValue: 4,
-      returnPrecision: 0,
-    },
-    {
-      id: ulid(),
-      name: "div(10, 3) should be 3.3333",
-      functionName: "div",
-      arguments: `[${[10, 3].toString()}]`,
-      returnValue: 3.3333,
-      returnPrecision: 4,
-    },
-    {
-      id: ulid(),
-      name: "sum(1, 2) should be 3",
-      functionName: "sum",
-      arguments: `[${[1, 2].toString()}]`,
-      returnValue: 3,
-      returnPrecision: 0,
-    },
-    {
-      id: ulid(),
-      name: "div(8, 2) should be 4",
-      functionName: "div",
-      arguments: `[${[8, 2].toString()}]`,
-      returnValue: 4,
-      returnPrecision: 0,
-    },
-    {
-      id: ulid(),
-      name: "div(10, 3) should be 3.3333",
-      functionName: "div",
-      arguments: `[${[10, 3].toString()}]`,
-      returnValue: 3.3333,
-      returnPrecision: 4,
-    },
-    {
-      id: ulid(),
-      name: "sum(1, 2) should be 3",
-      functionName: "sum",
-      arguments: `[${[1, 2].toString()}]`,
-      returnValue: 3,
-      returnPrecision: 0,
-    },
-    {
-      id: ulid(),
-      name: "div(8, 2) should be 4",
-      functionName: "div",
-      arguments: `[${[8, 2].toString()}]`,
-      returnValue: 4,
-      returnPrecision: 0,
-    },
-    {
-      id: ulid(),
-      name: "div(10, 3) should be 3.3333",
-      functionName: "div",
-      arguments: `[${[10, 3].toString()}]`,
-      returnValue: 3.3333,
-      returnPrecision: 4,
-    },
-  ];
-
-  rows.forEach((r) => buildingTestsAdder(r));
+  const setToModal = (id: string) => {
+    const v = get(buildingTests).get(id);
+    if (v) {
+      setValues(v);
+      openTestBuilderModal();
+    }
+  };
 </script>
 
 <DataTable
@@ -130,8 +68,11 @@
         <Button kind="danger" on:click={buildingTestsAllDelete}>
           {$_("admin.form.tests.builder.delete_all")}
         </Button>
-        <Button on:click={openTestBuilderModal}
-          >{$_("admin.form.tests.builder.create_test")}</Button
+        <Button
+          on:click={() => {
+            resetValues();
+            openTestBuilderModal();
+          }}>{$_("admin.form.tests.builder.create_test")}</Button
         >
       </ButtonSet>
     </ToolbarContent>
@@ -139,6 +80,10 @@
   <span slot="cell" let:cell let:row>
     {#if cell.key === "overflow"}
       <OverflowMenu flipped>
+        <OverflowMenuItem
+          text={$_("admin.form.tests.builder.edit")}
+          on:click={() => setToModal(row.id)}
+        />
         <OverflowMenuItem
           danger
           text={$_("admin.form.tests.builder.delete")}

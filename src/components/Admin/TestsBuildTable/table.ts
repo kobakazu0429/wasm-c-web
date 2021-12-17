@@ -1,7 +1,7 @@
 export type HeaderKey =
-  | "name"
+  | "testName"
   | "functionName"
-  | "arguments"
+  | "argumentsValue"
   | "returnValue"
   | "returnPrecision";
 

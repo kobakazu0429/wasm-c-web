@@ -144,13 +144,13 @@
         "label_text": "初期コード"
       },
       "tests": {
-        "name": {
+        "test_name": {
           "label_text": "テスト名"
         },
         "function_name": {
           "label_text": "関数名"
         },
-        "arguments": {
+        "arguments_value": {
           "label_text": "引数",
           "placeholder": "[1, 2]",
           "helper_text": "[ ] の配列で記述してください。(省略可)"
@@ -170,7 +170,8 @@
           "description": "説明",
           "create_test": "テストの新規作成",
           "delete_all": "全て削除",
-          "delete": "削除"
+          "delete": "削除",
+          "edit": "編集"
         }
       }
     },

@@ -153,13 +153,13 @@
         "label_text": "Initial Code"
       },
       "tests": {
-        "name": {
+        "test_name": {
           "label_text": "Test Name"
         },
         "function_name": {
           "label_text": "Function Name for Unit Testing"
         },
-        "arguments": {
+        "arguments_value": {
           "label_text": "Arguments",
           "placeholder": "[1, 2]",
           "helper_text": "[ ] in the array. (optional)"
@@ -179,7 +179,8 @@
           "description": "description",
           "create_test": "Create Test",
           "delete_all": "Delete All",
-          "delete": "Delete"
+          "delete": "Delete",
+          "edit": "Edit"
         }
       }
     },
