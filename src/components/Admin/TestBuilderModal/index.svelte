@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
   import { writable } from "svelte/store";
-  const modalOpenStatus = writable(true);
+  const modalOpenStatus = writable(false);
   export const openTestBuilderModal = () => {
     modalOpenStatus.set(true);
   };
