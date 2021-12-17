@@ -2,7 +2,7 @@ export type HeaderKey =
   | "name"
   | "functionName"
   | "arguments"
-  | "return"
+  | "returnValue"
   | "returnPrecision";
 
 export type Row = Record<HeaderKey, any> & { id: string };

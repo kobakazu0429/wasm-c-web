@@ -12,6 +12,7 @@
   import { SvelteToast } from "@zerodevx/svelte-toast";
   import Editor from "../components/Editor.svelte";
   import TestBuildTable from "../components/Admin/TestsBuildTable/index.svelte";
+  import TestBuilderModal from "../components/Admin/TestBuilderModal/index.svelte";
   import { initI18n } from "../i18n";
 
   initI18n();
@@ -22,6 +23,7 @@
 </svelte:head>
 
 <SvelteToast />
+<TestBuilderModal />
 
 <Header company="[admin] wasm-c-web">
   <div slot="skip-to-content">
@@ -68,30 +70,6 @@
         style="border: 2px solid #262626; border-left: 1px solid #262626; padding:16px;"
       >
         <TestBuildTable />
-        <!-- <div style="margin-bottom:30px;">
-          <TextInput labelText={$_("admin.form.tests.name.label_text")} />
-        </div>
-        <div style="margin-bottom:30px;">
-          <TextInput
-            labelText={$_("admin.form.tests.function_name.label_text")}
-          />
-        </div>
-        <div style="margin-bottom:30px;">
-          <TextInput
-            labelText={$_("admin.form.tests.arguments.label_text")}
-            placeholder={$_("admin.form.tests.arguments.placeholder")}
-            helperText={$_("admin.form.tests.arguments.helper_text")}
-          />
-        </div>
-        <div style="margin-bottom:30px;">
-          <NumberInput
-            label={$_("admin.form.tests.return_precision.label_text")}
-            min={0}
-            value={4}
-            placeholder={$_("admin.form.tests.return_precision.placeholder")}
-            helperText={$_("admin.form.tests.return_precision.helper_text")}
-          />
-        </div> -->
       </Column>
     </Row>
   </Grid>

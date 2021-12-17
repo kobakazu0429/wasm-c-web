@@ -171,8 +171,8 @@
         },
         "return_precision": {
           "label_text": "Precision of the Returned Value",
-          "placeholder": "4",
-          "helper_text": "The number of digits after the decimal point. (optional, default is 4)"
+          "placeholder": "0",
+          "helper_text": "The number of digits after the decimal point. (optional, default is 0: no error)"
         },
         "builder": {
           "title": "Create Tests",
@@ -182,6 +182,10 @@
           "delete": "Delete"
         }
       }
+    },
+    "modal": {
+      "primary_button_text": "Confirm",
+      "secondary_button_text": "Cancel"
     }
   }
 }

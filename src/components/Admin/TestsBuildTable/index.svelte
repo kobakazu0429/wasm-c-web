@@ -16,6 +16,7 @@
     buildingTestsDeleter,
     buildingTestsToRow,
   } from "../../../stores/admin";
+  import { openTestBuilderModal } from "../TestBuilderModal/index.svelte";
 
   const headers: Array<
     { key: HeaderKey; value: any } | { key: "overflow"; empty: boolean }
@@ -26,7 +27,10 @@
       value: $_("admin.form.tests.function_name.label_text"),
     },
     { key: "arguments", value: $_("admin.form.tests.arguments.label_text") },
-    { key: "returnValue", value: $_("admin.form.tests.return_value.label_text") },
+    {
+      key: "returnValue",
+      value: $_("admin.form.tests.return_value.label_text"),
+    },
     {
       key: "returnPrecision",
       value: $_("admin.form.tests.return_precision.label_text"),
@@ -77,7 +81,9 @@
         <Button kind="danger" on:click={buildingTestsAllDelete}>
           {$_("admin.form.tests.builder.delete_all")}
         </Button>
-        <Button>{$_("admin.form.tests.builder.create_test")}</Button>
+        <Button on:click={openTestBuilderModal}
+          >{$_("admin.form.tests.builder.create_test")}</Button
+        >
       </ButtonSet>
     </ToolbarContent>
   </Toolbar>

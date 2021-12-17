@@ -162,8 +162,8 @@
         },
         "return_precision": {
           "label_text": "返却値の精度",
-          "placeholder": "4",
-          "helper_text": "小数点以下の桁数を記述してください。(省略可、デフォルト4)"
+          "placeholder": "0",
+          "helper_text": "小数点以下の桁数を記述してください。(省略可、デフォルト0: 誤差なし)"
         },
         "builder": {
           "title": "テストの作成",
@@ -173,6 +173,10 @@
           "delete": "削除"
         }
       }
+    },
+    "modal": {
+      "primary_button_text": "確定",
+      "secondary_button_text": "キャンセル"
     }
   }
 }
