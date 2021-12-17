@@ -27,3 +27,19 @@ export const buildingTestsAdder = (row: Row) => {
     return self;
   });
 };
+
+const defaultModalValues = {
+  testName: "",
+  functionName: "",
+  argumentsValue: "",
+  returnValue: "",
+  returnPrecision: 0,
+};
+
+export const currentModal = writable<Omit<Row, "id">>({
+  ...defaultModalValues,
+});
+
+export const resetCurrentModal = () => {
+  currentModal.set({ ...defaultModalValues });
+};

@@ -12,12 +12,12 @@
 
   const converter = (row: Row): Tests[0] => {
     const content = new RegExp(/^\[(.+)\]$/).exec(
-      row.arguments as string
+      row.argumentsValue as string
     ) as any;
     const input = content[1].split(",").map(Number);
 
     return {
-      name: row.name,
+      name: row.testName,
       functionName: row.functionName,
       input,
       expect: Number(row.returnValue),

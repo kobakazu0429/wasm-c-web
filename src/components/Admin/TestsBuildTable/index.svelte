@@ -15,12 +15,10 @@
     buildingTestsAllDelete,
     buildingTestsDeleter,
     buildingTestsToArray,
+    currentModal,
+    resetCurrentModal,
   } from "../../../stores/admin";
-  import {
-    openTestBuilderModal,
-    setValues,
-    resetValues,
-  } from "../TestBuilderModal/index.svelte";
+  import { openTestBuilderModal } from "../TestBuilderModal/index.svelte";
   import { get } from "svelte/store";
 
   const headers: Array<
@@ -49,7 +47,7 @@
   const setToModal = (id: string) => {
     const v = get(buildingTests).get(id);
     if (v) {
-      setValues(v);
+      currentModal.set(v);
       openTestBuilderModal();
     }
   };
@@ -70,7 +68,7 @@
         </Button>
         <Button
           on:click={() => {
-            resetValues();
+            resetCurrentModal();
             openTestBuilderModal();
           }}>{$_("admin.form.tests.builder.create_test")}</Button
         >
