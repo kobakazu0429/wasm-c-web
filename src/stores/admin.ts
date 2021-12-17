@@ -3,7 +3,7 @@ import type { Row } from "../components/Admin/TestsBuildTable/table";
 
 export const buildingTests = writable(new Map<string, Row>());
 
-export const buildingTestsToRow = derived(buildingTests, ($buildingTests) => {
+export const buildingTestsToArray = derived(buildingTests, ($buildingTests) => {
   return Array.from($buildingTests.values());
 });
 

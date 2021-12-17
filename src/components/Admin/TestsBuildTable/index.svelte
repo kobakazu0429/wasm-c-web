@@ -14,9 +14,10 @@
     buildingTestsAdder,
     buildingTestsAllDelete,
     buildingTestsDeleter,
-    buildingTestsToRow,
+    buildingTestsToArray,
   } from "../../../stores/admin";
   import { openTestBuilderModal } from "../TestBuilderModal/index.svelte";
+  import { ulid } from "ulid";
 
   const headers: Array<
     { key: HeaderKey; value: any } | { key: "overflow"; empty: boolean }
@@ -40,7 +41,7 @@
 
   const rows: Row[] = [
     {
-      id: "1",
+      id: ulid(),
       name: "sum(1, 2) should be 3",
       functionName: "sum",
       arguments: `[${[1, 2].toString()}]`,
@@ -48,7 +49,7 @@
       returnPrecision: 0,
     },
     {
-      id: "2",
+      id: ulid(),
       name: "div(8, 2) should be 4",
       functionName: "div",
       arguments: `[${[8, 2].toString()}]`,
@@ -56,7 +57,55 @@
       returnPrecision: 0,
     },
     {
-      id: "3",
+      id: ulid(),
+      name: "div(10, 3) should be 3.3333",
+      functionName: "div",
+      arguments: `[${[10, 3].toString()}]`,
+      returnValue: 3.3333,
+      returnPrecision: 4,
+    },
+    {
+      id: ulid(),
+      name: "sum(1, 2) should be 3",
+      functionName: "sum",
+      arguments: `[${[1, 2].toString()}]`,
+      returnValue: 3,
+      returnPrecision: 0,
+    },
+    {
+      id: ulid(),
+      name: "div(8, 2) should be 4",
+      functionName: "div",
+      arguments: `[${[8, 2].toString()}]`,
+      returnValue: 4,
+      returnPrecision: 0,
+    },
+    {
+      id: ulid(),
+      name: "div(10, 3) should be 3.3333",
+      functionName: "div",
+      arguments: `[${[10, 3].toString()}]`,
+      returnValue: 3.3333,
+      returnPrecision: 4,
+    },
+    {
+      id: ulid(),
+      name: "sum(1, 2) should be 3",
+      functionName: "sum",
+      arguments: `[${[1, 2].toString()}]`,
+      returnValue: 3,
+      returnPrecision: 0,
+    },
+    {
+      id: ulid(),
+      name: "div(8, 2) should be 4",
+      functionName: "div",
+      arguments: `[${[8, 2].toString()}]`,
+      returnValue: 4,
+      returnPrecision: 0,
+    },
+    {
+      id: ulid(),
       name: "div(10, 3) should be 3.3333",
       functionName: "div",
       arguments: `[${[10, 3].toString()}]`,
@@ -72,7 +121,7 @@
   title={$_("admin.form.tests.builder.title")}
   description={$_("admin.form.tests.builder.description")}
   {headers}
-  rows={$buildingTestsToRow}
+  rows={$buildingTestsToArray}
   sortable
 >
   <Toolbar>
