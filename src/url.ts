@@ -6,8 +6,12 @@ export const resetUrl = () => {
   navigate("/");
 };
 
+export const buildUrlParams = (params: Array<["data", string]>) => {
+  return `/?${params.map((p) => p.join("=")).join("&")}`;
+};
+
 export const rewriteUrlParams = (params: Array<["data", string]>) => {
-  navigate(`/?${params.map((p) => p.join("=")).join("&")}`);
+  navigate(buildUrlParams(params));
 };
 
 export const updateUrlParams = (params: Partial<RecoveryCode>) => {
