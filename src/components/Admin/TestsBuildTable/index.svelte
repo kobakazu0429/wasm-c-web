@@ -26,7 +26,7 @@
       value: $_("admin.form.tests.function_name.label_text"),
     },
     { key: "arguments", value: $_("admin.form.tests.arguments.label_text") },
-    { key: "return", value: $_("admin.form.tests.return.label_text") },
+    { key: "returnValue", value: $_("admin.form.tests.return_value.label_text") },
     {
       key: "returnPrecision",
       value: $_("admin.form.tests.return_precision.label_text"),
@@ -40,7 +40,7 @@
       name: "sum(1, 2) should be 3",
       functionName: "sum",
       arguments: `[${[1, 2].toString()}]`,
-      return: 3,
+      returnValue: 3,
       returnPrecision: 0,
     },
     {
@@ -48,7 +48,7 @@
       name: "div(8, 2) should be 4",
       functionName: "div",
       arguments: `[${[8, 2].toString()}]`,
-      return: 4,
+      returnValue: 4,
       returnPrecision: 0,
     },
     {
@@ -56,7 +56,7 @@
       name: "div(10, 3) should be 3.3333",
       functionName: "div",
       arguments: `[${[10, 3].toString()}]`,
-      return: 3.3333,
+      returnValue: 3.3333,
       returnPrecision: 4,
     },
   ];

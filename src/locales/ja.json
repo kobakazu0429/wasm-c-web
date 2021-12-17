@@ -155,7 +155,7 @@
           "placeholder": "[1, 2]",
           "helper_text": "[ ] の配列で記述してください。(省略可)"
         },
-        "return": {
+        "return_value": {
           "label_text": "返却値",
           "placeholder": "0",
           "helper_text": "(省略可)"

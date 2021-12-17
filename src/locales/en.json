@@ -164,7 +164,7 @@
           "placeholder": "[1, 2]",
           "helper_text": "[ ] in the array. (optional)"
         },
-        "return": {
+        "return_value": {
           "label_text": "Returned Value",
           "placeholder": "0",
           "helper_text": "(optional)"
