@@ -8,12 +8,12 @@
     Row,
     Column,
   } from "carbon-components-svelte";
-  import { FormGroup, TextInput } from "carbon-components-svelte";
   import { SvelteToast } from "@zerodevx/svelte-toast";
   import Editor from "../components/Editor.svelte";
   import TestBuildTable from "../components/Admin/TestsBuildTable/index.svelte";
   import TestBuilderModal from "../components/Admin/TestBuilderModal/index.svelte";
   import CreatedUrl from "../components/Admin/CreatedUrl.svelte";
+  import RecoveryFromUrl from "../components/Admin/RecoveryFromUrl.svelte";
   import { initI18n } from "../i18n";
 
   initI18n();
@@ -38,13 +38,7 @@
   <Grid fullWidth style="height: 100%;display: flex;flex-direction: column;">
     <Row>
       <Column noGutter>
-        <FormGroup>
-          <TextInput
-            labelText={$_("admin.form.recovery_from_url.label_text")}
-            helperText={$_("admin.form.recovery_from_url.helper_text")}
-            placeholder={$_("admin.form.recovery_from_url.placeholder")}
-          />
-        </FormGroup>
+        <RecoveryFromUrl />
       </Column>
     </Row>
 
