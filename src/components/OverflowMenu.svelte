@@ -24,7 +24,7 @@
     text={$_("overflow_menu.load_simple")}
     on:click={() => {
       setCode(stdin);
-      updateUrlParams({ tests: stdinTests });
+      updateUrlParams({ code: stdin, tests: stdinTests });
     }}
   />
   <OverflowMenuItem

@@ -1,7 +1,7 @@
 import { derived, writable } from "svelte/store";
-import type { Row } from "../components/Admin/TestsBuildTable/table";
+import type { TestForModal } from "../test";
 
-export const buildingTests = writable(new Map<string, Row>());
+export const buildingTests = writable(new Map<string, TestForModal>());
 
 export const buildingTestsToArray = derived(buildingTests, ($buildingTests) => {
   return Array.from($buildingTests.values());
@@ -21,22 +21,23 @@ export const buildingTestsDeleter = (id: string) => {
   });
 };
 
-export const buildingTestsAdder = (row: Row) => {
+export const buildingTestsAdder = (test: TestForModal) => {
   buildingTests.update((self) => {
-    self.set(row.id, row);
+    self.set(test.id, test);
     return self;
   });
 };
 
-const defaultModalValues = {
+const defaultModalValues: TestForModal = {
+  id: "",
   testName: "",
   functionName: "",
   argumentsValue: "",
   returnValue: "",
-  returnPrecision: 0,
+  returnPrecision: "0",
 };
 
-export const currentModal = writable<Omit<Row, "id">>({
+export const currentModal = writable<TestForModal>({
   ...defaultModalValues,
 });
 

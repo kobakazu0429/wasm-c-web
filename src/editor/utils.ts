@@ -6,7 +6,7 @@ import { redToast } from "../toast";
 import { clearCode, getPreviousCode } from "./../localStorage/index";
 import { stdin as exampleCode } from "../editor/exampleCodes";
 import { resetUrl } from "../url";
-import type { Tests } from "../jest";
+import type { Test } from "../test";
 
 export const getCode = () => {
   const e = get(editor);
@@ -54,7 +54,7 @@ export const downloadCode = () => {
 export interface RecoveryCode {
   code: string;
   filename: string;
-  tests?: Tests;
+  tests?: Test[];
 }
 export const recoveryCode = (): RecoveryCode => {
   const lz = get(lzStore);

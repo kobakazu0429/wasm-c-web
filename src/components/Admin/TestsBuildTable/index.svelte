@@ -9,7 +9,6 @@
     Toolbar,
     ToolbarContent,
   } from "carbon-components-svelte";
-  import type { HeaderKey } from "./table";
   import {
     buildingTests,
     buildingTestsAllDelete,
@@ -20,9 +19,11 @@
   } from "../../../stores/admin";
   import { openTestBuilderModal } from "../TestBuilderModal/index.svelte";
   import { get } from "svelte/store";
+  import type { Test } from "../../../test";
 
   const headers: Array<
-    { key: HeaderKey; value: any } | { key: "overflow"; empty: boolean }
+    | { key: Exclude<keyof Test, "id">; value: string }
+    | { key: "overflow"; empty: boolean }
   > = [
     { key: "testName", value: $_("admin.form.tests.test_name.label_text") },
     {

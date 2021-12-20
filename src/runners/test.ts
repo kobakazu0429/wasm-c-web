@@ -15,7 +15,7 @@ import { constructResultsHTML } from "@kobakazu0429/test";
 import { normalToast, redToast } from "./../toast/index";
 import { _ } from "../i18n";
 import { recoveryCode } from "../editor/utils";
-import { testsSchema } from "../jest";
+import { testsSchema } from "../test";
 
 export const test = async () => {
   const { tests } = recoveryCode();

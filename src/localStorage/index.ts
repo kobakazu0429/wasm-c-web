@@ -1,5 +1,5 @@
 import store from "store2";
-import type { Tests } from "../jest";
+import type { Test } from "../test";
 
 const joinKey = (keys: string | string[]) => {
   const PREFIX = "wasm_c_web";
@@ -13,13 +13,13 @@ interface SavedCode {
   timestamp: number;
   filename: string;
   code: string;
-  tests?: Tests;
+  tests?: Test[];
 }
 
 export const saveCodeStorage = (
   filename: string,
   data: string,
-  tests?: Tests
+  tests?: Test[]
 ) => {
   store.local.set(CODE_KEY, {
     timestamp: Date.now(),

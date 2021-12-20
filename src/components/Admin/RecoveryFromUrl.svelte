@@ -7,21 +7,9 @@
     buildingTestsAdder,
     buildingTestsAllDelete,
   } from "../../stores/admin";
-  import { ulid } from "ulid";
+  import { testsSchema, TestToTestForModalConverter } from "../../test";
 
   export let url = "";
-
-  // const converter = (test: Tests[0]):Omit<Row,"id"|"returnPrecision">  => {
-  const converter = (test: any): any => {
-    return {
-      id: ulid(),
-      testName: test.name,
-      functionName: test.functionName,
-      argumentsValue: `[${test.input.join(",")}]`,
-      returnValue: String(test.expect),
-      returnPrecision: "",
-    };
-  };
 
   const recovery = (url: string) => {
     const match = url.match(/^https?:\/\/.+\/?data=(.+)$/);
@@ -36,9 +24,14 @@
     formatCode();
 
     if (tests) {
-      tests.forEach((test: any) => {
-        buildingTestsAdder(converter(test));
-      });
+      try {
+        testsSchema.parse(tests);
+        tests.forEach((test: any) => {
+          buildingTestsAdder(TestToTestForModalConverter(test));
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
