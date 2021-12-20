@@ -5,8 +5,8 @@
   import { buildUrlParams } from "../../url";
   import { get } from "svelte/store";
   import { buildingTestsToArray } from "../../stores/admin";
-  import { testsSchema } from "../../jest";
-  import type { Test, TestForModal } from "../../jest";
+  import { testsSchema } from "../../test";
+  import type { Test, TestForModal } from "../../test";
   let url = "";
 
   const converter = (test: TestForModal): Test => {

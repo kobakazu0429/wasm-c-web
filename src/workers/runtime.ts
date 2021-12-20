@@ -6,8 +6,8 @@ import * as Asyncify from "asyncify-wasm";
 import type { Node } from "memfs/lib/node";
 
 import { get } from "svelte/store";
-import type { Tests } from "../jest";
-import { testBuilder } from "../jest";
+import type { Test } from "../test";
+import { testBuilder } from "../test";
 import { settings as _settings } from "../store";
 
 const encoder = new TextEncoder();
@@ -72,7 +72,7 @@ export const startWasiTask = async (
 
 export type StartWasiTask = Parameters<typeof startWasiTask>;
 
-export const testWasi = async (wasmBinary: Uint8Array, tests: Tests) => {
+export const testWasi = async (wasmBinary: Uint8Array, tests: Test[]) => {
   const wasmFs = new WasmFs();
   const wasi = new WASI({
     bindings: {

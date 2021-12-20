@@ -1,5 +1,5 @@
 import { derived, writable } from "svelte/store";
-import type { TestForModal } from "./../jest";
+import type { TestForModal } from "../test";
 
 export const buildingTests = writable(new Map<string, TestForModal>());
 

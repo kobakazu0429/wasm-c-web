@@ -19,7 +19,7 @@
   } from "../../../stores/admin";
   import { openTestBuilderModal } from "../TestBuilderModal/index.svelte";
   import { get } from "svelte/store";
-  import type { Test } from "../../../jest";
+  import type { Test } from "../../../test";
 
   const headers: Array<
     | { key: Exclude<keyof Test, "id">; value: string }

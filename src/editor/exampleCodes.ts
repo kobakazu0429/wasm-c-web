@@ -1,4 +1,4 @@
-import type { Test } from "../jest";
+import type { Test } from "../test";
 
 export const boilerplate = `#include <stdio.h>
 

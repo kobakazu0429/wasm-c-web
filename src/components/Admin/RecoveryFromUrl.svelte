@@ -7,7 +7,7 @@
     buildingTestsAdder,
     buildingTestsAllDelete,
   } from "../../stores/admin";
-  import type { Test, TestForModal } from "../../jest";
+  import type { Test, TestForModal } from "../../test";
 
   export let url = "";
 
