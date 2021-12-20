@@ -18,11 +18,9 @@
     currentModal,
     resetCurrentModal,
   } from "../../../stores/admin";
-  import { ulid } from "ulid";
 
   const buildingTestsAdd = () => {
     buildingTestsAdder({
-      id: ulid(),
       ...$currentModal,
     });
   };

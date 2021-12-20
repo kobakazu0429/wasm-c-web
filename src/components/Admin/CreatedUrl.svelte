@@ -6,21 +6,24 @@
   import { get } from "svelte/store";
   import { buildingTestsToArray } from "../../stores/admin";
   import { testsSchema } from "../../jest";
-  import type { Tests } from "../../jest";
-  import type { Row } from "./TestsBuildTable/table";
+  import type { Test, TestForModal } from "../../jest";
   let url = "";
 
-  const converter = (row: Row): Tests[0] => {
+  const converter = (test: TestForModal): Test => {
     const content = new RegExp(/^\[(.+)\]$/).exec(
-      row.argumentsValue as string
+      test.argumentsValue as string
     ) as any;
-    const input = content[1].split(",").map(Number);
+    const argumentsValue = content[1].split(",").map(Number);
 
     return {
-      name: row.testName,
-      functionName: row.functionName,
-      input,
-      expect: Number(row.returnValue),
+      id: test.id,
+      testName: test.testName,
+      functionName: test.functionName,
+      argumentsValue,
+      returnValue: test.returnValue ? Number(test.returnValue) : null,
+      returnPrecision: test.returnPrecision
+        ? Number(test.returnPrecision)
+        : null,
     };
   };
 

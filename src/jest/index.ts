@@ -1,25 +1,37 @@
 import { z } from "zod";
 import { test, expect } from "@kobakazu0429/test";
 
-export const testsSchema = z
+const testSchema = z
   .object({
-    name: z.string().nonempty(),
+    id: z.string().nonempty(),
+    testName: z.string().nonempty(),
     functionName: z.string().nonempty(),
-    input: z.union([z.number().array().nonempty(), z.null().array()]),
-    expect: z.union([z.number(), z.null()]),
+    argumentsValue: z.union([z.number().array().nonempty(), z.null().array()]),
+    returnValue: z.union([z.number(), z.null()]),
+    returnPrecision: z.union([z.number(), z.null()]),
   })
-  .strict()
-  .array();
+  .strict();
 
-export type Tests = z.infer<typeof testsSchema>;
+export const testsSchema = testSchema.array();
+
+export type Test = z.infer<typeof testSchema>;
+
+export type TestForModal = Omit<
+  Test,
+  "argumentsValue" | "returnValue" | "returnPrecision"
+> & {
+  argumentsValue: string;
+  returnValue: string;
+  returnPrecision: string;
+};
 
 export const testBuilder = (
-  tests: Tests,
+  tests: Test[],
   functions: Record<string, CallableFunction>
 ) => {
   return () => {
     tests.forEach((t) => {
-      test(t.name, async () => {
+      test(t.testName, async () => {
         const myfunction = functions[t.functionName];
 
         if (!myfunction)
@@ -28,8 +40,12 @@ export const testBuilder = (
           );
 
         // TODO: add filed `float, double as type` to Test
-        const value = await myfunction(...t.input);
-        expect(value).toBeCloseTo(t.expect, 4);
+        const value = await myfunction(...t.argumentsValue);
+        if (t.returnPrecision && t.returnPrecision === 0) {
+          expect(value).toBe(t.returnValue);
+        } else {
+          expect(value).toBeCloseTo(t.returnValue, t.returnPrecision);
+        }
       });
     });
   };

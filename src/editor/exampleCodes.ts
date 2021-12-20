@@ -1,4 +1,4 @@
-import type { Tests } from "../jest";
+import type { Test } from "../jest";
 
 export const boilerplate = `#include <stdio.h>
 
@@ -30,24 +30,30 @@ int main() {
 }
 `;
 
-export const stdinTests: Tests = [
+export const stdinTests: Test[] = [
   {
-    name: "sum(1, 2) should be 3",
+    id: "stdinTests_id_1",
+    testName: "sum(1, 2) should be 3",
     functionName: "sum",
-    input: [1, 2],
-    expect: 3,
+    argumentsValue: [1, 2],
+    returnValue: 3,
+    returnPrecision: 0,
   },
   {
-    name: "div(8, 2) should be 4",
+    id: "stdinTests_id_2",
+    testName: "div(8, 2) should be 4",
     functionName: "div",
-    input: [8, 2],
-    expect: 4,
+    argumentsValue: [8, 2],
+    returnValue: 4,
+    returnPrecision: 0,
   },
   {
-    name: "div(10, 3) should be 3.3333",
+    id: "stdinTests_id_3",
+    testName: "div(10, 3) should be 3.3333",
     functionName: "div",
-    input: [10, 3],
-    expect: 3.3333,
+    argumentsValue: [10, 3],
+    returnValue: 3.3333,
+    returnPrecision: 4,
   },
 ];
 

@@ -7,19 +7,16 @@
     buildingTestsAdder,
     buildingTestsAllDelete,
   } from "../../stores/admin";
-  import { ulid } from "ulid";
+  import type { Test, TestForModal } from "../../jest";
 
   export let url = "";
 
-  // const converter = (test: Tests[0]):Omit<Row,"id"|"returnPrecision">  => {
-  const converter = (test: any): any => {
+  const converter = (test: Test): TestForModal => {
     return {
-      id: ulid(),
-      testName: test.name,
-      functionName: test.functionName,
-      argumentsValue: `[${test.input.join(",")}]`,
-      returnValue: String(test.expect),
-      returnPrecision: "",
+      ...test,
+      argumentsValue: `[${test.argumentsValue.join(",")}]`,
+      returnValue: String(test.returnValue ?? ""),
+      returnPrecision: String(test.returnPrecision ?? ""),
     };
   };
 
