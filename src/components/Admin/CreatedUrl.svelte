@@ -5,27 +5,9 @@
   import { buildUrlParams } from "../../url";
   import { get } from "svelte/store";
   import { buildingTestsToArray } from "../../stores/admin";
-  import { testsSchema } from "../../test";
-  import type { Test, TestForModal } from "../../test";
+  import { testsSchema, testForModalToTestConverter } from "../../test";
+
   let url = "";
-
-  const converter = (test: TestForModal): Test => {
-    const content = new RegExp(/^\[(.+)\]$/).exec(
-      test.argumentsValue as string
-    ) as any;
-    const argumentsValue = content[1].split(",").map(Number);
-
-    return {
-      id: test.id,
-      testName: test.testName,
-      functionName: test.functionName,
-      argumentsValue,
-      returnValue: test.returnValue ? Number(test.returnValue) : null,
-      returnPrecision: test.returnPrecision
-        ? Number(test.returnPrecision)
-        : null,
-    };
-  };
 
   export const create = () => {
     const obj: any = {};
@@ -33,13 +15,15 @@
     if (code) obj.code = escapeCode(code);
 
     const originalTests = get(buildingTestsToArray);
-    const tests = originalTests.map(converter);
+    const tests = originalTests.map(testForModalToTestConverter);
 
-    try {
-      testsSchema.parse(tests);
-      if (tests) obj.tests = tests;
-    } catch (error) {
-      console.log(error);
+    if (tests) {
+      try {
+        testsSchema.parse(tests);
+        obj.tests = tests;
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     const params = compressLzString(JSON.stringify(obj));

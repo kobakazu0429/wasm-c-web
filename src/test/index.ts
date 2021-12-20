@@ -50,3 +50,31 @@ export const testBuilder = (
     });
   };
 };
+
+export const testForModalToTestConverter = (test: TestForModal): Test => {
+  let argumentsValue: Test["argumentsValue"] = [null];
+  const content = new RegExp(/^\[(.+)\]$/).exec(test.argumentsValue);
+  if (content) {
+    const convertedArgumentsValue = content[1]?.split(",").map(Number);
+    if (convertedArgumentsValue) {
+      argumentsValue = convertedArgumentsValue as [number, ...number[]];
+    }
+  }
+
+  const convertedTest: Test = {
+    ...test,
+    argumentsValue,
+    returnValue: test.returnValue ? Number(test.returnValue) : null,
+    returnPrecision: test.returnPrecision ? Number(test.returnPrecision) : null,
+  };
+  return convertedTest;
+};
+
+export const TestToTestForModalConverter = (test: Test): TestForModal => {
+  return {
+    ...test,
+    argumentsValue: `[${test.argumentsValue.join(",")}]`,
+    returnValue: String(test.returnValue ?? ""),
+    returnPrecision: String(test.returnPrecision ?? ""),
+  };
+};

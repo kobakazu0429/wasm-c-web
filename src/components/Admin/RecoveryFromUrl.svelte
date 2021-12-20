@@ -7,18 +7,9 @@
     buildingTestsAdder,
     buildingTestsAllDelete,
   } from "../../stores/admin";
-  import type { Test, TestForModal } from "../../test";
+  import { testsSchema, TestToTestForModalConverter } from "../../test";
 
   export let url = "";
-
-  const converter = (test: Test): TestForModal => {
-    return {
-      ...test,
-      argumentsValue: `[${test.argumentsValue.join(",")}]`,
-      returnValue: String(test.returnValue ?? ""),
-      returnPrecision: String(test.returnPrecision ?? ""),
-    };
-  };
 
   const recovery = (url: string) => {
     const match = url.match(/^https?:\/\/.+\/?data=(.+)$/);
@@ -33,9 +24,14 @@
     formatCode();
 
     if (tests) {
-      tests.forEach((test: any) => {
-        buildingTestsAdder(converter(test));
-      });
+      try {
+        testsSchema.parse(tests);
+        tests.forEach((test: any) => {
+          buildingTestsAdder(TestToTestForModalConverter(test));
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
