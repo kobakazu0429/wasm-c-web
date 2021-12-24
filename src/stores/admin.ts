@@ -32,8 +32,11 @@ const defaultModalValues: TestForModal = {
   id: "",
   testName: "",
   functionName: "",
-  argumentsValue: "",
-  returnValue: "",
+  argumentsValues: [],
+  returnValue: {
+    type: "void",
+    value: "",
+  },
   returnPrecision: "0",
 };
 

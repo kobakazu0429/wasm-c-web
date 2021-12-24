@@ -12,11 +12,16 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { Modal } from "carbon-components-svelte";
-  import { TextInput } from "carbon-components-svelte";
+  import { TextInput, Button } from "carbon-components-svelte";
+  import AddAlt32 from "carbon-icons-svelte/lib/AddAlt32";
+  import Arguments from "./Arguments.svelte";
+  import ReturnValue from "./CTypeValue.svelte";
+
   import {
     buildingTestsAdder,
     currentModal,
     resetCurrentModal,
+    argumentsValueAdder,
   } from "../../../stores/admin";
   import { ulid } from "ulid";
 
@@ -60,19 +65,33 @@
       bind:value={$currentModal.functionName}
     />
   </div>
-  <div style="margin-bottom:30px;">
+  <!-- <div style="margin-bottom:30px;">
     <TextInput
       labelText={$_("admin.form.tests.arguments_value.label_text")}
       placeholder={$_("admin.form.tests.arguments_value.placeholder")}
       helperText={$_("admin.form.tests.arguments_value.helper_text")}
       bind:value={$currentModal.argumentsValue}
     />
+  </div> -->
+  <div style="margin-bottom:30px;">
+    <Arguments />
+    <Button
+      iconDescription={$_("setting_modal.add")}
+      tooltipPosition="right"
+      hasIconOnly
+      icon={AddAlt32}
+      on:click={argumentsValueAdder}
+    />
   </div>
   <div style="margin-bottom:30px;">
-    <TextInput
+    <!-- <TextInput
       labelText={$_("admin.form.tests.return_value.label_text")}
       bind:value={$currentModal.returnValue}
       helperText={$_("admin.form.tests.return_value.helper_text")}
+    /> -->
+    <ReturnValue
+      bind:value={$currentModal.returnValue.value}
+      bind:type={$currentModal.returnValue.type}
     />
   </div>
   <div style="margin-bottom:30px;">

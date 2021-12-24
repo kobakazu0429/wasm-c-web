@@ -31,7 +31,7 @@
       value: $_("admin.form.tests.function_name.label_text"),
     },
     {
-      key: "argumentsValue",
+      key: "argumentsValues",
       value: $_("admin.form.tests.arguments_value.label_text"),
     },
     {

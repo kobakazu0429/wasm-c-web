@@ -1,13 +1,16 @@
 import { z } from "zod";
 import { test, expect } from "@kobakazu0429/test";
+import { cTypesSchema } from "./cTypes";
+import type { CTypesSchema } from "./cTypes";
+import { Memory } from "../workers/runtime";
 
 const testSchema = z
   .object({
     id: z.string().nonempty(),
     testName: z.string().nonempty(),
     functionName: z.string().nonempty(),
-    argumentsValue: z.union([z.number().array().nonempty(), z.null().array()]),
-    returnValue: z.union([z.number(), z.null()]),
+    argumentsValues: cTypesSchema.array(),
+    returnValue: cTypesSchema,
     returnPrecision: z.union([z.number(), z.null()]),
   })
   .strict();
@@ -16,18 +19,23 @@ export const testsSchema = testSchema.array();
 
 export type Test = z.infer<typeof testSchema>;
 
+type Type = CTypesSchema["type"];
 export type TestForModal = Omit<
   Test,
-  "argumentsValue" | "returnValue" | "returnPrecision"
+  "argumentsValues" | "returnValue" | "returnPrecision"
 > & {
-  argumentsValue: string;
-  returnValue: string;
+  argumentsValues: Array<{ type: Type; value: string }>;
+  returnValue: {
+    type: Type;
+    value: string;
+  };
   returnPrecision: string;
 };
 
 export const testBuilder = (
   tests: Test[],
-  functions: Record<string, CallableFunction>
+  functions: Record<string, CallableFunction>,
+  memoryBuffer: Buffer
 ) => {
   return () => {
     tests.forEach((t) => {
@@ -39,32 +47,74 @@ export const testBuilder = (
             "Unable function name or Not found. Check your code or test cases."
           );
 
-        // TODO: add filed `float, double as type` to Test
-        const value = await myfunction(...t.argumentsValue);
-        if (t.returnPrecision && t.returnPrecision === 0) {
-          expect(value).toBe(t.returnValue);
+        const argumentsValues = t.argumentsValues
+          .map((s) => {
+            if (s.type === "char[]") {
+              return Memory.registerString(memoryBuffer, s.value);
+            } else if (s.type === "char") {
+              return Memory.registerChar(memoryBuffer, s.value);
+            } else {
+              return s.value;
+            }
+          })
+          .filter((a) => a !== null);
+
+        const returnValue = await myfunction(...argumentsValues);
+
+        if (t.returnValue.type === "void") {
+          return;
+        }
+
+        if (t.returnValue.type === "char[]") {
+          const value = Memory.readStringFromPointer(memoryBuffer, returnValue);
+          expect(value).toBe(t.returnValue.value);
+        } else if (
+          t.returnValue.type === "int" ||
+          t.returnValue.type === "char" ||
+          t.returnValue.type === "unsigned char" ||
+          t.returnPrecision === 0
+        ) {
+          expect(returnValue).toBe(t.returnValue.value);
         } else {
-          expect(value).toBeCloseTo(t.returnValue, t.returnPrecision);
+          expect(returnValue).toBeCloseTo(
+            t.returnValue.value,
+            t.returnPrecision
+          );
         }
       });
     });
   };
 };
 
-export const testForModalToTestConverter = (test: TestForModal): Test => {
-  let argumentsValue: Test["argumentsValue"] = [null];
-  const content = new RegExp(/^\[(.+)\]$/).exec(test.argumentsValue);
-  if (content) {
-    const convertedArgumentsValue = content[1]?.split(",").map(Number);
-    if (convertedArgumentsValue) {
-      argumentsValue = convertedArgumentsValue as [number, ...number[]];
-    }
+const cTypeConverter = ({ type, value }: { type: Type; value: string }) => {
+  switch (type) {
+    case "int":
+    case "float":
+    case "double":
+    case "unsigned char":
+      return { type, value: Number(value) };
+
+    case "char":
+      return {
+        type,
+        value: typeof value === "number" ? Number(value) : String(value),
+      };
+
+    case "char[]":
+      return { type, value: String(value) };
+
+    case "void":
+      return { type, value: null };
   }
+};
+
+export const testForModalToTestConverter = (test: TestForModal): Test => {
+  const argumentsValues = test.argumentsValues.map(cTypeConverter);
 
   const convertedTest: Test = {
     ...test,
-    argumentsValue,
-    returnValue: test.returnValue ? Number(test.returnValue) : null,
+    argumentsValues,
+    returnValue: cTypeConverter(test.returnValue),
     returnPrecision: test.returnPrecision ? Number(test.returnPrecision) : null,
   };
   return convertedTest;
@@ -73,8 +123,14 @@ export const testForModalToTestConverter = (test: TestForModal): Test => {
 export const TestToTestForModalConverter = (test: Test): TestForModal => {
   return {
     ...test,
-    argumentsValue: `[${test.argumentsValue.join(",")}]`,
-    returnValue: String(test.returnValue ?? ""),
+    argumentsValues: test.argumentsValues.map(({ type, value }) => ({
+      type,
+      value: String(value),
+    })),
+    returnValue: {
+      type: test.returnValue.type,
+      value: String(test.returnValue.value ?? ""),
+    },
     returnPrecision: String(test.returnPrecision ?? ""),
   };
 };

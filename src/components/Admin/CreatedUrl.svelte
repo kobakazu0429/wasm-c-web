@@ -4,7 +4,7 @@
   import { compressLzString } from "../../compression";
   import { buildUrlParams } from "../../url";
   import { get } from "svelte/store";
-  import { buildingTestsToArray } from "../../stores/admin";
+  import { buildingTests } from "../../stores/admin";
   import { testsSchema, testForModalToTestConverter } from "../../test";
 
   let url = "";
@@ -13,8 +13,7 @@
     const obj: any = {};
     const { code } = getCode();
     if (code) obj.code = escapeCode(code);
-
-    const originalTests = get(buildingTestsToArray);
+    const originalTests = Array.from(get(buildingTests).values());
     const tests = originalTests.map(testForModalToTestConverter);
 
     if (tests) {
