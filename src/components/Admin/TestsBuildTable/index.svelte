@@ -13,7 +13,7 @@
     buildingTests,
     buildingTestsAllDelete,
     buildingTestsDeleter,
-    buildingTestsToArray,
+    displayBuildingTestsTable,
     currentModal,
     resetCurrentModal,
   } from "../../../stores/admin";
@@ -58,7 +58,7 @@
   title={$_("admin.form.tests.builder.title")}
   description={$_("admin.form.tests.builder.description")}
   {headers}
-  rows={$buildingTestsToArray}
+  rows={$displayBuildingTestsTable}
   sortable
 >
   <Toolbar>
