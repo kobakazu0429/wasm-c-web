@@ -63,10 +63,10 @@ const defaultModalValues: TestForModal = {
   returnPrecision: "0",
 };
 
-export const currentModal = writable<TestForModal>({
-  ...defaultModalValues,
-});
+export const currentModal = writable<TestForModal>(
+  JSON.parse(JSON.stringify(defaultModalValues))
+);
 
 export const resetCurrentModal = () => {
-  currentModal.set({ ...defaultModalValues });
+  currentModal.set(JSON.parse(JSON.stringify(defaultModalValues)));
 };
