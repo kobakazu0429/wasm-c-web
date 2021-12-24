@@ -28,6 +28,20 @@ export const buildingTestsAdder = (test: TestForModal) => {
   });
 };
 
+export const argumentsValueAdder = () => {
+  currentModal.update((self) => {
+    self.argumentsValues.push({ type: "void", value: "" });
+    return self;
+  });
+};
+
+export const argumentsValueDeleter = (index: number) => {
+  currentModal.update((self) => {
+    self.argumentsValues.splice(index, 1);
+    return self;
+  });
+};
+
 const defaultModalValues: TestForModal = {
   id: "",
   testName: "",
