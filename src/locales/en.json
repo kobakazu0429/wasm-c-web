@@ -179,6 +179,7 @@
           "description": "description",
           "create_test": "Create Test",
           "delete_all": "Delete All",
+          "delete_all_confirm": "Delete All, Right ?",
           "delete": "Delete",
           "edit": "Edit"
         }

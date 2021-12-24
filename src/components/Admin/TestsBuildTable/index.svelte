@@ -64,7 +64,15 @@
   <Toolbar>
     <ToolbarContent>
       <ButtonSet>
-        <Button kind="danger" on:click={buildingTestsAllDelete}>
+        <Button
+          kind="danger"
+          on:click={() => {
+            const result = window.confirm(
+              $_("admin.form.tests.builder.delete_all_confirm")
+            );
+            if (result) buildingTestsAllDelete();
+          }}
+        >
           {$_("admin.form.tests.builder.delete_all")}
         </Button>
         <Button

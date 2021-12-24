@@ -170,6 +170,7 @@
           "description": "説明",
           "create_test": "テストの新規作成",
           "delete_all": "全て削除",
+          "delete_all_confirm": "全て削除しますか？",
           "delete": "削除",
           "edit": "編集"
         }
