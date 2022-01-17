@@ -4,12 +4,12 @@
   import { listen } from "@codingame/monaco-jsonrpc";
   import {
     MonacoLanguageClient,
-    MessageConnection,
     CloseAction,
     ErrorAction,
     MonacoServices,
     createConnection,
   } from "@codingame/monaco-languageclient";
+  import type { MessageConnection } from "@codingame/monaco-languageclient";
   import normalizeUrl from "normalize-url";
   import ReconnectingWebSocket from "reconnecting-websocket";
   import type { Options as ReconnectingWebSocketOptions } from "reconnecting-websocket";
