@@ -162,7 +162,7 @@
         "arguments_value": {
           "label_text": "Arguments",
           "placeholder": "[1, 2]",
-          "helper_text": "[ ] in the array. (optional)"
+          "helper_text": "(optional)"
         },
         "return_value": {
           "label_text": "Returned Value",

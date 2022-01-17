@@ -153,7 +153,7 @@
         "arguments_value": {
           "label_text": "引数",
           "placeholder": "[1, 2]",
-          "helper_text": "[ ] の配列で記述してください。(省略可)"
+          "helper_text": "(省略可)"
         },
         "return_value": {
           "label_text": "返却値",

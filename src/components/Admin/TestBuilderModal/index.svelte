@@ -74,6 +74,11 @@
     />
   </div> -->
   <div style="margin-bottom:30px;">
+    <label for="arguments-value" class="bx--label"
+      >{$_("admin.form.tests.arguments_value.label_text")}{$_(
+        "admin.form.tests.arguments_value.helper_text"
+      )}</label
+    >
     <Arguments />
     <Button
       iconDescription={$_("setting_modal.add")}
@@ -84,6 +89,11 @@
     />
   </div>
   <div style="margin-bottom:30px;">
+    <label for="return-value" class="bx--label"
+      >{$_("admin.form.tests.return_value.label_text")}{$_(
+        "admin.form.tests.return_value.helper_text"
+      )}</label
+    >
     <!-- <TextInput
       labelText={$_("admin.form.tests.return_value.label_text")}
       bind:value={$currentModal.returnValue}
