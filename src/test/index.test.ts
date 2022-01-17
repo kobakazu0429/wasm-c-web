@@ -1,19 +1,23 @@
 import { run, constructResultsHTML } from "@kobakazu0429/test";
 import { testBuilder } from "./index";
-import type { Tests } from "./index";
+import type { Test } from "./index";
 
-const tests: Tests = [
+const tests: Test[] = [
   {
-    name: "sum(1, 2) should be 3",
+    id: "1",
+    testName: "sum(1, 2) should be 3",
     functionName: "sum",
-    input: [1, 2],
-    expect: 3,
+    argumentsValue: [1, 2],
+    returnValue: 3,
+    returnPrecision: 0,
   },
   {
-    name: "div(8, 2) should be 4",
+    id: "2",
+    testName: "div(8, 2) should be 4",
     functionName: "div",
-    input: [8, 2],
-    expect: 4,
+    argumentsValue: [8, 2],
+    returnValue: 4,
+    returnPrecision: 0,
   },
 ];
 
