@@ -4,16 +4,17 @@ const cTypeVoid = "void";
 const cTypeInt = "int";
 const cTypeFloat = "float";
 const cTypeDouble = "double";
-const cTypeChar = "char";
+const cTypeCharNumber = "char(number)";
+const cTypeCharAscii = "char(ascii)";
 const cTypeUnsignedChar = "unsigned char";
 const cTypeCharArray = "char[]";
 
-export const numbers = [cTypeInt, cTypeFloat, cTypeDouble];
+export const numbers = [cTypeInt, cTypeFloat, cTypeDouble, cTypeCharNumber];
 
 export const cTypes = [
   cTypeVoid,
   ...numbers,
-  cTypeChar,
+  cTypeCharAscii,
   cTypeUnsignedChar,
   cTypeCharArray,
 ] as const;
@@ -26,24 +27,36 @@ const voidSchema = z
   .strict();
 
 const numbersSchema = z.union([
-  z.object({
-    type: z.literal(cTypeInt),
-    value: z.number().int(),
-  }),
-  z.object({
-    type: z.literal(cTypeFloat),
-    value: z.number(),
-  }),
-  z.object({
-    type: z.literal(cTypeDouble),
-    value: z.number(),
-  }),
+  z
+    .object({
+      type: z.literal(cTypeInt),
+      value: z.number().int(),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal(cTypeFloat),
+      value: z.number(),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal(cTypeDouble),
+      value: z.number(),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal(cTypeCharNumber),
+      value: z.number().min(-128).max(127).int(),
+    })
+    .strict(),
 ]);
 
-const charSchema = z
+const charAsciiSchema = z
   .object({
-    type: z.literal(cTypeChar),
-    value: z.union([z.number().min(-128).max(127).int(), z.string().max(1)]),
+    type: z.literal(cTypeCharAscii),
+    value: z.string().max(1),
   })
   .strict();
 
@@ -64,7 +77,7 @@ const charArraySchema = z
 export const cTypesSchema = z.union([
   voidSchema,
   numbersSchema,
-  charSchema,
+  charAsciiSchema,
   unsignedSchema,
   charArraySchema,
 ]);

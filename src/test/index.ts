@@ -51,7 +51,7 @@ export const testBuilder = (
           .map((s) => {
             if (s.type === "char[]") {
               return Memory.registerString(memoryBuffer, s.value);
-            } else if (s.type === "char") {
+            } else if (s.type === "char(number)" || s.type === "char(ascii)") {
               return Memory.registerChar(memoryBuffer, s.value);
             } else {
               return s.value;
@@ -68,9 +68,12 @@ export const testBuilder = (
         if (t.returnValue.type === "char[]") {
           const value = Memory.readStringFromPointer(memoryBuffer, returnValue);
           expect(value).toBe(t.returnValue.value);
+        } else if (t.returnValue.type === "char(ascii)") {
+          const value = String.fromCharCode(returnValue);
+          expect(value).toBe(value);
         } else if (
           t.returnValue.type === "int" ||
-          t.returnValue.type === "char" ||
+          t.returnValue.type === "char(number)" ||
           t.returnValue.type === "unsigned char" ||
           t.returnPrecision === 0
         ) {
@@ -86,18 +89,32 @@ export const testBuilder = (
   };
 };
 
-const cTypeConverter = ({ type, value }: { type: Type; value: string }) => {
+const cTypeConverter = ({
+  type,
+  value,
+}: {
+  type: Type;
+  value: string;
+}): CTypesSchema => {
   switch (type) {
     case "int":
+    case "unsigned char":
+      return { type, value: parseInt(value) };
+
     case "float":
     case "double":
-    case "unsigned char":
-      return { type, value: Number(value) };
+      return { type, value: parseFloat(value) };
 
-    case "char":
+    case "char(number)":
       return {
         type,
-        value: typeof value === "number" ? Number(value) : String(value),
+        value: parseInt(value),
+      };
+
+    case "char(ascii)":
+      return {
+        type,
+        value,
       };
 
     case "char[]":
