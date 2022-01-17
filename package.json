@@ -13,7 +13,7 @@
     "lint:eslint": "eslint \"./{src,test}/**/*.{js,ts,tsx,svelte}\" --fix",
     "lint:prettier": "prettier \"./{src,test}/**/*.{js,ts,tsx,svelte}\" --write",
     "test": "jest",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "4.1.3",
