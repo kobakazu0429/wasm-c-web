@@ -49,9 +49,8 @@ export const test = async () => {
   normalToast(_("runner.test.start"));
 
   const runtimeWorker = new RuntimeWorker();
-  const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(
-    runtimeWorker
-  );
+  const runtimeWorkerComlink =
+    Comlink.wrap<RuntimeWorkerExposes>(runtimeWorker);
   const result = await runtimeWorkerComlink.testWasi(module, tests);
   const html = constructResultsHTML(result);
   testResultOut(html);
