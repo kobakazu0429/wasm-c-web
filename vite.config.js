@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => ({
         }),
       ],
     },
+    minify: mode === "production"
   },
 
   resolve: {
@@ -41,9 +42,6 @@ export default defineConfig(({ mode }) => ({
     svelte({
       emitCss: false,
       preprocess: [sveltePreprocess(), optimizeImports()],
-      build: {
-        minify: mode === "production"
-      }
     }),
     mode === "production" && optimizeCss({ safelist: { greedy: [/xterm/] } })
   ],

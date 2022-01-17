@@ -5,8 +5,8 @@ import ja from "./locales/ja.json";
 import type { UnReadable } from "./utilTypes";
 
 export const initI18n = () => {
-  addMessages("en", en);
-  addMessages("ja", ja);
+  addMessages("en", en as any);
+  addMessages("ja", ja as any);
   init({
     fallbackLocale: "en",
     initialLocale: "ja",

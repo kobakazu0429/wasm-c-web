@@ -59,9 +59,8 @@ export const run = async () => {
   normalToast(_("runner.exec.running"));
 
   const runtimeWorker = new RuntimeWorker();
-  const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(
-    runtimeWorker
-  );
+  const runtimeWorkerComlink =
+    Comlink.wrap<RuntimeWorkerExposes>(runtimeWorker);
   const task = runtimeWorkerComlink
     .startWasiTask(
       module,
