@@ -63,7 +63,7 @@
 >
   <Toolbar>
     <ToolbarContent>
-      <ButtonSet>
+      <ButtonSet style="justify-content: end;">
         <Button
           kind="danger"
           on:click={() => {
