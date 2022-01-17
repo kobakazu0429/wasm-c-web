@@ -13,7 +13,7 @@
     buildingTests,
     buildingTestsAllDelete,
     buildingTestsDeleter,
-    buildingTestsToArray,
+    displayBuildingTestsTable,
     currentModal,
     resetCurrentModal,
   } from "../../../stores/admin";
@@ -31,7 +31,7 @@
       value: $_("admin.form.tests.function_name.label_text"),
     },
     {
-      key: "argumentsValue",
+      key: "argumentsValues",
       value: $_("admin.form.tests.arguments_value.label_text"),
     },
     {
@@ -58,13 +58,21 @@
   title={$_("admin.form.tests.builder.title")}
   description={$_("admin.form.tests.builder.description")}
   {headers}
-  rows={$buildingTestsToArray}
+  rows={$displayBuildingTestsTable}
   sortable
 >
   <Toolbar>
     <ToolbarContent>
-      <ButtonSet>
-        <Button kind="danger" on:click={buildingTestsAllDelete}>
+      <ButtonSet style="justify-content: end;">
+        <Button
+          kind="danger"
+          on:click={() => {
+            const result = window.confirm(
+              $_("admin.form.tests.builder.delete_all_confirm")
+            );
+            if (result) buildingTestsAllDelete();
+          }}
+        >
           {$_("admin.form.tests.builder.delete_all")}
         </Button>
         <Button

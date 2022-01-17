@@ -35,24 +35,42 @@ export const stdinTests: Test[] = [
     id: "stdinTests_id_1",
     testName: "sum(1, 2) should be 3",
     functionName: "sum",
-    argumentsValue: [1, 2],
-    returnValue: 3,
+    argumentsValues: [
+      { type: "int", value: 1 },
+      { type: "int", value: 2 },
+    ],
+    returnValue: {
+      type: "int",
+      value: 3,
+    },
     returnPrecision: 0,
   },
   {
     id: "stdinTests_id_2",
     testName: "div(8, 2) should be 4",
     functionName: "div",
-    argumentsValue: [8, 2],
-    returnValue: 4,
+    argumentsValues: [
+      { type: "int", value: 8 },
+      { type: "int", value: 2 },
+    ],
+    returnValue: {
+      type: "int",
+      value: 4,
+    },
     returnPrecision: 0,
   },
   {
     id: "stdinTests_id_3",
     testName: "div(10, 3) should be 3.3333",
     functionName: "div",
-    argumentsValue: [10, 3],
-    returnValue: 3.3333,
+    argumentsValues: [
+      { type: "int", value: 10 },
+      { type: "int", value: 3 },
+    ],
+    returnValue: {
+      type: "float",
+      value: 3.3333,
+    },
     returnPrecision: 4,
   },
 ];
