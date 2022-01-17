@@ -1564,18 +1564,12 @@ caniuse-lite@^1.0.30001280, caniuse-lite@^1.0.30001282, caniuse-lite@^1.0.300012
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001299.tgz#d753bf6444ed401eb503cbbe17aa3e1451b5a68c"
   integrity sha512-iujN4+x7QzqA2NCSrS5VUy+4gLmRd4xv6vbBBsmfVqTx8bLAD8097euLqQgKxSVLvxjSDcvF1T/i9ocgnUFexw==
 
-carbon-components-svelte@^0.44.5:
-  version "0.44.5"
-  resolved "https://registry.yarnpkg.com/carbon-components-svelte/-/carbon-components-svelte-0.44.5.tgz#3db2fb8f75a4aa48a86033e9bd52ea0f07c49fcd"
-  integrity sha512-kuTBjoz1LuaTa+9VYkUORE+fei9VAkzYEQJqaIdlgu9FAk43BjmdK+7swAoOPdDmaM5pcES7UBZUwe+b9AoLMQ==
+carbon-components-svelte@^0.51.0:
+  version "0.51.3"
+  resolved "https://registry.yarnpkg.com/carbon-components-svelte/-/carbon-components-svelte-0.51.3.tgz#76cddddd2ca2d4c91063a76504afec114d6e4042"
+  integrity sha512-d2CmC0abuZCU+jBEgwgoOiq/R3AqZftUyBiishujLV71W/2/C7SQzIIXJPY7kCVl1bydvGikrFPPgkUb70jL+w==
   dependencies:
-    carbon-icons-svelte "^10.36.0"
     flatpickr "4.6.9"
-
-carbon-icons-svelte@^10.36.0:
-  version "10.38.0"
-  resolved "https://registry.yarnpkg.com/carbon-icons-svelte/-/carbon-icons-svelte-10.38.0.tgz#daf74e4a2a826ad994c950a67307b8392d80ca3a"
-  integrity sha512-uEckbbNHFtDzKz+QRx6GxvZcezXXqfDOiaE7mupkiRPkBbALrA9CPJZbI5Q2XW5mpn8lgN3IlTm2u1iJEAlVJw==
 
 carbon-preprocess-svelte@0.6.0:
   version "0.6.0"
@@ -1684,7 +1678,7 @@ color-name@~1.1.4:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
-colorette@^1.2.1, colorette@^1.2.2:
+colorette@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
   integrity sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
@@ -3843,7 +3837,7 @@ postcss-value-parser@^4.2.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@8.4.5:
+postcss@8.4.5, postcss@^8.4.5:
   version "8.4.5"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.5.tgz#bae665764dfd4c6fcc24dc0fdf7e7aa00cc77f95"
   integrity sha512-jBDboWM8qpaqwkMwItqTQTiFikhs/67OYVvblFFTM7MrZjt6yMKd6r2kgXizEbTTljacm4NldIlZnhbjr84QYg==
@@ -3856,15 +3850,6 @@ postcss@^8.3.5:
   version "8.4.4"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.4.tgz#d53d4ec6a75fd62557a66bb41978bf47ff0c2869"
   integrity sha512-joU6fBsN6EIer28Lj6GDFoC/5yOZzLCfn0zHAn/MYXI7aPt4m4hK5KC5ovEZXy+lnCjmYIbQWngvju2ddyEr8Q==
-  dependencies:
-    nanoid "^3.1.30"
-    picocolors "^1.0.0"
-    source-map-js "^1.0.1"
-
-postcss@^8.4.5:
-  version "8.4.5"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.5.tgz#bae665764dfd4c6fcc24dc0fdf7e7aa00cc77f95"
-  integrity sha512-jBDboWM8qpaqwkMwItqTQTiFikhs/67OYVvblFFTM7MrZjt6yMKd6r2kgXizEbTTljacm4NldIlZnhbjr84QYg==
   dependencies:
     nanoid "^3.1.30"
     picocolors "^1.0.0"
