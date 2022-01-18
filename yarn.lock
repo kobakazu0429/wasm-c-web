@@ -799,10 +799,10 @@
     eslint-plugin-prettier "4.0.0"
     prettier "2.5.1"
 
-"@kobakazu0429/test@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@kobakazu0429/test/-/test-1.0.6.tgz#8f21fd72e62b81e0da18d7d678b564bf330e6e13"
-  integrity sha512-AQxAndvaYMN0HgJcHd/pscqz1roIkSrIauMDhDTOrSjhM8O7xjq6mGN8mpaU50G/xnG8rv+7y+kIBaSxCFMIAw==
+"@kobakazu0429/test@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@kobakazu0429/test/-/test-1.0.7.tgz#b278d98d832665537098d99194eadca0e8e6eebe"
+  integrity sha512-eECEc53IgYFv9lBfT871nEA9L96Pzg6d/FqrhE+QBYxW1S7BTCjDAAZ2n8mwUfpl1lPwK6nzjuwrHcTd1s0+0A==
 
 "@kobakazu0429/wasmer-wasi@^0.12.0-internal":
   version "0.12.0-internal"
