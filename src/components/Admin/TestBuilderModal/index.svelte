@@ -22,6 +22,7 @@
     currentModal,
     resetCurrentModal,
     argumentsValueAdder,
+    buildingTestsDeleter,
   } from "../../../stores/admin";
   import { ulid } from "ulid";
 
@@ -33,6 +34,11 @@
   };
 
   const confirm = () => {
+    const id = $currentModal.id;
+    const isUpdate = id !== "";
+    if (isUpdate) {
+      buildingTestsDeleter(id);
+    }
     buildingTestsAdd();
     resetCurrentModal();
     closeTestBuilderModal();
