@@ -32,6 +32,18 @@ export const formatCode = async () => {
   await e?.getAction("editor.action.formatDocument").run();
 };
 
+const createFilename = () => {
+  const now = new Date();
+  const yyyy = String(now.getFullYear());
+  const MM = String(now.getMonth() + 1).padStart(2, "0");
+  const dd = String(now.getDate()).padStart(2, "0");
+  const HH = String(now.getHours()).padStart(2, "0");
+  const mm = String(now.getMinutes()).padStart(2, "0");
+  const ss = String(now.getSeconds()).padStart(2, "0");
+  const f = String(now.getMilliseconds()).padStart(3, "0");
+  return yyyy + MM + dd + "_" + HH + mm + ss + f;
+};
+
 export const downloadCode = () => {
   const { code } = getCode();
   if (!code) redToast("code is nothing ?");
@@ -40,10 +52,7 @@ export const downloadCode = () => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   document.body.appendChild(a);
-  const filename = new Date()
-    .toLocaleString()
-    .replaceAll(/\/|:/g, "")
-    .replaceAll(" ", "_");
+  const filename = createFilename();
   a.download = filename + ".c";
   a.href = url;
   a.click();
