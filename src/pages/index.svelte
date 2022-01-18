@@ -68,8 +68,12 @@
   </div>
 
   <ButtonSet class="header-buttons" style="width:100%;">
-    <Button size="small" kind="secondary" on:click={newFile}
-      >{$_("header.new_file")}</Button
+    <Button
+      size="small"
+      kind="secondary"
+      on:click={() => {
+        if (window.confirm($_("header.new_file_confirm"))) newFile();
+      }}>{$_("header.new_file")}</Button
     >
     <Button size="small" kind="secondary" on:click={compile}
       >{$_("header.compile")}</Button

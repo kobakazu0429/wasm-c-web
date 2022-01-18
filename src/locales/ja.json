@@ -9,7 +9,8 @@
     "format": "整形",
     "download": "ダウンロード",
     "fullscreen_editor": "全画面",
-    "setting": "設定"
+    "setting": "設定",
+    "new_file_confirm": "現在のコードおよびテストは消去されます。よろしいですか？"
   },
   "right_accordion": {
     "console": "コンソール (標準入力 / 標準出力 / 標準エラー出力)",

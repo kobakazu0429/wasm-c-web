@@ -9,7 +9,8 @@
     "format": "Format",
     "download": "Download",
     "fullscreen_editor": "Full Screen",
-    "setting": "Settings"
+    "setting": "Settings",
+    "new_file_confirm": "Current code and tests will be removed. Are you sure ?"
   },
   "right_accordion": {
     "console": "Console (stdin / stdout / stderr)",
