@@ -51,7 +51,7 @@ export const argumentsValueDeleter = (index: number) => {
   });
 };
 
-const defaultModalValues: TestForModal = {
+export const currentModal = writable<TestForModal>({
   id: "",
   testName: "",
   functionName: "",
@@ -61,12 +61,18 @@ const defaultModalValues: TestForModal = {
     value: "",
   },
   returnPrecision: "0",
-};
-
-export const currentModal = writable<TestForModal>(
-  JSON.parse(JSON.stringify(defaultModalValues))
-);
+});
 
 export const resetCurrentModal = () => {
-  currentModal.set(JSON.parse(JSON.stringify(defaultModalValues)));
+  currentModal.set({
+    id: "",
+    testName: "",
+    functionName: "",
+    argumentsValues: [],
+    returnValue: {
+      type: "void",
+      value: "",
+    },
+    returnPrecision: "0",
+  });
 };
