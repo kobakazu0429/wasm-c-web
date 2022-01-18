@@ -81,7 +81,8 @@ export const recoveryCode = (): RecoveryCode => {
   const previousCode = getPreviousCode();
   const code = previousCode?.code ?? exampleCode;
   const filename = previousCode?.filename ?? `${ulid()}.c`;
-  return { code, filename };
+  const tests = previousCode?.tests;
+  return { code, filename, tests };
 };
 
 export const escapeCode = (rawCode: string) => {

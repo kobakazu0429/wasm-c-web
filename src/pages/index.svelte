@@ -21,6 +21,7 @@
   import CompileLog from "../components/CompileLog.svelte";
   import Console from "../components/Console/Console.svelte";
   import TestResult from "../components/TestResult.svelte";
+  import TestContent from "../components/TestContent.svelte";
   import OverflowMenu from "../components/OverflowMenu.svelte";
   import { enableFullScreenEditor } from "../editor/fullscreen";
   import { registerShortcuts } from "../shortcuts";
@@ -72,7 +73,10 @@
       size="small"
       kind="secondary"
       on:click={() => {
-        if (window.confirm($_("header.new_file_confirm"))) newFile();
+        if (window.confirm($_("header.new_file_confirm"))) {
+          newFile();
+          accordionOpen.update((p) => ({ ...p, testContent: false }));
+        }
       }}>{$_("header.new_file")}</Button
     >
     <Button size="small" kind="secondary" on:click={compile}
@@ -151,6 +155,7 @@
             <div slot="title">
               <h5>{$_("right_accordion.test_content")}</h5>
             </div>
+            <TestContent />
           </AccordionItem>
         </Accordion>
       </Column>
