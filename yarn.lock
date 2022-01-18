@@ -4409,6 +4409,11 @@ svelte-i18n@^3.3.13:
     sade "^1.7.4"
     tiny-glob "^0.2.6"
 
+svelte-loadable@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/svelte-loadable/-/svelte-loadable-1.5.1.tgz#0048e740a386f1826e5ab88cdfde943fbd3fcb7f"
+  integrity sha512-vQd9Wj4wfEuMF/LkbYkqyGbgNkeVOURIPHWhPtC4Cxds0g/2jUFPRdjbMs/gji4bj30B87GubrkQgRf8xItw5g==
+
 svelte-preprocess@4.10.2:
   version "4.10.2"
   resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.10.2.tgz#2405689e57161916947b8360679051a56eddd5c6"

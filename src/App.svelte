@@ -1,22 +1,13 @@
-<script lang="ts">
+<script>
   import { Router, Route } from "svelte-routing";
-
-  let Index: any;
-  let Admin: any;
-
-  import("./pages/index.svelte").then((m) => (Index = m.default));
-  import("./pages/admin.svelte").then((m) => (Admin = m.default));
+  import Loadable from "svelte-loadable";
 </script>
 
 <Router>
-  <Route path="/" let:location>
-    {#if Admin}
-      <svelte:component this={Index} {location} />
-    {/if}
+  <Route path="/admin" let:params>
+    <Loadable loader={() => import("./pages/admin.svelte")} />
   </Route>
-  <Route path="/admin">
-    {#if Admin}
-      <svelte:component this={Admin} />
-    {/if}
+  <Route path="/" let:location>
+    <Loadable loader={() => import("./pages/index.svelte")} {location} />
   </Route>
 </Router>
