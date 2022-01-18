@@ -29,11 +29,17 @@
   />
   <OverflowMenuItem
     text={$_("overflow_menu.load_basic")}
-    on:click={() => setCode(basic)}
+    on:click={() => {
+      setCode(basic);
+      updateUrlParams({ code: basic, tests: undefined });
+    }}
   />
   <OverflowMenuItem
     text={$_("overflow_menu.load_peakLoadTest")}
-    on:click={() => setCode(peakLoadTest)}
+    on:click={() => {
+      setCode(peakLoadTest);
+      updateUrlParams({ code: peakLoadTest, tests: undefined });
+    }}
   />
   <OverflowMenuItem
     text={$_("overflow_menu.open_introduction_modal")}
