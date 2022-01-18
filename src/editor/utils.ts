@@ -21,10 +21,12 @@ export const setCode = (code: string) => {
 };
 
 export const newFile = () => {
-  clearCode();
-  setCode("");
+  // call function order is important !
+  // DO NOT Change or Consider
   resetUrl();
+  setCode("");
   lzStore.set("");
+  clearCode();
 };
 
 export const formatCode = async () => {

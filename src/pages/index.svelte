@@ -75,7 +75,6 @@
       on:click={() => {
         if (window.confirm($_("header.new_file_confirm"))) {
           newFile();
-          accordionOpen.update((p) => ({ ...p, testContent: false }));
         }
       }}>{$_("header.new_file")}</Button
     >
