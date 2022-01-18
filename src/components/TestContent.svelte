@@ -7,9 +7,17 @@
     StructuredListCell,
     StructuredListBody,
   } from "carbon-components-svelte";
+  import { onMount } from "svelte";
 
-  import { recoveryCode } from "../editor/utils";
-  const { tests } = recoveryCode();
+  import { recoveryCode, type RecoveryCode } from "../editor/utils";
+  import { lz } from "../store";
+  let tests: RecoveryCode["tests"];
+  onMount(() => {
+    tests = recoveryCode().tests;
+  });
+  lz.subscribe(() => {
+    tests = recoveryCode().tests;
+  });
 </script>
 
 <Tile light style="width:100%; line-height: normal;">
