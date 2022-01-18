@@ -1,6 +1,6 @@
 import type { RecoveryCode } from "./editor/utils";
 import { navigate } from "svelte-routing";
-import { compressLzString } from "./compression";
+import { compressLzString, decompressLzString } from "./compression";
 
 export const resetUrl = () => {
   navigate("/");
@@ -18,7 +18,9 @@ export const updateUrlParams = (params: Partial<RecoveryCode>) => {
   const currentParams = new URLSearchParams(window.location.search);
   const currentLzString = currentParams.get("data");
   if (currentLzString) {
-    const currentLz: Partial<RecoveryCode> = JSON.parse(currentLzString);
+    const currentLz: Partial<RecoveryCode> = JSON.parse(
+      decompressLzString(currentLzString)
+    );
     const updateParams = compressLzString(
       JSON.stringify({ ...currentLz, ...params })
     );

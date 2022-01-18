@@ -21,10 +21,12 @@ export const setCode = (code: string) => {
 };
 
 export const newFile = () => {
-  clearCode();
-  setCode("");
+  // call function order is important !
+  // DO NOT Change or Consider
   resetUrl();
+  setCode("");
   lzStore.set("");
+  clearCode();
 };
 
 export const formatCode = async () => {
@@ -81,7 +83,8 @@ export const recoveryCode = (): RecoveryCode => {
   const previousCode = getPreviousCode();
   const code = previousCode?.code ?? exampleCode;
   const filename = previousCode?.filename ?? `${ulid()}.c`;
-  return { code, filename };
+  const tests = previousCode?.tests;
+  return { code, filename, tests };
 };
 
 export const escapeCode = (rawCode: string) => {

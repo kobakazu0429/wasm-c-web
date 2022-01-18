@@ -7,77 +7,57 @@
     StructuredListCell,
     StructuredListBody,
   } from "carbon-components-svelte";
+  import { onMount } from "svelte";
 
-  export const testData = {
-    title: "function",
-    tests: [
-      {
-        title: "sum",
-        tests: [
-          {
-            name: "sum(1, 2) should be 3",
-            functionName: "sum",
-            input: [1, 2],
-            expect: 3,
-          },
-        ],
-      },
-      {
-        title: "div",
-        tests: [
-          {
-            name: "div(8, 2) should be 4",
-            functionName: "div",
-            input: [8, 2],
-            expect: 4,
-          },
-          {
-            name: "div(10, 3) should be 3.3333",
-            functionName: "div",
-            input: [10, 3],
-            expect: 3.3333,
-          },
-        ],
-      },
-    ],
-  };
+  import { recoveryCode, type RecoveryCode } from "../editor/utils";
+  import { lz } from "../store";
+  let tests: RecoveryCode["tests"];
+  onMount(() => {
+    tests = recoveryCode().tests;
+  });
+  lz.subscribe(() => {
+    tests = recoveryCode().tests;
+  });
 </script>
 
 <Tile light style="width:100%; line-height: normal;">
-  <StructuredList border>
-    <StructuredListHead>
-      <StructuredListRow head>
-        <StructuredListCell head>Title</StructuredListCell>
-        <StructuredListCell head>Function Name</StructuredListCell>
-        <StructuredListCell head>Description</StructuredListCell>
-      </StructuredListRow>
-    </StructuredListHead>
-    <StructuredListBody>
-      <!-- {#each (testData["tests"]) as t}
-        <StructuredListRow>
-          <StructuredListCell>function</StructuredListCell>
-          <StructuredListCell>{t.functionName}</StructuredListCell>
-          <StructuredListCell>
-            {t.name}
-          </StructuredListCell>
+  {#if tests}
+    <StructuredList border>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>TestName</StructuredListCell>
+          <StructuredListCell head>Function Name</StructuredListCell>
+          <StructuredListCell head>argumentsValues</StructuredListCell>
+          <StructuredListCell head>returnValue</StructuredListCell>
+          <StructuredListCell head>returnPrecision</StructuredListCell>
         </StructuredListRow>
-      {/each} -->
-
-      <StructuredListRow>
-        <StructuredListCell>function</StructuredListCell>
-        <StructuredListCell>sum</StructuredListCell>
-        <StructuredListCell>sum(1, 2) should be 3</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListRow>
-        <StructuredListCell>function</StructuredListCell>
-        <StructuredListCell>div</StructuredListCell>
-        <StructuredListCell>div(8, 2) should be 4</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListRow>
-        <StructuredListCell>function</StructuredListCell>
-        <StructuredListCell>div</StructuredListCell>
-        <StructuredListCell>div(10, 3) should be 3.3333</StructuredListCell>
-      </StructuredListRow>
-    </StructuredListBody>
-  </StructuredList>
+      </StructuredListHead>
+      <StructuredListBody>
+        {#each tests as t}
+          <StructuredListRow>
+            <StructuredListCell>{t.testName}</StructuredListCell>
+            <StructuredListCell>{t.functionName}</StructuredListCell>
+            <StructuredListCell
+              >{t.argumentsValues
+                .map((a) => `(${a.type}) ${a.value}`)
+                .join(", ")}</StructuredListCell
+            >
+            <StructuredListCell
+              >({t.returnValue.type}) {t.returnValue.value}</StructuredListCell
+            >
+            <StructuredListCell>{t.returnPrecision}</StructuredListCell>
+          </StructuredListRow>
+        {/each}
+      </StructuredListBody>
+    </StructuredList>
+  {:else}
+    <span>no test</span>
+  {/if}
 </Tile>
+
+<style>
+  :global(.bx--structured-list-tbody
+      .bx--structured-list-row):not(:last-child) {
+    border-bottom: 1px solid #c6c6c6;
+  }
+</style>
