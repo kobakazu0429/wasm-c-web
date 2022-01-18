@@ -177,7 +177,7 @@
         "builder": {
           "title": "Create Tests",
           "description": "description",
-          "create_test": "Create Test",
+          "create_test": "Create or Edit Test",
           "delete_all": "Delete All",
           "delete_all_confirm": "Delete All, Right ?",
           "delete": "Delete",

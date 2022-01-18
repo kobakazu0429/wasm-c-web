@@ -168,7 +168,7 @@
         "builder": {
           "title": "テストの作成",
           "description": "説明",
-          "create_test": "テストの新規作成",
+          "create_test": "テストの新規作成/編集",
           "delete_all": "全て削除",
           "delete_all_confirm": "全て削除しますか？",
           "delete": "削除",
