@@ -27,6 +27,7 @@ export const test = async () => {
   try {
     testsSchema.parse(tests);
   } catch (error) {
+    console.error(error);
     redToast(_("runner.test.invalid"));
     return;
   }
