@@ -63,8 +63,7 @@ export const testResultOut = (s: string) => {
 const padding = (n: number, length: number) => {
   return String(n).padStart(length, "0");
 };
-export const compileLog = writable("");
-export const compileLogOut = (s: string) => {
+export const getTimeForDisplay = () => {
   const time = new Date();
   const hh = padding(time.getHours(), 2);
   const mm = padding(time.getMinutes(), 2);
@@ -72,7 +71,11 @@ export const compileLogOut = (s: string) => {
   const ms = padding(time.getMilliseconds(), 3);
 
   const displayTime = `[${hh}:${mm}:${ss}.${ms}] `;
-  compileLog.set(displayTime + s);
+  return displayTime;
+};
+export const compileLog = writable("");
+export const compileLogOut = (s: string) => {
+  compileLog.set(getTimeForDisplay() + s);
 };
 
 export const editor = writable<Editor.IStandaloneCodeEditor | null>(null);

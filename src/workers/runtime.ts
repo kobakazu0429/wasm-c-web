@@ -8,7 +8,7 @@ import type { Node } from "memfs/lib/node";
 import { get } from "svelte/store";
 import type { Test } from "../test";
 import { testBuilder } from "../test";
-import { settings as _settings } from "../store";
+import { getTimeForDisplay, settings as _settings } from "../store";
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
@@ -64,6 +64,7 @@ export const startWasiTask = async (
     ...wasi.getImports(module),
   });
 
+  consolePrintln(getTimeForDisplay() + "\n");
   wasi.start(instance);
 
   const stdout = await wasmFs.getStdOut();
