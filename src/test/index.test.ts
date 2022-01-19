@@ -5,8 +5,8 @@ import type { Test } from "./index";
 const tests: Test[] = [
   {
     id: "1",
-    testName: "sum(1, 2) should be 3",
-    functionName: "sum",
+    testName: "add(1, 2) should be 3",
+    functionName: "add",
     argumentsValues: [
       { type: "int", value: 1 },
       { type: "int", value: 2 },
@@ -27,7 +27,7 @@ const tests: Test[] = [
   },
 ];
 
-// function sum(a: number, b: number) {
+// function add(a: number, b: number) {
 //   return a + b;
 // }
 
@@ -37,7 +37,7 @@ const tests: Test[] = [
 
 describe("jest", () => {
   test.skip("testBuilder", async () => {
-    // testBuilder(tests, { sum, div })();
+    // testBuilder(tests, { add, div })();
     const result = await run();
     expect(constructResultsHTML(result)).toMatchInlineSnapshot();
   });

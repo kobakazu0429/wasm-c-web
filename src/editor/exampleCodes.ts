@@ -11,7 +11,7 @@ int main() {
 
 export const stdin = `#include <stdio.h>
 
-int sum(int a, int b) {
+int add(int a, int b) {
   return a + b;
 }
 
@@ -25,7 +25,7 @@ int main() {
   scanf("%d", &y);
 
   // function
-  printf("%d + %d = %d\\n", x, y, sum(x, y));
+  printf("%d + %d = %d\\n", x, y, add(x, y));
   printf("%d / %d = %3.2f\\n", x, y, div(x, y));
 }
 `;
@@ -33,8 +33,8 @@ int main() {
 export const stdinTests: Test[] = [
   {
     id: "stdinTests_id_1",
-    testName: "sum(1, 2) should be 3",
-    functionName: "sum",
+    testName: "add(1, 2) should be 3",
+    functionName: "add",
     argumentsValues: [
       { type: "int", value: 1 },
       { type: "int", value: 2 },
@@ -79,7 +79,7 @@ export const basic = `#include <stdio.h>
 #define foo 123
 #define bar 456
 
-int sum(int a, int b) {
+int add(int a, int b) {
   return a + b;
 }
 
@@ -121,7 +121,7 @@ int main() {
   printf("&x = %p, &y = %p\\n", &x, &y);
 
   // function
-  printf("%d + %d = %d\\n", x, y, sum(x, y));
+  printf("%d + %d = %d\\n", x, y, add(x, y));
   greet("kazu");
 
   // recursive
