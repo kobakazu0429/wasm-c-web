@@ -4,7 +4,6 @@ import { decompressLzString } from "../compression";
 import { editor, lz as lzStore, monacoEditorCode } from "../store";
 import { redToast } from "../toast";
 import { clearCode, getPreviousCode } from "./../localStorage/index";
-import { stdin as exampleCode } from "../editor/exampleCodes";
 import { resetUrl } from "../url";
 import type { Test } from "../test";
 
@@ -81,7 +80,7 @@ export const recoveryCode = (): RecoveryCode => {
     }
   }
   const previousCode = getPreviousCode();
-  const code = previousCode?.code ?? exampleCode;
+  const code = previousCode?.code ?? "";
   const filename = previousCode?.filename ?? `${ulid()}.c`;
   const tests = previousCode?.tests;
   return { code, filename, tests };
