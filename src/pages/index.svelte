@@ -78,14 +78,29 @@
         }
       }}>{$_("header.new_file")}</Button
     >
-    <Button size="small" kind="secondary" on:click={compile}
-      >{$_("header.compile")}</Button
+    <Button
+      size="small"
+      kind="secondary"
+      on:click={() => {
+        formatCode();
+        compile();
+      }}>{$_("header.compile")}</Button
     >
-    <Button size="small" kind="secondary" on:click={run}
-      >{$_("header.run")}</Button
+    <Button
+      size="small"
+      kind="secondary"
+      on:click={() => {
+        formatCode();
+        run();
+      }}>{$_("header.run")}</Button
     >
-    <Button size="small" kind="secondary" on:click={test}
-      >{$_("header.test")}</Button
+    <Button
+      size="small"
+      kind="secondary"
+      on:click={() => {
+        formatCode();
+        test();
+      }}>{$_("header.test")}</Button
     >
     <Button size="small" kind="secondary" on:click={formatCode}
       >{$_("header.format")}</Button
