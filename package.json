@@ -21,7 +21,7 @@
     "@rollup/plugin-alias": "3.1.9",
     "@rollup/plugin-commonjs": "21.0.1",
     "@rollup/plugin-node-resolve": "13.1.3",
-    "@sveltejs/vite-plugin-svelte": "1.0.0-next.34",
+    "@sveltejs/vite-plugin-svelte": "1.0.0-next.35",
     "@tsconfig/svelte": "3.0.0",
     "@types/jest": "27.4.0",
     "@types/node": "16.11.21",
