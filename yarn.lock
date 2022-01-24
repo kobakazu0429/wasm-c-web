@@ -490,10 +490,10 @@
   dependencies:
     vscode-jsonrpc "^6.0.0"
 
-"@codingame/monaco-languageclient@^0.14.0":
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/@codingame/monaco-languageclient/-/monaco-languageclient-0.14.0.tgz#d5cf712e5ee58159ec443f821503dbf8287badb8"
-  integrity sha512-4KBN/GmfXqALSORrCC6O1gKPpRHvA1pi2Psma/VniG1vPpAsUHQunfL1mGOw3OWd9W1v1yRZzt+wnHB1P14UuA==
+"@codingame/monaco-languageclient@^0.17.0":
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/@codingame/monaco-languageclient/-/monaco-languageclient-0.17.3.tgz#5b63239d730576b0958030dba0af1c92c41cad30"
+  integrity sha512-MTfLZPR73BUGmRy27iDR8qXXsEYbi1niPr14//ZduEReJd68bw0+bc87XmmBMtYxCLiZ8/6Hk0b2H2LaCRydhg==
   dependencies:
     glob-to-regexp "^0.4.1"
     vscode-jsonrpc "6.0.0"
