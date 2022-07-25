@@ -55,7 +55,7 @@
     "@zerodevx/svelte-toast": "^0.7.0",
     "asyncify-wasm": "^1.2.1",
     "carbon-components-svelte": "^0.52.0",
-    "carbon-icons-svelte": "^10.44.3",
+    "carbon-icons-svelte": "^11.0.0",
     "comlink": "^4.3.1",
     "just-debounce-it": "^3.0.1",
     "lz-string": "https://github.com/pieroxy/lz-string",
