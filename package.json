@@ -34,7 +34,7 @@
     "postcss": "8.4.16",
     "rollup": "2.77.3",
     "rollup-plugin-svelte": "7.1.0",
-    "rollup-plugin-visualizer": "5.7.1",
+    "rollup-plugin-visualizer": "5.8.3",
     "svelte": "3.49.0",
     "svelte-check": "2.8.1",
     "svelte-preprocess": "4.10.7",
