@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: "es2019",
     rollupOptions: {
+      strictDeprecations: true,
       input: {
         main: path.resolve(__dirname, "index.html"),
       },
