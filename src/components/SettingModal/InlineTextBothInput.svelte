@@ -1,7 +1,7 @@
 <script lang="ts">
   import { TextInput } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
-  import Close24 from "carbon-icons-svelte/lib/Close24";
+  import Close from "carbon-icons-svelte/lib/Close.svelte";
 
   export let key: string;
   export let value: string;
@@ -11,9 +11,12 @@
 <div class="inline">
   <TextInput bind:value={key} placeholder="key" />
   <TextInput bind:value placeholder="value" />
-  <Button kind="danger-ghost" size="small" hasIconOnly on:click={handleRemove}>
-    <Close24 />
-  </Button>
+  <Button
+    kind="danger-ghost"
+    size="small"
+    icon={Close}
+    on:click={handleRemove}
+  />
 </div>
 
 <style>

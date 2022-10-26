@@ -3,7 +3,7 @@
   import { Select, SelectItem } from "carbon-components-svelte";
   import { TextInput } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
-  import Close24 from "carbon-icons-svelte/lib/Close24";
+  import Close from "carbon-icons-svelte/lib/Close.svelte";
   import { cTypes } from "../../../test/cTypes";
 
   export let type: string;
@@ -19,9 +19,7 @@
   </Select>
   <TextInput hideLabel bind:value />
   {#if handleRemove}
-    <Button kind="danger-ghost" hasIconOnly on:click={handleRemove}>
-      <Close24 />
-    </Button>
+    <Button kind="danger-ghost" on:click={handleRemove} icon={Close} />
   {/if}
 </div>
 

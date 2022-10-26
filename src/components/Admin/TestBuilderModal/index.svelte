@@ -13,7 +13,7 @@
   import { _ } from "svelte-i18n";
   import { Modal } from "carbon-components-svelte";
   import { TextInput, Button } from "carbon-components-svelte";
-  import AddAlt32 from "carbon-icons-svelte/lib/AddAlt32";
+  import AddAlt from "carbon-icons-svelte/lib/AddAlt.svelte";
   import Arguments from "./Arguments.svelte";
   import ReturnValue from "./CTypeValue.svelte";
 
@@ -89,8 +89,7 @@
     <Button
       iconDescription={$_("setting_modal.add")}
       tooltipPosition="right"
-      hasIconOnly
-      icon={AddAlt32}
+      icon={AddAlt}
       on:click={argumentsValueAdder}
     />
   </div>

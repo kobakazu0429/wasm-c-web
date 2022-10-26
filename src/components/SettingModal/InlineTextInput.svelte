@@ -1,7 +1,7 @@
 <script lang="ts">
   import { TextInput, Toggle } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
-  import Close24 from "carbon-icons-svelte/lib/Close24";
+  import Close from "carbon-icons-svelte/lib/Close.svelte";
 
   export let fixed: boolean = false;
   export let deleteIconVisible: boolean = false;
@@ -31,12 +31,10 @@
     <Button
       kind="danger-ghost"
       size="small"
-      hasIconOnly
+      icon={Close}
       disabled={fixed}
       on:click={handleRemove}
-    >
-      <Close24 />
-    </Button>
+    />
   {/if}
 </div>
 

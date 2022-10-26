@@ -12,7 +12,7 @@
   import { Modal } from "carbon-components-svelte";
   import { Tabs, Tab, TabContent } from "carbon-components-svelte";
   import { Button } from "carbon-components-svelte";
-  import AddAlt32 from "carbon-icons-svelte/lib/AddAlt32";
+  import AddAlt from "carbon-icons-svelte/lib/AddAlt.svelte";
   import InlineTextInput from "./InlineTextInput.svelte";
   import InlineTextBothInput from "./InlineTextBothInput.svelte";
   import { settings, settingsAdder, settingsRemover } from "../../store";
@@ -28,7 +28,7 @@
   ]);
 
   type DropdownEvent = Parameters<
-    Parameters<typeof Dropdown["prototype"]["$on"]>[1]
+    NonNullable<Parameters<typeof Dropdown["prototype"]["$on"]>[1]>
   >[0];
 
   const onSelectLanguage = (e: DropdownEvent) => {
@@ -57,7 +57,7 @@
         <Dropdown
           type="inline"
           titleText={$_("setting_modal.language.title")}
-          selectedIndex={0}
+          selectedId="0"
           items={languages}
           on:select={onSelectLanguage}
         />
@@ -87,8 +87,7 @@
         <Button
           iconDescription={$_("setting_modal.add")}
           tooltipPosition="right"
-          hasIconOnly
-          icon={AddAlt32}
+          icon={AddAlt}
           on:click={() => settingsAdder("env")}
         />
       </TabContent>
@@ -108,8 +107,7 @@
         <Button
           iconDescription={$_("setting_modal.add")}
           tooltipPosition="right"
-          hasIconOnly
-          icon={AddAlt32}
+          icon={AddAlt}
           on:click={() => settingsAdder("argvs")}
         />
       </TabContent>
