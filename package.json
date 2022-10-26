@@ -23,7 +23,7 @@
     "@rollup/plugin-node-resolve": "13.3.0",
     "@sveltejs/vite-plugin-svelte": "1.0.9",
     "@tsconfig/svelte": "3.0.0",
-    "@types/jest": "27.5.2",
+    "@types/jest": "28.1.8",
     "@types/node": "16.11.68",
     "@types/wicg-file-system-access": "2020.9.5",
     "@wessberg/rollup-plugin-ts": "2.0.4",
