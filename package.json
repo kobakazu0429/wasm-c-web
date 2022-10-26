@@ -36,7 +36,7 @@
     "rollup-plugin-svelte": "7.1.0",
     "rollup-plugin-visualizer": "5.7.1",
     "svelte": "3.49.0",
-    "svelte-check": "2.8.1",
+    "svelte-check": "2.9.2",
     "svelte-preprocess": "4.10.7",
     "ts-jest": "28.0.8",
     "tslib": "2.4.0",
