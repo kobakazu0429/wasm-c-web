@@ -20,7 +20,7 @@
     "@kobakazu0429/eslint-config-typescript-svelte": "3.1.1",
     "@rollup/plugin-alias": "3.1.9",
     "@rollup/plugin-commonjs": "22.0.2",
-    "@rollup/plugin-node-resolve": "13.3.0",
+    "@rollup/plugin-node-resolve": "14.1.0",
     "@sveltejs/vite-plugin-svelte": "1.0.9",
     "@tsconfig/svelte": "3.0.0",
     "@types/jest": "27.5.2",
