@@ -38,10 +38,11 @@
     "svelte": "3.49.0",
     "svelte-check": "2.8.1",
     "svelte-preprocess": "4.10.7",
+    "terser": "^5.15.1",
     "ts-jest": "28.0.8",
     "tslib": "2.4.0",
-    "typescript": "4.7.4",
-    "vite": "2.9.15"
+    "typescript": "4.8.4",
+    "vite": "3.2.0"
   },
   "dependencies": {
     "@codingame/monaco-jsonrpc": "^0.3.1",
