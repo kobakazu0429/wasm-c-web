@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => ({
         }),
       ],
     },
-    minify: mode === "production"
+    minify: mode === "production",
   },
 
   resolve: {
@@ -44,6 +44,6 @@ export default defineConfig(({ mode }) => ({
       emitCss: false,
       preprocess: [sveltePreprocess(), optimizeImports()],
     }),
-    mode === "production" && optimizeCss({ safelist: { greedy: [/xterm/] } })
+    mode === "production" && optimizeCss({ safelist: { greedy: [/xterm/] } }),
   ],
 }));
