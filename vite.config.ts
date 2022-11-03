@@ -1,9 +1,9 @@
-import { defineConfig } from "vite";
+import { defineConfig, type PluginOption } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import sveltePreprocess from "svelte-preprocess";
 import { optimizeImports, optimizeCss } from "carbon-preprocess-svelte";
-import autoprefixer from "autoprefixer";
+// import autoprefixer from "autoprefixer";
 import path from "path";
 
 export default defineConfig(({ mode }) => ({
@@ -14,36 +14,30 @@ export default defineConfig(({ mode }) => ({
       input: {
         main: path.resolve(__dirname, "index.html"),
       },
-      plugins: [
-        visualizer({
-          open: true,
-          gzipSize: true,
-          brotliSize: true,
-        }),
-      ],
     },
     minify: mode === "production",
   },
 
-  resolve: {
-    alias: {
-      vscode: require.resolve(
-        "@codingame/monaco-languageclient/lib/vscode-compatibility"
-      ),
-    },
-  },
-
-  css: {
-    postCss: {
-      plugins: [autoprefixer()],
-    },
-  },
+  // css: {
+  //   postCss: {
+  //     plugins: [autoprefixer],
+  //   },
+  // },
 
   plugins: [
+    mode === "production" &&
+      (visualizer({
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+      }) as PluginOption),
+
     svelte({
       emitCss: false,
       preprocess: [sveltePreprocess(), optimizeImports()],
     }),
-    mode === "production" && optimizeCss({ safelist: { greedy: [/xterm/] } }),
+
+    mode === "production" &&
+      (optimizeCss({ safelist: { greedy: [/xterm/] } }) as PluginOption),
   ],
 }));

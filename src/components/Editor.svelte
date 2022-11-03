@@ -1,36 +1,34 @@
 <script lang="ts">
+  import * as monaco from "monaco-editor";
   import debounce from "just-debounce-it";
-  import loader from "@monaco-editor/loader";
-  import { listen } from "@codingame/monaco-jsonrpc";
-  import {
-    MonacoLanguageClient,
-    CloseAction,
-    ErrorAction,
-    MonacoServices,
-    createConnection,
-  } from "@codingame/monaco-languageclient";
-  import type { MessageConnection } from "@codingame/monaco-languageclient";
-  import normalizeUrl from "normalize-url";
-  import ReconnectingWebSocket from "reconnecting-websocket";
-  import type { Options as ReconnectingWebSocketOptions } from "reconnecting-websocket";
+  import { MonacoServices } from "monaco-languageclient";
   import { editor, editorRef, monacoEditorCode } from "../store";
   import { onMount, onDestroy } from "svelte";
   import { setupFullscreenEditor } from "../editor/fullscreen";
   import { saveCodeStorage } from "../localStorage";
   import { getCode, recoveryCode } from "../editor/utils";
-  loader.config({ "vs/nls": { availableLanguages: { "*": "ja" } } });
+  import { connectLanguageServer } from "../editor/lsp";
 
-  const { code, filename } = recoveryCode();
+  const willDestroyCallbacks: Array<() => void> = [];
 
-  monacoEditorCode.update(() => code);
+  onDestroy(() => {
+    willDestroyCallbacks.forEach((cb) => {
+      cb();
+    });
+  });
 
-  loader.init().then((monaco) => {
-    // register Monaco languages
+  onMount(() => {
+    setupFullscreenEditor();
+    connectLanguageServer();
+    const { code, filename } = recoveryCode();
+    monacoEditorCode.update(() => code);
+
     monaco.languages.register({
       id: "c",
       extensions: [".c"],
     });
-    const newEditor = monaco.editor.create(document.querySelector("#editor")!, {
+
+    const newEditor = monaco.editor.create($editorRef!, {
       language: "c",
       model: monaco.editor.createModel(
         code,
@@ -41,6 +39,8 @@
       scrollbar: {
         arrowSize: 11,
       },
+      tabSize: 2,
+      insertSpaces: true,
       fontSize: 16,
       wordWrap: "on",
       minimap: {
@@ -49,14 +49,17 @@
       lineNumbers: "on",
       automaticLayout: true,
     });
-    newEditor.updateOptions({ tabSize: 2 });
     newEditor.onDidChangeModelContent((_event: any) => {
       const value = newEditor.getValue();
       // props.onChangeValue(value);
       monacoEditorCode.update(() => value);
     });
     editor.set(newEditor);
-    MonacoServices.install(monaco);
+
+    const { dispose: monacoServicesDisposae } = MonacoServices.install(
+      monaco as any
+    );
+    willDestroyCallbacks.push(() => monacoServicesDisposae());
     // console.log(monaco.languages.getLanguages());
     // @ts-ignore
     // console.log(newEditor._themeService._knownThemes);
@@ -70,63 +73,6 @@
     //   // const offset = newEditor.getOffsetForColumn(p.lineNumber, p.column);
     //   newEditor.dispose();
     // };
-
-    const url = createUrl("/lsp");
-    const webSocket = createWebSocket(url);
-    // listen when the web socket is opened
-    listen({
-      webSocket: webSocket as any,
-      onConnection: (connection: any) => {
-        // create and start the language client
-        const languageClient = createLanguageClient(connection);
-        const disposable = languageClient.start();
-        connection.onClose(() => disposable.dispose());
-      },
-    });
-
-    function createLanguageClient(
-      connection: MessageConnection
-    ): MonacoLanguageClient {
-      return new MonacoLanguageClient({
-        name: "Sample Language Client",
-        clientOptions: {
-          // use a language id as a document selector
-          documentSelector: ["c"],
-          // disable the default error handler
-          errorHandler: {
-            error: () => ErrorAction.Continue,
-            closed: () => CloseAction.DoNotRestart,
-          },
-        },
-        // create a language client connection from the JSON RPC connection on demand
-        connectionProvider: {
-          get: (errorHandler, closeHandler) => {
-            return Promise.resolve(
-              createConnection(connection, errorHandler, closeHandler)
-            );
-          },
-        },
-      });
-    }
-
-    function createUrl(path: string): string {
-      const protocol = location.protocol === "https:" ? "wss" : "ws";
-      return normalizeUrl(
-        `${protocol}://${import.meta.env.VITE_API_SERVER_DOMAIN}${path}`
-      );
-    }
-
-    function createWebSocket(url: string) {
-      const socketOptions: ReconnectingWebSocketOptions = {
-        maxReconnectionDelay: 10000,
-        minReconnectionDelay: 1000,
-        reconnectionDelayGrowFactor: 1.3,
-        connectionTimeout: 10000,
-        maxRetries: Infinity,
-        debug: false,
-      };
-      return new ReconnectingWebSocket(url, [], socketOptions);
-    }
 
     willDestroyCallbacks.push(() => {
       monaco.editor.getModels().forEach((model) => model.dispose());
@@ -144,18 +90,6 @@
     newEditor.getModel()?.onDidChangeContent(() => {
       debouncedGetCode();
     });
-  });
-
-  let willDestroyCallbacks: any[] = [];
-
-  onDestroy(() => {
-    willDestroyCallbacks.forEach((cb) => {
-      cb();
-    });
-  });
-
-  onMount(() => {
-    setupFullscreenEditor();
   });
 </script>
 
