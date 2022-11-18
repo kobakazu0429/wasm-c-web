@@ -42,7 +42,7 @@
     "ts-jest": "29.0.3",
     "tslib": "2.4.1",
     "typescript": "4.8.4",
-    "vite": "3.2.3"
+    "vite": "3.2.4"
   },
   "dependencies": {
     "@kobakazu0429/test": "1.0.10",
