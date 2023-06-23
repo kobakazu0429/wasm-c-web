@@ -35,7 +35,7 @@
     "rollup": "3.2.5",
     "rollup-plugin-svelte": "7.1.0",
     "rollup-plugin-visualizer": "5.8.3",
-    "svelte": "3.52.0",
+    "svelte": "3.59.2",
     "svelte-check": "2.9.2",
     "svelte-preprocess": "4.10.7",
     "terser": "^5.15.1",
