@@ -7,6 +7,25 @@ import { optimizeImports, optimizeCss } from "carbon-preprocess-svelte";
 import path from "path";
 
 export default defineConfig(({ mode }) => ({
+  server: {
+    proxy: {
+      "/compile": {
+        target:
+          mode === "production"
+            ? "https://compiler.kaz.dev"
+            : "http://localhost:8081",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/compile/, ""),
+      },
+      "/lsp": {
+        target:
+          mode === "production" ? "wss://lsp.kaz.dev" : "ws://localhost:8082",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/lsp/, ""),
+      },
+    },
+  },
+
   build: {
     target: "es2019",
     rollupOptions: {

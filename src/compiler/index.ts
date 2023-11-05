@@ -15,16 +15,14 @@ type Response =
 export async function compiler(src: string) {
   compileLogOut(_("compiler.start"));
 
-  const param = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: JSON.stringify({ src }),
-  };
-
   const res = await (
-    await fetch(`${import.meta.env.VITE_API_SERVER_URL}/compile`, param)
+    await fetch("/compile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ src }),
+    })
   ).json();
 
   compileLogOut(_("compiler.finished"));
