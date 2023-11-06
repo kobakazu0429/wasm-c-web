@@ -56,8 +56,9 @@
 </Tile>
 
 <style>
-  :global(.bx--structured-list-tbody
-      .bx--structured-list-row):not(:last-child) {
+  :global(.bx--structured-list-tbody .bx--structured-list-row):not(
+      :last-child
+    ) {
     border-bottom: 1px solid #c6c6c6;
   }
 </style>

@@ -28,7 +28,7 @@
   ]);
 
   type DropdownEvent = Parameters<
-    NonNullable<Parameters<typeof Dropdown["prototype"]["$on"]>[1]>
+    NonNullable<Parameters<(typeof Dropdown)["prototype"]["$on"]>[1]>
   >[0];
 
   const onSelectLanguage = (e: DropdownEvent) => {
