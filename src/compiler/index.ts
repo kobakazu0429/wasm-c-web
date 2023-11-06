@@ -16,7 +16,7 @@ export async function compiler(src: string) {
   compileLogOut(_("compiler.start"));
 
   const res = await (
-    await fetch("/compile", {
+    await fetch(import.meta.env.VITE_COMPILER_API, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

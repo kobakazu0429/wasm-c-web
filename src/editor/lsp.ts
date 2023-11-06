@@ -15,7 +15,7 @@ import ReconnectingWebSocket, {
 } from "reconnecting-websocket";
 
 export const connectLanguageServer = () => {
-  const url = normalizeUrl(`${location.origin}/lsp`);
+  const url = normalizeUrl(import.meta.env.VITE_LSP_API);
   const webSocket = createWebSocket(url);
   webSocket.onopen = async () => {
     const socket = toSocket(webSocket as any);
