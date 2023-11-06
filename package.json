@@ -29,7 +29,7 @@
     "@wessberg/rollup-plugin-ts": "2.0.4",
     "autoprefixer": "10.4.13",
     "carbon-preprocess-svelte": "0.10.0",
-    "eslint": "8.26.0",
+    "eslint": "8.52.0",
     "postcss": "8.4.19",
     "rollup": "3.29.4",
     "rollup-plugin-svelte": "7.1.6",
