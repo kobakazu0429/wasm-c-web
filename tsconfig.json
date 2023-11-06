@@ -11,7 +11,7 @@
     "useDefineForClassFields": true,
     "noUncheckedIndexedAccess": true,
     "resolveJsonModule": true,
-    "types": ["vite/client", "@types/jest"]
+    "types": ["vite/client"]
   },
   "include": [
     "src/**/*.d.ts",
