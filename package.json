@@ -24,7 +24,7 @@
     "@rollup/plugin-node-resolve": "15.2.3",
     "@sveltejs/vite-plugin-svelte": "2.4.6",
     "@tsconfig/svelte": "5.0.2",
-    "@types/node": "18.11.19",
+    "@types/node": "20.8.10",
     "@types/wicg-file-system-access": "2023.10.2",
     "@wessberg/rollup-plugin-ts": "2.0.4",
     "autoprefixer": "10.4.16",
