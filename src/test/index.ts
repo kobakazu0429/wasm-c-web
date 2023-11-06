@@ -35,7 +35,7 @@ export type TestForModal = Omit<
 export const testBuilder = (
   tests: Test[],
   functions: Record<string, CallableFunction>,
-  memoryBuffer: Buffer
+  memoryBuffer: ArrayBuffer
 ) => {
   return () => {
     tests.forEach((t) => {

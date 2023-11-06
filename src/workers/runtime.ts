@@ -109,7 +109,7 @@ type Pointer = number;
 export class Memory {
   private static offset = 0;
 
-  static registerString(buf: Buffer, str: string): Pointer {
+  static registerString(buf: ArrayBuffer, str: string): Pointer {
     const pointer = this.offset;
     const { length } = str;
 
@@ -125,7 +125,7 @@ export class Memory {
     return pointer + 4;
   }
 
-  static registerChar(buf: Buffer, value: string | number): Pointer {
+  static registerChar(buf: ArrayBuffer, value: string | number): Pointer {
     const pointer = this.offset;
     new Int8Array(buf, this.offset, 1).set(
       typeof value === "number" ? [value] : encoder.encode(value)
@@ -134,7 +134,7 @@ export class Memory {
     return pointer;
   }
 
-  static readStringFromPointer(buf: Buffer, pointer: Pointer) {
+  static readStringFromPointer(buf: ArrayBuffer, pointer: Pointer) {
     const view = new DataView(buf);
     const stringLength = view.getUint32(pointer - 4, true);
     console.log(stringLength);
