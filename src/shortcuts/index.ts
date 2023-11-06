@@ -1,5 +1,5 @@
 import { escapeCode, recoveryCode } from "./../editor/utils";
-import tinykeys from "tinykeys";
+import { tinykeys } from "tinykeys";
 import debounce from "just-debounce-it";
 import { saveCodeStorage } from "../localStorage/index";
 import { formatCode, getCode, newFile as newFileFn } from "../editor/utils";
