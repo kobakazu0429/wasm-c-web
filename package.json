@@ -49,7 +49,7 @@
     "@kobakazu0429/xterm-local-echo": "^0.0.3",
     "@wasmer/wasm-transformer": "^0.12.0",
     "@wasmer/wasmfs": "^0.12.0",
-    "@zerodevx/svelte-toast": "^0.8.0",
+    "@zerodevx/svelte-toast": "^0.9.0",
     "asyncify-wasm": "^1.2.1",
     "carbon-components-svelte": "^0.70.12",
     "carbon-icons-svelte": "^11.4.0",
