@@ -79,12 +79,11 @@
         ["br"],
         [
           "list",
-          "Author: National Institute of Technology (KOSEN), Kure College, Electrical Engineering and Information Science, 5th Kazuhiro Kobatake"
+          "Author: National Institute of Technology (KOSEN), Kure College, Advanced Course, Project Design Engineering, Kazuhiro Kobatake"
         ],
-        ["list", "Contact: E17-sspt@kure.kosen-ac.jp"],
-        ["link", "https://twitter.com/kobakazu0429", "Twitter: @kobakazu0429"],
+        ["list", "Contact: S22-itjh@kure.kosen-ac.jp"],
         ["br"],
-        ["list-right", "2021, senior thesis"]
+        ["list-right", "2023, Senior Thesis"]
       ],
       "shortcuts": [
         ["list", "For Mac users, should replace Control with Command"],

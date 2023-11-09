@@ -74,11 +74,13 @@
         ["list", "このページは右上の「︙」からいつでも閲覧可能です。"],
         ["br"],
         ["br"],
-        ["list", "作成者：呉工業高等専門学校　電気情報工学科　5年　小畠 一泰"],
-        ["list", "連絡先：E17-sspt@kure.kosen-ac.jp"],
-        ["link", "https://twitter.com/kobakazu0429", "Twitter：@kobakazu0429"],
+        [
+          "list",
+          "作成者：呉工業高等専門学校　専攻科　プロジェクトデザイン工学専攻　2年　小畠 一泰"
+        ],
+        ["list", "連絡先：S22-itjh@kure.kosen-ac.jp"],
         ["br"],
-        ["list-right", "2021年度　卒業研究"]
+        ["list-right", "卒業研究"]
       ],
       "shortcuts": [
         ["list", "Macの人は Control を Command に読み換えてください"],
