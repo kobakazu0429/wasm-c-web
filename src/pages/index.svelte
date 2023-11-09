@@ -26,6 +26,7 @@
   import { enableFullScreenEditor } from "../editor/fullscreen";
   import { registerShortcuts } from "../shortcuts";
   import { onDestroy, onMount } from "svelte";
+  import { useLocation } from "svelte-routing";
   import { downloadCode, formatCode, newFile } from "../editor/utils";
   import { compile } from "../runners/compile";
   import { run } from "../runners/exec";
@@ -46,11 +47,10 @@
     unregisterShortcuts();
   });
 
-  export let location: Location;
-
+  const location = useLocation();
   $: {
-    if (location) {
-      const params = new URLSearchParams(location.search);
+    if ($location.search) {
+      const params = new URLSearchParams($location.search);
       const lz = params.get("data");
       lzStore.set(lz);
     }

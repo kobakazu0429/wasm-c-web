@@ -5,6 +5,6 @@
 </script>
 
 <Router>
-  <Route path="/" let:location><Index {location} /></Route>
+  <Route path="/"><Index /></Route>
   <Route path="/admin"><Admin /></Route>
 </Router>
