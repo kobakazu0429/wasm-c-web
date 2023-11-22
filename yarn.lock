@@ -1143,9 +1143,9 @@ caniuse-lite@^1.0.30001538, caniuse-lite@^1.0.30001541:
   integrity sha512-NTt0DNoKe958Q0BE0j0c1V9jbUzhBxHIEJy7asmGrpE0yG63KTV7PLHPnK2E1O9RsQrQ081I3NLuXGS6zht3cw==
 
 carbon-components-svelte@^0.82.0:
-  version "0.82.0"
-  resolved "https://registry.yarnpkg.com/carbon-components-svelte/-/carbon-components-svelte-0.82.0.tgz#4d825d3dee20dc4ad1cab09dfcb4ea26fb125293"
-  integrity sha512-bGwWj1I7MAKX+ypnA3txREAf74ZgvyP+VEWAxmVgNnOduX6wmCn3HOLIbZo/Nh+qsxxypJAgIOl5XdGh77PB3w==
+  version "0.82.4"
+  resolved "https://registry.yarnpkg.com/carbon-components-svelte/-/carbon-components-svelte-0.82.4.tgz#a66ab9ea021b64ed3e41fd07087413cef01c74e6"
+  integrity sha512-fuqMl+KNJXMlGhuwK4M11ZnGcbHF6nR7TOiiq6UJr5ALCCen4jk71sMAOurUWbOTOVe4DXM4z+Sb6/BV/Gf1Ag==
   dependencies:
     flatpickr "4.6.9"
 
@@ -3233,10 +3233,10 @@ svelte-routing@^2.0.0:
   resolved "https://registry.yarnpkg.com/svelte-routing/-/svelte-routing-2.6.0.tgz#479a89467dddc4d02d368177a4e4f597c3d0677f"
   integrity sha512-j25QWdWUzVMDCclxT2mIy7Xto/s2qcC9zpxCZzGE5WS42xo+xT9QQOtNFEXVHqVHEkJjaCOdL7LvHb320FypKw==
 
-svelte@4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-4.2.3.tgz#4e77f7d528a543a0d516af00bc9b3131f01a2721"
-  integrity sha512-sqmG9KC6uUc7fb3ZuWoxXvqk6MI9Uu4ABA1M0fYDgTlFYu1k02xp96u6U9+yJZiVm84m9zge7rrA/BNZdFpOKw==
+svelte@4.2.5:
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-4.2.5.tgz#f50ae5aa3d60dab3c89ddd8c5ee0c2985eba3f9c"
+  integrity sha512-P9YPKsGkNdw4OJbtpd1uzimQHPj7Ai2sPcOHmmD6VgkFhFDmcYevQi7vE4cQ1g8/Vs64aL2TwMoCNFAzv7TPaQ==
   dependencies:
     "@ampproject/remapping" "^2.2.1"
     "@jridgewell/sourcemap-codec" "^1.4.15"
