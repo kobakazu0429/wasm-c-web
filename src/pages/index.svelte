@@ -34,6 +34,7 @@
   import { accordionOpen, lz as lzStore } from "../store";
   import { initI18n } from "../i18n";
   import { visited } from "../localStorage";
+  import { metricsSend } from "../metrics";
 
   initI18n();
 
@@ -75,6 +76,7 @@
       size="small"
       kind="secondary"
       on:click={() => {
+        metricsSend("header.new_file");
         if (window.confirm($_("header.new_file_confirm"))) {
           newFile();
         }
@@ -86,6 +88,7 @@
       on:click={() => {
         formatCode();
         compile();
+        metricsSend("header.compile");
       }}>{$_("header.compile")}</Button
     >
     <Button
@@ -94,6 +97,7 @@
       on:click={() => {
         formatCode();
         run();
+        metricsSend("header.run");
       }}>{$_("header.run")}</Button
     >
     <Button
@@ -102,25 +106,42 @@
       on:click={() => {
         formatCode();
         test();
+        metricsSend("header.test");
       }}>{$_("header.test")}</Button
     >
-    <Button size="small" kind="secondary" on:click={formatCode}
-      >{$_("header.format")}</Button
+    <Button
+      size="small"
+      kind="secondary"
+      on:click={() => {
+        formatCode();
+        metricsSend("header.format");
+      }}>{$_("header.format")}</Button
     >
-    <Button size="small" kind="secondary" on:click={downloadCode}
-      >{$_("header.download")}</Button
+    <Button
+      size="small"
+      kind="secondary"
+      on:click={() => {
+        downloadCode();
+        metricsSend("header.download");
+      }}>{$_("header.download")}</Button
     >
     <OverflowMenu />
     <Button
       size="small"
       kind="secondary"
-      on:click={enableFullScreenEditor}
+      on:click={() => {
+        enableFullScreenEditor();
+        metricsSend("header.fullscreen_editor");
+      }}
       style="margin-left:auto;">{$_("header.fullscreen_editor")}</Button
     >
     <Button
       size="small"
       kind="secondary"
-      on:click={openSettingModal}
+      on:click={() => {
+        openSettingModal();
+        metricsSend("header.setting");
+      }}
       style="margin-right:16px">{$_("header.setting")}</Button
     >
   </ButtonSet>
