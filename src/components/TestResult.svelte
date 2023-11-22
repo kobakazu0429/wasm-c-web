@@ -10,6 +10,7 @@
 
 <Tile light style="width:100%; line-height: normal;">
   <div class="test-report">
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html body}
   </div>
 </Tile>
