@@ -1,21 +1,13 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { OverflowMenu, OverflowMenuItem } from "carbon-components-svelte";
-  import {
-    boilerplate,
-    stdin,
-    basic,
-    peakLoadTest,
-    stdinTests,
-  } from "../editor/exampleCodes";
+  import { boilerplate, stdin, basic, peakLoadTest, stdinTests } from "../editor/exampleCodes";
   import { setCode } from "../editor/utils";
   import { openIntroductionModal } from "./IntroductionModal/index.svelte";
   import { updateUrlParams } from "../url";
 </script>
 
-<OverflowMenu
-  style="background-color:#6f6f6f; color: white; box-shadow: -0.0625rem 0 0 0 #161616;"
->
+<OverflowMenu style="background-color:#6f6f6f; color: white; box-shadow: -0.0625rem 0 0 0 #161616;">
   <OverflowMenuItem
     text={$_("overflow_menu.load_boilerplate")}
     on:click={() => setCode(boilerplate)}

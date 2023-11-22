@@ -5,7 +5,7 @@
     StructuredListHead,
     StructuredListRow,
     StructuredListCell,
-    StructuredListBody,
+    StructuredListBody
   } from "carbon-components-svelte";
   import { onMount } from "svelte";
 
@@ -42,9 +42,7 @@
                 .map((a) => `(${a.type}) ${a.value}`)
                 .join(", ")}</StructuredListCell
             >
-            <StructuredListCell
-              >({t.returnValue.type}) {t.returnValue.value}</StructuredListCell
-            >
+            <StructuredListCell>({t.returnValue.type}) {t.returnValue.value}</StructuredListCell>
             <StructuredListCell>{t.returnPrecision}</StructuredListCell>
           </StructuredListRow>
         {/each}
@@ -56,9 +54,7 @@
 </Tile>
 
 <style>
-  :global(.bx--structured-list-tbody .bx--structured-list-row):not(
-      :last-child
-    ) {
+  :global(.bx--structured-list-tbody .bx--structured-list-row):not(:last-child) {
     border-bottom: 1px solid #c6c6c6;
   }
 </style>

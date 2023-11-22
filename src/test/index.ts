@@ -11,7 +11,7 @@ const testSchema = z
     functionName: z.string().nonempty(),
     argumentsValues: cTypesSchema.array(),
     returnValue: cTypesSchema,
-    returnPrecision: z.union([z.number(), z.null()]),
+    returnPrecision: z.union([z.number(), z.null()])
   })
   .strict();
 
@@ -20,10 +20,7 @@ export const testsSchema = testSchema.array();
 export type Test = z.infer<typeof testSchema>;
 
 type Type = CTypesSchema["type"];
-export type TestForModal = Omit<
-  Test,
-  "argumentsValues" | "returnValue" | "returnPrecision"
-> & {
+export type TestForModal = Omit<Test, "argumentsValues" | "returnValue" | "returnPrecision"> & {
   argumentsValues: Array<{ type: Type; value: string }>;
   returnValue: {
     type: Type;
@@ -43,9 +40,7 @@ export const testBuilder = (
         const myfunction = functions[t.functionName];
 
         if (!myfunction)
-          throw new Error(
-            "Unable function name or Not found. Check your code or test cases."
-          );
+          throw new Error("Unable function name or Not found. Check your code or test cases.");
 
         const argumentsValues = t.argumentsValues
           .map((s) => {
@@ -79,23 +74,14 @@ export const testBuilder = (
         ) {
           expect(returnValue).toBe(t.returnValue.value);
         } else {
-          expect(returnValue).toBeCloseTo(
-            t.returnValue.value,
-            t.returnPrecision
-          );
+          expect(returnValue).toBeCloseTo(t.returnValue.value, t.returnPrecision);
         }
       });
     });
   };
 };
 
-const cTypeConverter = ({
-  type,
-  value,
-}: {
-  type: Type;
-  value: string;
-}): CTypesSchema => {
+const cTypeConverter = ({ type, value }: { type: Type; value: string }): CTypesSchema => {
   switch (type) {
     case "int":
     case "unsigned char":
@@ -108,13 +94,13 @@ const cTypeConverter = ({
     case "char(number)":
       return {
         type,
-        value: parseInt(value),
+        value: parseInt(value)
       };
 
     case "char(ascii)":
       return {
         type,
-        value,
+        value
       };
 
     case "char[]":
@@ -132,7 +118,7 @@ export const testForModalToTestConverter = (test: TestForModal): Test => {
     ...test,
     argumentsValues,
     returnValue: cTypeConverter(test.returnValue),
-    returnPrecision: test.returnPrecision ? Number(test.returnPrecision) : null,
+    returnPrecision: test.returnPrecision ? Number(test.returnPrecision) : null
   };
   return convertedTest;
 };
@@ -142,12 +128,12 @@ export const TestToTestForModalConverter = (test: Test): TestForModal => {
     ...test,
     argumentsValues: test.argumentsValues.map(({ type, value }) => ({
       type,
-      value: String(value),
+      value: String(value)
     })),
     returnValue: {
       type: test.returnValue.type,
-      value: String(test.returnValue.value ?? ""),
+      value: String(test.returnValue.value ?? "")
     },
-    returnPrecision: String(test.returnPrecision ?? ""),
+    returnPrecision: String(test.returnPrecision ?? "")
   };
 };

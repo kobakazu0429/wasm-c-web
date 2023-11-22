@@ -45,7 +45,7 @@ export const startWasiTask = async (
     env,
     bindings: {
       ...WASI.defaultBindings,
-      fs: wasmFs.fs,
+      fs: wasmFs.fs
     },
 
     stdin: {
@@ -54,14 +54,14 @@ export const startWasiTask = async (
         if (!input.endsWith("\n")) input += "\n";
         const buffer = encoder.encode(input);
         return buffer;
-      },
-    },
+      }
+    }
   });
 
   const lowered_wasm = await lowerI64Imports(wasmBinary);
   const module = await WebAssembly.compile(lowered_wasm);
   const instance = await Asyncify.instantiate(module, {
-    ...wasi.getImports(module),
+    ...wasi.getImports(module)
   });
 
   consolePrintln(getTimeForDisplay() + "\n");
@@ -82,14 +82,14 @@ export const testWasi = async (wasmBinary: Uint8Array, tests: Test[]) => {
   const wasi = new WASI({
     bindings: {
       ...WASI.defaultBindings,
-      fs: wasmFs.fs,
-    },
+      fs: wasmFs.fs
+    }
   });
 
   const lowered_wasm = await lowerI64Imports(wasmBinary);
   const module = await WebAssembly.compile(lowered_wasm);
   const instance = await Asyncify.instantiate(module, {
-    ...wasi.getImports(module),
+    ...wasi.getImports(module)
   });
 
   // @ts-expect-error

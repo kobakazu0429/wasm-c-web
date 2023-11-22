@@ -9,7 +9,7 @@ export const initI18n = () => {
   addMessages("ja", ja as any);
   init({
     fallbackLocale: "en",
-    initialLocale: "ja",
+    initialLocale: "ja"
   });
 };
 

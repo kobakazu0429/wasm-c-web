@@ -24,16 +24,12 @@ interface SavedCode {
   tests?: Test[];
 }
 
-export const saveCodeStorage = (
-  filename: string,
-  data: string,
-  tests?: Test[]
-) => {
+export const saveCodeStorage = (filename: string, data: string, tests?: Test[]) => {
   store.local.set(CODE_KEY, {
     timestamp: Date.now(),
     filename,
     code: data,
-    tests,
+    tests
   });
 };
 
@@ -55,7 +51,7 @@ export const visited = () => {
   } else {
     store.local.set(USER_KEY, {
       version: USER_VERSION,
-      id: import.meta.env.DEV ? "__I_AM_DEV_USER__" : ulid(),
+      id: import.meta.env.DEV ? "__I_AM_DEV_USER__" : ulid()
     });
   }
 };

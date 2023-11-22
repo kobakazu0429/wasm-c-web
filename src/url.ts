@@ -18,12 +18,8 @@ export const updateUrlParams = (params: Partial<RecoveryCode>) => {
   const currentParams = new URLSearchParams(window.location.search);
   const currentLzString = currentParams.get("data");
   if (currentLzString) {
-    const currentLz: Partial<RecoveryCode> = JSON.parse(
-      decompressLzString(currentLzString)
-    );
-    const updateParams = compressLzString(
-      JSON.stringify({ ...currentLz, ...params })
-    );
+    const currentLz: Partial<RecoveryCode> = JSON.parse(decompressLzString(currentLzString));
+    const updateParams = compressLzString(JSON.stringify({ ...currentLz, ...params }));
     rewriteUrlParams([["data", updateParams]]);
   } else {
     const updateParams = compressLzString(JSON.stringify(params));

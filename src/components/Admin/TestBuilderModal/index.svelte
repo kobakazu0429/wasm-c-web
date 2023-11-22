@@ -22,14 +22,14 @@
     currentModal,
     resetCurrentModal,
     argumentsValueAdder,
-    buildingTestsDeleter,
+    buildingTestsDeleter
   } from "../../../stores/admin";
   import { ulid } from "ulid";
 
   const buildingTestsAdd = () => {
     buildingTestsAdder({
       ...$currentModal,
-      id: ulid(),
+      id: ulid()
     });
   };
 

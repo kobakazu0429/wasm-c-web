@@ -20,7 +20,10 @@
     --color-pass: #3dbc59;
     --spacing-tight: 0.5em;
 
-    font: 100% Consolas, Monaco, monospace;
+    font:
+      100% Consolas,
+      Monaco,
+      monospace;
     color: white;
     box-sizing: border-box;
     line-height: 1.5em;

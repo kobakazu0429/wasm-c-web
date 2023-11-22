@@ -21,7 +21,7 @@ const KEYS = {
   SHIFT: "Shift",
   SPACE: "Space",
   ENTER: "Enter",
-  ESCAPE: "Escape",
+  ESCAPE: "Escape"
 } as const;
 
 const joinKeyBinding = (keys: string[]) => keys.join("+");
@@ -43,7 +43,7 @@ const saveCode = debouncer(() => {
       JSON.stringify({
         filename,
         code: escapeCode(code),
-        tests,
+        tests
       })
     );
     rewriteUrlParams([["data", params]]);
@@ -88,6 +88,6 @@ export const registerShortcuts = () => {
     [joinKeyBinding([KEYS.MOD, KEYS.SHIFT, "l"])]: (e) => {
       e.preventDefault();
       test();
-    },
+    }
   });
 };

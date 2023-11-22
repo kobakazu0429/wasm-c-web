@@ -6,7 +6,7 @@ import {
   compiledData,
   consolePrintln,
   monacoEditorCode,
-  settings as settingsStore,
+  settings as settingsStore
 } from "../store";
 import { compile } from "./compile";
 import { STATUS_CODE } from "./status";
@@ -27,10 +27,7 @@ export const run = async () => {
 
   const settings = get(settingsStore);
   const timeoutMs =
-    parseInt(
-      settings.config.find((e) => e.key === "timeout [ms]")?.value as string,
-      10
-    ) || 3000;
+    parseInt(settings.config.find((e) => e.key === "timeout [ms]")?.value as string, 10) || 3000;
   const controller = new AbortController();
   let timeouterId: NodeJS.Timeout;
   const timeouter = (ms: number) => {
@@ -59,14 +56,9 @@ export const run = async () => {
   normalToast(_("runner.exec.running"));
 
   const runtimeWorker = new RuntimeWorker();
-  const runtimeWorkerComlink =
-    Comlink.wrap<RuntimeWorkerExposes>(runtimeWorker);
+  const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(runtimeWorker);
   const task = runtimeWorkerComlink
-    .startWasiTask(
-      module,
-      Comlink.proxy(consolePrintln),
-      Comlink.proxy(readLine)
-    )
+    .startWasiTask(module, Comlink.proxy(consolePrintln), Comlink.proxy(readLine))
     .then(() => "done");
 
   controller.signal.addEventListener("abort", () => {

@@ -15,14 +15,14 @@ export const metricsSend = async (type: MetricsType) => {
   const res = await fetch(import.meta.env.VITE_METRICS_API, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       user,
       metrics: {
-        type,
-      },
-    }),
+        type
+      }
+    })
   });
 
   console.log(await res.json());

@@ -11,12 +11,7 @@
 <div class="inline">
   <TextInput bind:value={key} placeholder="key" />
   <TextInput bind:value placeholder="value" />
-  <Button
-    kind="danger-ghost"
-    size="small"
-    icon={Close}
-    on:click={handleRemove}
-  />
+  <Button kind="danger-ghost" size="small" icon={Close} on:click={handleRemove} />
 </div>
 
 <style>

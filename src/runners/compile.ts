@@ -6,7 +6,7 @@ import {
   compiledCode,
   compiledData,
   compileLogOut,
-  monacoEditorCode,
+  monacoEditorCode
 } from "../store";
 import { normalToast, greenToast, redToast } from "./../toast/index";
 

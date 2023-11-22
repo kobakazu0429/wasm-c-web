@@ -19,12 +19,12 @@
 
   const languages = [
     { id: "0", text: "日本語(Japanese)" },
-    { id: "1", text: "英語(English)" },
+    { id: "1", text: "英語(English)" }
   ];
 
   const languagesIdLocalMap = new Map([
     ["0", "ja"],
-    ["1", "en"],
+    ["1", "en"]
   ]);
 
   type DropdownEvent = Parameters<

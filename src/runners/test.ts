@@ -5,7 +5,7 @@ import {
   compiledCode,
   compiledData,
   monacoEditorCode,
-  testResultOut,
+  testResultOut
 } from "../store";
 import { compile } from "./compile";
 import { STATUS_CODE } from "./status";
@@ -44,14 +44,13 @@ export const test = async () => {
     ...p,
     console: false,
     testResult: true,
-    testContent: true,
+    testContent: true
   }));
 
   normalToast(_("runner.test.start"));
 
   const runtimeWorker = new RuntimeWorker();
-  const runtimeWorkerComlink =
-    Comlink.wrap<RuntimeWorkerExposes>(runtimeWorker);
+  const runtimeWorkerComlink = Comlink.wrap<RuntimeWorkerExposes>(runtimeWorker);
   const result = await runtimeWorkerComlink.testWasi(module, tests);
   const html = constructResultsHTML(result);
   testResultOut(html);

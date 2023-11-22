@@ -16,10 +16,8 @@
     <!-- {:else if typeof value === "number"} -->
   {:else if typeof value === "boolean"}
     <div class="bx--text-input__label-helper-wrapper">
-      <label
-        for=""
-        class="bx--label bx--label--inline"
-        style="margin-top: 0.8125rem;">{labelText}</label
+      <label for="" class="bx--label bx--label--inline" style="margin-top: 0.8125rem;"
+        >{labelText}</label
       >
     </div>
     <Toggle bind:toggled={value} />

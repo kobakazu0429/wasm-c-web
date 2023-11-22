@@ -1,17 +1,13 @@
-import {
-  toSocket,
-  WebSocketMessageReader,
-  WebSocketMessageWriter,
-} from "vscode-ws-jsonrpc";
+import { toSocket, WebSocketMessageReader, WebSocketMessageWriter } from "vscode-ws-jsonrpc";
 import {
   MonacoLanguageClient,
   CloseAction,
   ErrorAction,
-  type MessageTransports,
+  type MessageTransports
 } from "monaco-languageclient";
 import normalizeUrl from "normalize-url";
 import ReconnectingWebSocket, {
-  type Options as ReconnectingWebSocketOptions,
+  type Options as ReconnectingWebSocketOptions
 } from "reconnecting-websocket";
 
 export const connectLanguageServer = () => {
@@ -23,16 +19,14 @@ export const connectLanguageServer = () => {
     const writer = new WebSocketMessageWriter(socket);
     const languageClient = createLanguageClient({
       reader,
-      writer,
+      writer
     });
     languageClient.start();
     reader.onClose(async () => await languageClient.stop());
   };
 };
 
-const createLanguageClient = (
-  transports: MessageTransports
-): MonacoLanguageClient => {
+const createLanguageClient = (transports: MessageTransports): MonacoLanguageClient => {
   return new MonacoLanguageClient({
     name: "Sample Language Client",
     clientOptions: {
@@ -41,14 +35,14 @@ const createLanguageClient = (
       // disable the default error handler
       errorHandler: {
         error: () => ({ action: ErrorAction.Continue }),
-        closed: () => ({ action: CloseAction.DoNotRestart }),
-      },
+        closed: () => ({ action: CloseAction.DoNotRestart })
+      }
     },
     connectionProvider: {
       get(_encoding) {
         return Promise.resolve(transports);
-      },
-    },
+      }
+    }
   });
 };
 
@@ -59,7 +53,7 @@ const createWebSocket = (url: string): ReconnectingWebSocket => {
     reconnectionDelayGrowFactor: 1.3,
     connectionTimeout: 10000,
     maxRetries: Infinity,
-    debug: false,
+    debug: false
   };
   return new ReconnectingWebSocket(url, [], socketOptions);
 };

@@ -8,8 +8,8 @@ export const greenToast = (msg: string) => {
   toast.push(msg, {
     theme: {
       "--toastBackground": "#48BB78",
-      "--toastBarBackground": "#2F855A",
-    },
+      "--toastBarBackground": "#2F855A"
+    }
   });
 };
 
@@ -17,7 +17,7 @@ export const redToast = (msg: string) => {
   toast.push(msg, {
     theme: {
       "--toastBackground": "#F56565",
-      "--toastBarBackground": "#C53030",
-    },
+      "--toastBarBackground": "#C53030"
+    }
   });
 };

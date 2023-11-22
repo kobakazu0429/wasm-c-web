@@ -19,9 +19,9 @@ export async function compiler(src: string) {
     await fetch(import.meta.env.VITE_COMPILER_API, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({ src }),
+      body: JSON.stringify({ src })
     })
   ).json();
 

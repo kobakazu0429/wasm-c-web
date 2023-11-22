@@ -7,7 +7,7 @@
     OverflowMenu,
     OverflowMenuItem,
     Toolbar,
-    ToolbarContent,
+    ToolbarContent
   } from "carbon-components-svelte";
   import {
     buildingTests,
@@ -15,34 +15,33 @@
     buildingTestsDeleter,
     displayBuildingTestsTable,
     currentModal,
-    resetCurrentModal,
+    resetCurrentModal
   } from "../../../stores/admin";
   import { openTestBuilderModal } from "../TestBuilderModal/index.svelte";
   import { get } from "svelte/store";
   import type { Test } from "../../../test";
 
   const headers: Array<
-    | { key: Exclude<keyof Test, "id">; value: string }
-    | { key: "overflow"; empty: boolean }
+    { key: Exclude<keyof Test, "id">; value: string } | { key: "overflow"; empty: boolean }
   > = [
     { key: "testName", value: $_("admin.form.tests.test_name.label_text") },
     {
       key: "functionName",
-      value: $_("admin.form.tests.function_name.label_text"),
+      value: $_("admin.form.tests.function_name.label_text")
     },
     {
       key: "argumentsValues",
-      value: $_("admin.form.tests.arguments_value.label_text"),
+      value: $_("admin.form.tests.arguments_value.label_text")
     },
     {
       key: "returnValue",
-      value: $_("admin.form.tests.return_value.label_text"),
+      value: $_("admin.form.tests.return_value.label_text")
     },
     {
       key: "returnPrecision",
-      value: $_("admin.form.tests.return_precision.label_text"),
+      value: $_("admin.form.tests.return_precision.label_text")
     },
-    { key: "overflow", empty: true },
+    { key: "overflow", empty: true }
   ];
 
   const setToModal = (id: string) => {
@@ -67,9 +66,7 @@
         <Button
           kind="danger"
           on:click={() => {
-            const result = window.confirm(
-              $_("admin.form.tests.builder.delete_all_confirm")
-            );
+            const result = window.confirm($_("admin.form.tests.builder.delete_all_confirm"));
             if (result) buildingTestsAllDelete();
           }}
         >

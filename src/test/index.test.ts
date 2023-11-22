@@ -10,10 +10,10 @@ const tests: Test[] = [
     functionName: "add",
     argumentsValues: [
       { type: "int", value: 1 },
-      { type: "int", value: 2 },
+      { type: "int", value: 2 }
     ],
     returnValue: { type: "int", value: 3 },
-    returnPrecision: 0,
+    returnPrecision: 0
   },
   {
     id: "2",
@@ -21,11 +21,11 @@ const tests: Test[] = [
     functionName: "div",
     argumentsValues: [
       { type: "int", value: 8 },
-      { type: "int", value: 2 },
+      { type: "int", value: 2 }
     ],
     returnValue: { type: "int", value: 4 },
-    returnPrecision: 0,
-  },
+    returnPrecision: 0
+  }
 ];
 
 function add(a: number, b: number) {
@@ -77,7 +77,7 @@ describe("jest", () => {
           add: function add(a: number, b: number) {
             return a - b;
           },
-          div,
+          div
         },
         new ArrayBuffer(0)
       )();

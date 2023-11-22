@@ -16,13 +16,13 @@ export const cTypes = [
   ...numbers,
   cTypeCharAscii,
   cTypeUnsignedChar,
-  cTypeCharArray,
+  cTypeCharArray
 ] as const;
 
 const voidSchema = z
   .object({
     type: z.literal("void"),
-    value: z.null(),
+    value: z.null()
   })
   .strict();
 
@@ -30,47 +30,47 @@ const numbersSchema = z.union([
   z
     .object({
       type: z.literal(cTypeInt),
-      value: z.number().int(),
+      value: z.number().int()
     })
     .strict(),
   z
     .object({
       type: z.literal(cTypeFloat),
-      value: z.number(),
+      value: z.number()
     })
     .strict(),
   z
     .object({
       type: z.literal(cTypeDouble),
-      value: z.number(),
+      value: z.number()
     })
     .strict(),
   z
     .object({
       type: z.literal(cTypeCharNumber),
-      value: z.number().min(-128).max(127).int(),
+      value: z.number().min(-128).max(127).int()
     })
-    .strict(),
+    .strict()
 ]);
 
 const charAsciiSchema = z
   .object({
     type: z.literal(cTypeCharAscii),
-    value: z.string().max(1),
+    value: z.string().max(1)
   })
   .strict();
 
 const unsignedSchema = z
   .object({
     type: z.literal(cTypeUnsignedChar),
-    value: z.number().min(0).max(255).int(),
+    value: z.number().min(0).max(255).int()
   })
   .strict();
 
 const charArraySchema = z
   .object({
     type: z.literal(cTypeCharArray),
-    value: z.string(),
+    value: z.string()
   })
   .strict();
 
@@ -79,7 +79,7 @@ export const cTypesSchema = z.union([
   numbersSchema,
   charAsciiSchema,
   unsignedSchema,
-  charArraySchema,
+  charArraySchema
 ]);
 
 export type CTypesSchema = z.infer<typeof cTypesSchema>;

@@ -3,10 +3,7 @@
   import { TextInput, FormGroup } from "carbon-components-svelte";
   import { decompressLzString } from "../../compression";
   import { formatCode, setCode } from "../../editor/utils";
-  import {
-    buildingTestsAdder,
-    buildingTestsAllDelete,
-  } from "../../stores/admin";
+  import { buildingTestsAdder, buildingTestsAllDelete } from "../../stores/admin";
   import { testsSchema, TestToTestForModalConverter } from "../../test";
 
   export let url = "";

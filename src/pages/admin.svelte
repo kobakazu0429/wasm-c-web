@@ -1,13 +1,6 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import {
-    Header,
-    SkipToContent,
-    Content,
-    Grid,
-    Row,
-    Column,
-  } from "carbon-components-svelte";
+  import { Header, SkipToContent, Content, Grid, Row, Column } from "carbon-components-svelte";
   import { SvelteToast } from "@zerodevx/svelte-toast";
   import Editor from "../components/Editor.svelte";
   import TestBuildTable from "../components/Admin/TestsBuildTable/index.svelte";
@@ -61,9 +54,7 @@
         </div>
       </Column>
 
-      <Column
-        style="border: 2px solid #262626; border-left: 1px solid #262626; padding: 16px;"
-      >
+      <Column style="border: 2px solid #262626; border-left: 1px solid #262626; padding: 16px;">
         <div style="display: flex; flex-direction: column; height: 100%;">
           <div style="overflow-y: scroll; flex-grow: 1;">
             <TestBuildTable />

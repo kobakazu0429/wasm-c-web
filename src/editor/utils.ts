@@ -72,9 +72,7 @@ export const recoveryCode = (): RecoveryCode => {
     const decompressedLz = decompressLzString(lz);
     if (decompressedLz !== "") {
       const recovered = JSON.parse(decompressedLz) as Partial<RecoveryCode>;
-      recovered.code = recovered.code
-        ? recovered.code.replaceAll(/\r(\r)+/g, "\r")
-        : "";
+      recovered.code = recovered.code ? recovered.code.replaceAll(/\r(\r)+/g, "\r") : "";
       recovered.filename ??= `${ulid()}.c`;
       return recovered as RecoveryCode;
     }

@@ -37,13 +37,13 @@ export const stdinTests: Test[] = [
     functionName: "add",
     argumentsValues: [
       { type: "int", value: 1 },
-      { type: "int", value: 2 },
+      { type: "int", value: 2 }
     ],
     returnValue: {
       type: "int",
-      value: 3,
+      value: 3
     },
-    returnPrecision: 0,
+    returnPrecision: 0
   },
   {
     id: "stdinTests_id_2",
@@ -51,13 +51,13 @@ export const stdinTests: Test[] = [
     functionName: "div",
     argumentsValues: [
       { type: "int", value: 8 },
-      { type: "int", value: 2 },
+      { type: "int", value: 2 }
     ],
     returnValue: {
       type: "int",
-      value: 4,
+      value: 4
     },
-    returnPrecision: 0,
+    returnPrecision: 0
   },
   {
     id: "stdinTests_id_3",
@@ -65,14 +65,14 @@ export const stdinTests: Test[] = [
     functionName: "div",
     argumentsValues: [
       { type: "int", value: 10 },
-      { type: "int", value: 3 },
+      { type: "int", value: 3 }
     ],
     returnValue: {
       type: "float",
-      value: 3.3333,
+      value: 3.3333
     },
-    returnPrecision: 4,
-  },
+    returnPrecision: 4
+  }
 ];
 
 export const basic = `#include <stdio.h>

@@ -25,29 +25,25 @@
 
     monaco.languages.register({
       id: "c",
-      extensions: [".c"],
+      extensions: [".c"]
     });
 
     const newEditor = monaco.editor.create($editorRef!, {
       language: "c",
-      model: monaco.editor.createModel(
-        code,
-        "c",
-        monaco.Uri.parse(`file:///${filename}`)
-      ),
+      model: monaco.editor.createModel(code, "c", monaco.Uri.parse(`file:///${filename}`)),
       theme: "vs-dark",
       scrollbar: {
-        arrowSize: 11,
+        arrowSize: 11
       },
       tabSize: 2,
       insertSpaces: true,
       fontSize: 16,
       wordWrap: "on",
       minimap: {
-        enabled: false,
+        enabled: false
       },
       lineNumbers: "on",
-      automaticLayout: true,
+      automaticLayout: true
     });
     newEditor.onDidChangeModelContent((_event: any) => {
       const value = newEditor.getValue();
@@ -56,9 +52,7 @@
     });
     editor.set(newEditor);
 
-    const { dispose: monacoServicesDisposae } = MonacoServices.install(
-      monaco as any
-    );
+    const { dispose: monacoServicesDisposae } = MonacoServices.install(monaco as any);
     willDestroyCallbacks.push(() => monacoServicesDisposae());
     // console.log(monaco.languages.getLanguages());
     // @ts-ignore

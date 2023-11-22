@@ -10,12 +10,10 @@
     Row,
     Column,
     Accordion,
-    AccordionItem,
+    AccordionItem
   } from "carbon-components-svelte";
   import { SvelteToast } from "@zerodevx/svelte-toast";
-  import SettingModal, {
-    openSettingModal,
-  } from "../components/SettingModal/index.svelte";
+  import SettingModal, { openSettingModal } from "../components/SettingModal/index.svelte";
   import IntroductionModal from "../components/IntroductionModal/index.svelte";
   import Editor from "../components/Editor.svelte";
   import CompileLog from "../components/CompileLog.svelte";
@@ -150,45 +148,32 @@
 <Content style="background-color: #393939; height: calc(100% - 3rem);">
   <Grid fullWidth style="height: 100%;">
     <Row style="height: 100%; margin-bottom:3rem;">
-      <Column
-        style="border: 2px solid #262626; border-right: 1px solid #262626; padding:0;"
+      <Column style="border: 2px solid #262626; border-right: 1px solid #262626; padding:0;"
         ><Editor />
       </Column>
       <Column
         style="border: 2px solid #262626; border-left: 1px solid #262626; padding:16px;overflow-y: scroll;max-height: 100%;"
       >
         <Accordion>
-          <AccordionItem
-            class="full-width-accordion-item"
-            open={$accordionOpen.console}
-          >
+          <AccordionItem class="full-width-accordion-item" open={$accordionOpen.console}>
             <div slot="title">
               <h5>{$_("right_accordion.console")}</h5>
             </div>
             <Console />
           </AccordionItem>
-          <AccordionItem
-            class="full-width-accordion-item"
-            open={$accordionOpen.compileLog}
-          >
+          <AccordionItem class="full-width-accordion-item" open={$accordionOpen.compileLog}>
             <div slot="title">
               <h5>{$_("right_accordion.compile_log")}</h5>
             </div>
             <CompileLog />
           </AccordionItem>
-          <AccordionItem
-            class="full-width-accordion-item"
-            open={$accordionOpen.testResult}
-          >
+          <AccordionItem class="full-width-accordion-item" open={$accordionOpen.testResult}>
             <div slot="title">
               <h5>{$_("right_accordion.test_result")}</h5>
             </div>
             <TestResult />
           </AccordionItem>
-          <AccordionItem
-            class="full-width-accordion-item"
-            open={$accordionOpen.testContent}
-          >
+          <AccordionItem class="full-width-accordion-item" open={$accordionOpen.testContent}>
             <div slot="title">
               <h5>{$_("right_accordion.test_content")}</h5>
             </div>

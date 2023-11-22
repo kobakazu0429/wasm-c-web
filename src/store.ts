@@ -9,17 +9,17 @@ export const compiledData = writable<Uint8Array | null>(null);
 type Settings = { config: Config; env: Env; argvs: Argvs };
 export const settings = writable<Settings>({
   config: [
-    { key: "timeout [ms]", value: "3000" },
+    { key: "timeout [ms]", value: "3000" }
     // { key: "use File System", value: false },
   ],
 
   env: [
     { key: "LANG", value: "ja_JP.UTF-8" },
     { key: "HOME", value: "/home/user" },
-    { key: "USER", value: "user" },
+    { key: "USER", value: "user" }
   ],
 
-  argvs: [{ value: "./main", fixed: true }],
+  argvs: [{ value: "./main", fixed: true }]
 });
 
 export const settingsRemover = (key: keyof Settings, i: number) => {
@@ -89,7 +89,7 @@ export const accordionOpen = writable({
   console: true,
   compileLog: true,
   testResult: false,
-  testContent: false,
+  testContent: false
 });
 
 export const lz = writable<string | null>(null);

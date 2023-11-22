@@ -17,8 +17,8 @@
       cursorBlink: true,
       allowTransparency: true,
       theme: {
-        background: "rgba(0,0,0,0)",
-      },
+        background: "rgba(0,0,0,0)"
+      }
     });
     terminal.loadAddon(localEchoAddon);
     terminal.loadAddon(fitAddon);
@@ -31,11 +31,7 @@
   });
 </script>
 
-<Tile
-  light
-  style="width:100%; line-height: normal; height: 300px;"
-  id="terminal"
-/>
+<Tile light style="width:100%; line-height: normal; height: 300px;" id="terminal" />
 
 <style>
   :global(#terminal > div, #terminal > div > div, #terminal canvas) {
