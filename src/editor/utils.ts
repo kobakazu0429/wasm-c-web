@@ -3,7 +3,7 @@ import { ulid } from "ulid";
 import { decompressLzString } from "../compression";
 import { editor, lz as lzStore, monacoEditorCode } from "../store";
 import { redToast } from "../toast";
-import { clearCode, getPreviousCode } from "./../localStorage/index";
+import { clearCode, getPreviousCode, getUser } from "./../localStorage/index";
 import { resetUrl } from "../url";
 import type { Test } from "../test";
 
@@ -67,19 +67,20 @@ export interface RecoveryCode {
   tests?: Test[];
 }
 export const recoveryCode = (): RecoveryCode => {
+  const user = getUser();
   const lz = get(lzStore);
   if (lz) {
     const decompressedLz = decompressLzString(lz);
     if (decompressedLz !== "") {
       const recovered = JSON.parse(decompressedLz) as Partial<RecoveryCode>;
       recovered.code = recovered.code ? recovered.code.replaceAll(/\r(\r)+/g, "\r") : "";
-      recovered.filename ??= `${ulid()}.c`;
+      recovered.filename ??= `${user.id}-${ulid()}.c`;
       return recovered as RecoveryCode;
     }
   }
   const previousCode = getPreviousCode();
   const code = previousCode?.code ?? "";
-  const filename = previousCode?.filename ?? `${ulid()}.c`;
+  const filename = previousCode?.filename ?? `${user.id}-${ulid()}.c`;
   const tests = previousCode?.tests;
   return { code, filename, tests };
 };

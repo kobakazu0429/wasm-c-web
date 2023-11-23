@@ -24,6 +24,7 @@ export const connectLanguageServer = () => {
     languageClient.start();
     reader.onClose(async () => await languageClient.stop());
   };
+  return () => webSocket.close();
 };
 
 const createLanguageClient = (transports: MessageTransports): MonacoLanguageClient => {

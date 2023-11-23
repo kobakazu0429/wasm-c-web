@@ -19,7 +19,10 @@
 
   onMount(() => {
     setupFullscreenEditor();
-    connectLanguageServer();
+
+    const close = connectLanguageServer();
+    willDestroyCallbacks.push(() => close());
+
     const { code, filename } = recoveryCode();
     monacoEditorCode.update(() => code);
 
