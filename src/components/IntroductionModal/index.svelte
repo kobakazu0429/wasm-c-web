@@ -15,9 +15,9 @@
   import Renderer from "./ContentRenderer.svelte";
   import type { RawBody } from "./ContentRenderer.svelte";
 
-  const howToUseBody = $json<RawBody[]>("introduction_modal.body.how_to_use");
-  const shortcutsBody = $json<RawBody[]>("introduction_modal.body.shortcuts");
-  const tipsBody = $json<RawBody[]>("introduction_modal.body.tips");
+  const howToUseBody = $json("introduction_modal.body.how_to_use") as RawBody[];
+  const shortcutsBody = $json("introduction_modal.body.shortcuts") as RawBody[];
+  const tipsBody = $json("introduction_modal.body.tips") as RawBody[];
 </script>
 
 <Modal
