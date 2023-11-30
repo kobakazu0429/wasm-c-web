@@ -16,6 +16,6 @@ jobs:
           cache: yarn
       - run: yarn install
       - run: yarn lint
-      - run: yarn test
-      # - run: yarn check
+      # - run: yarn test
+      - run: yarn svelte-check
       - run: yarn build
