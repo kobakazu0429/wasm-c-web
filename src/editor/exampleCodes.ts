@@ -32,6 +32,7 @@ int main() {
 
 export const stdinTests: Test[] = [
   {
+    type: "function",
     id: "stdinTests_id_1",
     testName: "add(1, 2) should be 3",
     functionName: "add",
@@ -46,6 +47,7 @@ export const stdinTests: Test[] = [
     returnPrecision: 0
   },
   {
+    type: "function",
     id: "stdinTests_id_2",
     testName: "div(8, 2) should be 4",
     functionName: "div",
@@ -60,6 +62,7 @@ export const stdinTests: Test[] = [
     returnPrecision: 0
   },
   {
+    type: "function",
     id: "stdinTests_id_3",
     testName: "div(10, 3) should be 3.3333",
     functionName: "div",
@@ -72,6 +75,14 @@ export const stdinTests: Test[] = [
       value: 3.3333
     },
     returnPrecision: 4
+  },
+  {
+    type: "main",
+    id: "stdinTests_id_4",
+    testName: "e2e",
+    functionName: "main",
+    stdin: ["20", "7"],
+    stdout: "20 + 7 = 27\n20 / 7 = 2.86\n"
   }
 ];
 
@@ -111,7 +122,7 @@ int main() {
 
   // array
   int array[] = {0, 1, 2, 3};
-  for(int i = 0; i < 4; i++) printf("%d\\n", array[i]);
+  for(int i = 0; i < sizeof(array) / sizeof(int); i++) printf("%d\\n", array[i]);
 
   // address & ptr
   int x = 1;
@@ -133,6 +144,18 @@ int main() {
 }
 `;
 
+export const basicTests: Test[] = [
+  {
+    type: "main",
+    id: "basicTests_id_1",
+    testName: "e2e",
+    functionName: "main",
+    stdin: [],
+    stdout:
+      "429\n0429\n3.141592\n3.14\nA\nHello, World!\n123 + 456 = 579\n0\n1\n2\n3\nx = 1, y = 2\n&x = 0x11318, &y = 0x11314\n1 + 2 = 3\nHi, kazu\n0! = 1\n1! = 1 = 1\n2! = 1 * 2 = 2\n3! = 1 * 2 * 3 = 6\n4! = 1 * 2 * 3 * 4 = 24\n5! = 1 * 2 * 3 * 4 * 5 = 120\n"
+  }
+];
+
 export const peakLoadTest = `#include <stdio.h>
 #define MAX 100
 
@@ -143,3 +166,15 @@ int main() {
   }
 }
 `;
+
+export const peakLoadTestTests: Test[] = [
+  {
+    type: "main",
+    id: "peakLoadTestTests_id_1",
+    testName: "e2e",
+    functionName: "main",
+    stdin: [],
+    stdout:
+      "123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100"
+  }
+];

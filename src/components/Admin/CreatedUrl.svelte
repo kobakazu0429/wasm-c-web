@@ -5,7 +5,7 @@
   import { buildUrlParams } from "../../url";
   import { get } from "svelte/store";
   import { buildingTests } from "../../stores/admin";
-  import { testsSchema, testForModalToTestConverter } from "../../test";
+  import { testsSchemaStrip, testForModalToTestConverter } from "../../test";
 
   let url = "";
 
@@ -18,8 +18,8 @@
 
     if (tests) {
       try {
-        testsSchema.parse(tests);
-        obj.tests = tests;
+        const stripedTests = testsSchemaStrip.parse(tests);
+        obj.tests = stripedTests;
       } catch (error) {
         console.log(error);
       }

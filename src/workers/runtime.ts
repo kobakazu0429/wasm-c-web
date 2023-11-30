@@ -78,26 +78,8 @@ export const startWasiTask = async (
 export type StartWasiTask = Parameters<typeof startWasiTask>;
 
 export const testWasi = async (wasmBinary: Uint8Array, tests: Test[]) => {
-  const wasmFs = new WasmFs();
-  const wasi = new WASI({
-    bindings: {
-      ...WASI.defaultBindings,
-      fs: wasmFs.fs
-    }
-  });
+  testBuilder(wasmBinary, tests);
 
-  const lowered_wasm = await lowerI64Imports(wasmBinary);
-  const module = await WebAssembly.compile(lowered_wasm);
-  const instance = await Asyncify.instantiate(module, {
-    ...wasi.getImports(module)
-  });
-
-  // @ts-expect-error
-  const memoryBuffer = instance.exports.memory.buffer;
-  console.log(tests);
-  console.log(memoryBuffer);
-
-  testBuilder(tests, instance.exports as any, memoryBuffer)();
   const result = await run();
   console.log(result);
 

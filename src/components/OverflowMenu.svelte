@@ -1,7 +1,15 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { OverflowMenu, OverflowMenuItem } from "carbon-components-svelte";
-  import { boilerplate, stdin, basic, peakLoadTest, stdinTests } from "../editor/exampleCodes";
+  import {
+    boilerplate,
+    stdin,
+    basic,
+    peakLoadTest,
+    stdinTests,
+    basicTests,
+    peakLoadTestTests
+  } from "../editor/exampleCodes";
   import { setCode } from "../editor/utils";
   import { openIntroductionModal } from "./IntroductionModal/index.svelte";
   import { updateUrlParams } from "../url";
@@ -23,14 +31,14 @@
     text={$_("overflow_menu.load_basic")}
     on:click={() => {
       setCode(basic);
-      updateUrlParams({ code: basic, tests: undefined });
+      updateUrlParams({ code: basic, tests: basicTests });
     }}
   />
   <OverflowMenuItem
     text={$_("overflow_menu.load_peakLoadTest")}
     on:click={() => {
       setCode(peakLoadTest);
-      updateUrlParams({ code: peakLoadTest, tests: undefined });
+      updateUrlParams({ code: peakLoadTest, tests: peakLoadTestTests });
     }}
   />
   <OverflowMenuItem

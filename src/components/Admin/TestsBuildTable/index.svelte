@@ -15,15 +15,14 @@
     buildingTestsDeleter,
     displayBuildingTestsTable,
     currentModal,
-    resetCurrentModal
+    resetCurrentModalTypeFunction,
+    resetCurrentModalTypeMain
   } from "../../../stores/admin";
   import { openTestBuilderModal } from "../TestBuilderModal/index.svelte";
   import { get } from "svelte/store";
-  import type { Test } from "../../../test";
 
-  const headers: Array<
-    { key: Exclude<keyof Test, "id">; value: string } | { key: "overflow"; empty: boolean }
-  > = [
+  const headers = [
+    { key: "type", value: "type" },
     { key: "testName", value: $_("admin.form.tests.test_name.label_text") },
     {
       key: "functionName",
@@ -41,6 +40,8 @@
       key: "returnPrecision",
       value: $_("admin.form.tests.return_precision.label_text")
     },
+    { key: "stdin", value: "stdin" },
+    { key: "stdout", value: "stdout" },
     { key: "overflow", empty: true }
   ];
 
@@ -74,7 +75,8 @@
         </Button>
         <Button
           on:click={() => {
-            resetCurrentModal();
+            resetCurrentModalTypeMain();
+            resetCurrentModalTypeFunction();
             openTestBuilderModal();
           }}>{$_("admin.form.tests.builder.create_test")}</Button
         >

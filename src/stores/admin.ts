@@ -1,13 +1,23 @@
 import { derived, writable } from "svelte/store";
+import { mainTestSchema, testForModalToTestConverter } from "../test";
 import type { TestForModal } from "../test";
 
 export const buildingTests = writable(new Map<string, TestForModal>());
 
 export const displayBuildingTestsTable = derived(buildingTests, ($buildingTests) => {
   return Array.from($buildingTests.values()).map((t) => {
-    const argumentsValues = t.argumentsValues.map((arg) => arg.value).join(", ");
-    const returnValue = `(${t.returnValue.type}) ${t.returnValue.value}`;
-    return { ...t, returnValue, argumentsValues };
+    if (t.type === "function") {
+      const argumentsValues = t.argumentsValues.map((arg) => arg.value).join(", ");
+      const returnValue = `(${t.returnValue.type}) ${t.returnValue.value}`;
+      return { ...t, returnValue, argumentsValues };
+    } else if (t.type === "main") {
+      const stripped = mainTestSchema.strip().parse(testForModalToTestConverter(t));
+      stripped.stdin = stripped.stdin.map((s) => s.replaceAll("\n", "\\n"));
+      stripped.stdout = stripped.stdout.replaceAll("\n", "\\n");
+      return stripped;
+    }
+
+    throw new Error("Invalid test type");
   });
 });
 
@@ -34,19 +44,24 @@ export const buildingTestsAdder = (test: TestForModal) => {
 
 export const argumentsValueAdder = () => {
   currentModal.update((self) => {
-    self.argumentsValues.push({ type: "void", value: "" });
+    if (self.type === "function") {
+      self.argumentsValues.push({ type: "void", value: "" });
+    }
     return self;
   });
 };
 
 export const argumentsValueDeleter = (index: number) => {
   currentModal.update((self) => {
-    self.argumentsValues.splice(index, 1);
+    if (self.type === "function") {
+      self.argumentsValues.splice(index, 1);
+    }
     return self;
   });
 };
 
 export const currentModal = writable<TestForModal>({
+  type: "function",
   id: "",
   testName: "",
   functionName: "",
@@ -58,8 +73,9 @@ export const currentModal = writable<TestForModal>({
   returnPrecision: "0"
 });
 
-export const resetCurrentModal = () => {
+export const resetCurrentModalTypeFunction = () => {
   currentModal.set({
+    type: "function",
     id: "",
     testName: "",
     functionName: "",
@@ -69,5 +85,16 @@ export const resetCurrentModal = () => {
       value: ""
     },
     returnPrecision: "0"
+  });
+};
+
+export const resetCurrentModalTypeMain = () => {
+  currentModal.set({
+    type: "main",
+    id: "",
+    testName: "",
+    functionName: "main",
+    stdin: "",
+    stdout: ""
   });
 };
