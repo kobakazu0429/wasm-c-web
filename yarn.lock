@@ -1347,9 +1347,9 @@ carbon-components-svelte@^0.82.0:
     flatpickr "4.6.9"
 
 carbon-icons-svelte@^12.0.0:
-  version "12.3.1"
-  resolved "https://registry.yarnpkg.com/carbon-icons-svelte/-/carbon-icons-svelte-12.3.1.tgz#61f54ebed748ba9cd5f06a2e8802060687876fc7"
-  integrity sha512-ORptBzkt4jlNz1PmDzH5Dd+I6zmU+OE+uqVXH9psi/sGdFRHKUQVn3sAeWfYlT3anwypBSkx5yO4p7ULFlC1Yw==
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/carbon-icons-svelte/-/carbon-icons-svelte-12.4.0.tgz#addd1a7fc857f0e6901cfa060630070802ce59af"
+  integrity sha512-UAPPbPSIC6lk1akCIJdY31pCVo8GE5AfNMHm3hjXLMbuQOHUBFSg1RyirH9WUkHxcwwQaotarz7/2EOdVvZSKg==
 
 carbon-preprocess-svelte@0.10.0:
   version "0.10.0"
