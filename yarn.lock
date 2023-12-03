@@ -2720,6 +2720,13 @@ minimatch@^5.0.1:
   dependencies:
     brace-expansion "^2.0.1"
 
+minimatch@^5.1.0:
+  version "5.1.6"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.6.tgz#1cfcb8cf5522ea69952cd2af95ae09477f122a96"
+  integrity sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==
+  dependencies:
+    brace-expansion "^2.0.1"
+
 minimist@^1.2.0, minimist@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
@@ -2747,14 +2754,13 @@ monaco-editor@^0.34.1:
   resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.34.1.tgz#1b75c4ad6bc4c1f9da656d740d98e0b850a22f87"
   integrity sha512-FKc80TyiMaruhJKKPz5SpJPIjL+dflGvz4CpuThaPMc94AyN7SeC9HQ8hrvaxX7EyHdJcUY5i4D0gNyJj1vSZQ==
 
-monaco-languageclient@^4.0.1:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/monaco-languageclient/-/monaco-languageclient-4.0.3.tgz#9bea6ae7d16da17b4a17581ba827ebcdcd083f82"
-  integrity sha512-1mGIUb5PFRknITBhNxgH0SnQy1/jntt9oo0cQpOl3HdhYEL/CYK2UrsZZX7Udqmz1PXKyRIzQ3tZ7dJn4mzWtA==
+monaco-languageclient@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/monaco-languageclient/-/monaco-languageclient-5.0.1.tgz#af0c871a2b511fa92a291cc71914a0f8d7889752"
+  integrity sha512-zTEb8PQZpnYiKkJofdIArMikX7CyQ7205copJNWSCMlOK9eEsbCM8TYb+D7f+MNWt7aOBbustQuqhwjsI3ZYgw==
   dependencies:
-    vscode "npm:@codingame/monaco-vscode-api@1.69.13"
-    vscode-jsonrpc "8.0.2"
-    vscode-languageclient "8.0.2"
+    vscode-jsonrpc "~8.1.0"
+    vscode-languageclient "~8.1.0"
 
 mri@^1.1.0:
   version "1.2.0"
@@ -3939,27 +3945,32 @@ vscode-jsonrpc@8.0.2:
   resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-8.0.2.tgz#f239ed2cd6004021b6550af9fd9d3e47eee3cac9"
   integrity sha512-RY7HwI/ydoC1Wwg4gJ3y6LpU9FJRZAUnTYMXthqhFXXu77ErDd/xkREpGuk4MyYkk4a+XDWAMqe0S3KkelYQEQ==
 
-vscode-languageclient@8.0.2:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/vscode-languageclient/-/vscode-languageclient-8.0.2.tgz#f1f23ce8c8484aa11e4b7dfb24437d3e59bb61c6"
-  integrity sha512-lHlthJtphG9gibGb/y72CKqQUxwPsMXijJVpHEC2bvbFqxmkj9LwQ3aGU9dwjBLqsX1S4KjShYppLvg1UJDF/Q==
-  dependencies:
-    minimatch "^3.0.4"
-    semver "^7.3.5"
-    vscode-languageserver-protocol "3.17.2"
+vscode-jsonrpc@8.1.0, vscode-jsonrpc@~8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-8.1.0.tgz#cb9989c65e219e18533cc38e767611272d274c94"
+  integrity sha512-6TDy/abTQk+zDGYazgbIPc+4JoXdwC8NHU9Pbn4UJP1fehUyZmM4RHp5IthX7A6L5KS30PRui+j+tbbMMMafdw==
 
-vscode-languageserver-protocol@3.17.2:
-  version "3.17.2"
-  resolved "https://registry.yarnpkg.com/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.17.2.tgz#beaa46aea06ed061576586c5e11368a9afc1d378"
-  integrity sha512-8kYisQ3z/SQ2kyjlNeQxbkkTNmVFoQCqkmGrzLH6A9ecPlgTbp3wDTnUNqaUxYr4vlAcloxx8zwy7G5WdguYNg==
+vscode-languageclient@~8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/vscode-languageclient/-/vscode-languageclient-8.1.0.tgz#3e67d5d841481ac66ddbdaa55b4118742f6a9f3f"
+  integrity sha512-GL4QdbYUF/XxQlAsvYWZRV3V34kOkpRlvV60/72ghHfsYFnS/v2MANZ9P6sHmxFcZKOse8O+L9G7Czg0NUWing==
   dependencies:
-    vscode-jsonrpc "8.0.2"
-    vscode-languageserver-types "3.17.2"
+    minimatch "^5.1.0"
+    semver "^7.3.7"
+    vscode-languageserver-protocol "3.17.3"
 
-vscode-languageserver-types@3.17.2:
-  version "3.17.2"
-  resolved "https://registry.yarnpkg.com/vscode-languageserver-types/-/vscode-languageserver-types-3.17.2.tgz#b2c2e7de405ad3d73a883e91989b850170ffc4f2"
-  integrity sha512-zHhCWatviizPIq9B7Vh9uvrH6x3sK8itC84HkamnBWoDFJtzBf7SWlpLCZUit72b3os45h6RWQNC9xHRDF8dRA==
+vscode-languageserver-protocol@3.17.3:
+  version "3.17.3"
+  resolved "https://registry.yarnpkg.com/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.17.3.tgz#6d0d54da093f0c0ee3060b81612cce0f11060d57"
+  integrity sha512-924/h0AqsMtA5yK22GgMtCYiMdCOtWTSGgUOkgEDX+wk2b0x4sAfLiO4NxBxqbiVtz7K7/1/RgVrVI0NClZwqA==
+  dependencies:
+    vscode-jsonrpc "8.1.0"
+    vscode-languageserver-types "3.17.3"
+
+vscode-languageserver-types@3.17.3:
+  version "3.17.3"
+  resolved "https://registry.yarnpkg.com/vscode-languageserver-types/-/vscode-languageserver-types-3.17.3.tgz#72d05e47b73be93acb84d6e311b5786390f13f64"
+  integrity sha512-SYU4z1dL0PyIMd4Vj8YOqFvHu7Hz/enbWtpfnVbJHU4Nd1YNYx8u0ennumc6h48GQNeOLxmwySmnADouT/AuZA==
 
 vscode-ws-jsonrpc@^2.0.0:
   version "2.0.2"
@@ -3967,11 +3978,6 @@ vscode-ws-jsonrpc@^2.0.0:
   integrity sha512-gIOGdaWwKYwwqohgeRC8AtqqHSNghK8wA3oVcBi7UMAdZnRSAf8n4/Svtd+JHqGiIguYdNa/sC0s4IW3ZDF7mA==
   dependencies:
     vscode-jsonrpc "8.0.2"
-
-"vscode@npm:@codingame/monaco-vscode-api@1.69.13":
-  version "1.69.13"
-  resolved "https://registry.yarnpkg.com/@codingame/monaco-vscode-api/-/monaco-vscode-api-1.69.13.tgz#8fcb659c2d30961ad7173b85f365593426d3589e"
-  integrity sha512-7+dQbQ5O8mQhFyUcAiiJkCotNjZUzRxh4NMBKc/BSIFi0jG47bay+jP/+ngsmxHBapjs/xUAPaKSGNnf9WBmAA==
 
 wasm-feature-detect@^1.2.2:
   version "1.2.11"
