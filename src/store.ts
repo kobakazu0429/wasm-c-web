@@ -10,7 +10,7 @@ type Settings = { config: Config; env: Env; argvs: Argvs };
 export const settings = writable<Settings>({
   config: [
     { key: "timeout [ms]", value: "3000" },
-    { key: "User ID", value: "" }
+    { key: "User ID", value: "__IGNORE_ME__" }
     // { key: "use File System", value: false },
   ],
 

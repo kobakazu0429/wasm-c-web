@@ -39,7 +39,7 @@
 
   settings.subscribe((s) => {
     const userId = s.config.find((c) => c.key === "User ID");
-    if (userId && typeof userId.value === "string" && userId.value.length > 0) {
+    if (userId && typeof userId.value === "string" && userId.value !== "__IGNORE_ME__") {
       updateUser({ id: userId.value });
     }
   });

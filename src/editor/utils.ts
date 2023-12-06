@@ -74,13 +74,13 @@ export const recoveryCode = (): RecoveryCode => {
     if (decompressedLz !== "") {
       const recovered = JSON.parse(decompressedLz) as Partial<RecoveryCode>;
       recovered.code = recovered.code ? recovered.code.replaceAll(/\r(\r)+/g, "\r") : "";
-      recovered.filename ??= `${user.id}-${ulid()}.c`;
+      recovered.filename ??= `${user ? user.id + "-" : ""}${ulid()}.c`;
       return recovered as RecoveryCode;
     }
   }
   const previousCode = getPreviousCode();
   const code = previousCode?.code ?? "";
-  const filename = previousCode?.filename ?? `${user.id}-${ulid()}.c`;
+  const filename = previousCode?.filename ?? `${user ? user.id + "-" : ""}${ulid()}.c`;
   const tests = previousCode?.tests;
   return { code, filename, tests };
 };
