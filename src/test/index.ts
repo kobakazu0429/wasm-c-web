@@ -95,10 +95,7 @@ export const testBuilder = async (wasmBinary: Uint8Array, tests: Test[]) => {
                 read: async () => {
                   // console.log("called: wasi.stdin.read");
                   const it = stdinIterator?.next();
-                  if (it?.done) {
-                    throw new Error("stdin is empty");
-                  }
-                  let input = it?.value;
+                  let input = it?.value ?? "";
                   if (!input?.endsWith("\n")) input += "\n";
                   const buffer = encoder.encode(input);
                   return buffer;
