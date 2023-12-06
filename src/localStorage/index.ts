@@ -62,9 +62,6 @@ export const isVisited = () => {
 
 export const getUser = (): User => {
   const user = store.local.get(USER_KEY);
-  if (!user) {
-    throw new Error("user not found");
-  }
   return user;
 };
 
