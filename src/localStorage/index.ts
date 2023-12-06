@@ -67,3 +67,8 @@ export const getUser = (): User => {
   }
   return user;
 };
+
+export const updateUser = (user: Partial<User>) => {
+  const prev = getUser();
+  store.local.set(USER_KEY, { ...prev, ...user });
+};

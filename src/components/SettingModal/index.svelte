@@ -16,6 +16,7 @@
   import InlineTextInput from "./InlineTextInput.svelte";
   import InlineTextBothInput from "./InlineTextBothInput.svelte";
   import { settings, settingsAdder, settingsRemover } from "../../store";
+  import { updateUser } from "../../localStorage";
 
   const languages = [
     { id: "0", text: "日本語(Japanese)" },
@@ -35,6 +36,13 @@
     const local = languagesIdLocalMap.get(e.detail.selectedId);
     locale.set(local);
   };
+
+  settings.subscribe((s) => {
+    const userId = s.config.find((c) => c.key === "User ID");
+    if (userId && typeof userId.value === "string" && userId.value.length > 0) {
+      updateUser({ id: userId.value });
+    }
+  });
 </script>
 
 <Modal

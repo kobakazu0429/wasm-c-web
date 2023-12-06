@@ -9,7 +9,8 @@ export const compiledData = writable<Uint8Array | null>(null);
 type Settings = { config: Config; env: Env; argvs: Argvs };
 export const settings = writable<Settings>({
   config: [
-    { key: "timeout [ms]", value: "3000" }
+    { key: "timeout [ms]", value: "3000" },
+    { key: "User ID", value: "" }
     // { key: "use File System", value: false },
   ],
 
