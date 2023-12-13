@@ -58,24 +58,26 @@ export const visited = () => {
   }
 
   const user = getUser();
-  settings.update((self) => {
-    const config = self.config.find((c) => c.key === "User ID");
-    if (config) config.value = user.id;
-    return self;
-  });
+  if (user) {
+    settings.update((self) => {
+      const config = self.config.find((c) => c.key === "User ID");
+      if (config) config.value = user.id;
+      return self;
+    });
+  }
 };
 
 export const isVisited = () => {
   return (store.local.get(VISITED_KEY) as boolean | null) ?? false;
 };
 
-export const getUser = (): User => {
+export const getUser = (): User | undefined => {
   const user = store.local.get(USER_KEY);
   return user;
 };
 
 export const updateUser = (user: Partial<User>) => {
-  const prevUser = getUser();
+  const prevUser = getUser()!;
   const newUser: User = { ...prevUser, ...user };
   store.local.set(USER_KEY, newUser);
 };

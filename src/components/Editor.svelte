@@ -10,7 +10,7 @@
   import { getCode, recoveryCode } from "../editor/utils";
   import { connectLanguageServer } from "../editor/lsp";
 
-  const ws = writable(connectLanguageServer(getUser().id));
+  const ws = writable(connectLanguageServer(getUser()?.id));
 
   settings.subscribe(async (s) => {
     const userId = s.config.find((c) => c.key === "User ID");
