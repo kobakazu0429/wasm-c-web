@@ -16,7 +16,7 @@ type Response =
 export async function compiler(src: string) {
   compileLogOut(_("compiler.start"));
 
-  const userId = getUser()?.id;
+  const user = getUser();
 
   const res = await (
     await fetch(import.meta.env.VITE_COMPILER_API, {
@@ -24,7 +24,7 @@ export async function compiler(src: string) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ src, userId })
+      body: JSON.stringify({ src, user })
     })
   ).json();
 
