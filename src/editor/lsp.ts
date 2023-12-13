@@ -10,21 +10,30 @@ import ReconnectingWebSocket, {
   type Options as ReconnectingWebSocketOptions
 } from "reconnecting-websocket";
 
-export const connectLanguageServer = () => {
-  const url = normalizeUrl(import.meta.env.VITE_LSP_API);
+export const connectLanguageServer = (userId?: string) => {
+  const url = normalizeUrl(
+    import.meta.env.VITE_LSP_API + (userId ? `/?userId=${encodeURIComponent(userId!)}` : "")
+  );
+  let languageClient: MonacoLanguageClient | undefined;
   const webSocket = createWebSocket(url);
   webSocket.onopen = async () => {
     const socket = toSocket(webSocket as any);
     const reader = new WebSocketMessageReader(socket);
     const writer = new WebSocketMessageWriter(socket);
-    const languageClient = createLanguageClient({
+    languageClient = createLanguageClient({
       reader,
       writer
     });
     languageClient.start();
-    reader.onClose(async () => await languageClient.stop());
+    reader.onClose(async () => languageClient && (await languageClient.stop()));
   };
-  return () => webSocket.close();
+
+  return async () => {
+    if (languageClient) {
+      await languageClient.stop(5000);
+    }
+    webSocket.close();
+  };
 };
 
 const createLanguageClient = (transports: MessageTransports): MonacoLanguageClient => {

@@ -2,26 +2,35 @@
   import * as monaco from "monaco-editor";
   import debounce from "just-debounce-it";
   import { MonacoServices } from "monaco-languageclient";
-  import { editor, editorRef, monacoEditorCode } from "../store";
+  import { editor, editorRef, monacoEditorCode, settings } from "../store";
   import { onMount, onDestroy } from "svelte";
+  import { writable } from "svelte/store";
   import { setupFullscreenEditor } from "../editor/fullscreen";
-  import { saveCodeStorage } from "../localStorage";
+  import { getUser, saveCodeStorage } from "../localStorage";
   import { getCode, recoveryCode } from "../editor/utils";
   import { connectLanguageServer } from "../editor/lsp";
 
+  const ws = writable(connectLanguageServer(getUser().id));
+
+  settings.subscribe(async (s) => {
+    const userId = s.config.find((c) => c.key === "User ID");
+    if (userId && typeof userId.value === "string" && userId.value !== "__IGNORE_ME__") {
+      await $ws();
+      ws.set(connectLanguageServer(userId.value));
+    }
+  });
+
   const willDestroyCallbacks: Array<() => void> = [];
 
-  onDestroy(() => {
+  onDestroy(async () => {
     willDestroyCallbacks.forEach((cb) => {
       cb();
     });
+    await $ws();
   });
 
   onMount(() => {
     setupFullscreenEditor();
-
-    const close = connectLanguageServer();
-    willDestroyCallbacks.push(() => close());
 
     const { code, filename } = recoveryCode();
     monacoEditorCode.update(() => code);
