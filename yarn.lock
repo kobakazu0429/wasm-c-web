@@ -3646,9 +3646,9 @@ svelte-preprocess@^5.1.0:
     strip-indent "^3.0.0"
 
 svelte-routing@^2.0.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/svelte-routing/-/svelte-routing-2.9.0.tgz#dd7ab8d5836143ce67381c0d637b904c6c3092c5"
-  integrity sha512-Ve0OJ78DnjWhOdKeSZGgcyOiaVSu+fZMWNkKqn13+y15vGk/yVjHDYyJLmC1gorQUSIVeqkwQ2LCplfuStKS4w==
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/svelte-routing/-/svelte-routing-2.12.0.tgz#5fcfad288d1210bed370fc52bf9898ab5b054466"
+  integrity sha512-6i4Mncy4P2b7gD7+BOT9JzQvrfGfGXqFra8VXYU5//bpn6AzJ0PLEhH1E/KwY2AxleOiS/8Nm37MGuic2kn15A==
 
 svelte@4.2.8:
   version "4.2.8"
