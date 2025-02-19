@@ -23,7 +23,7 @@
     "@rollup/plugin-commonjs": "25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@sveltejs/vite-plugin-svelte": "3.0.1",
-    "@types/node": "18.11.19",
+    "@types/node": "18.19.76",
     "@types/wicg-file-system-access": "2023.10.4",
     "@wessberg/rollup-plugin-ts": "2.0.4",
     "autoprefixer": "10.4.16",
